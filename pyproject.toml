@@ -28,12 +28,13 @@ dependencies = [
     "pandas>=2.2",
     "requests",
     "pyarrow",
+    "pystac",
 ]
 
 [project.optional-dependencies]
 # dataretrieval.waterdata first ships in dataretrieval 1.1.0.
 usgs = ["dataretrieval>=1.1.0"]
-met = ["xarray", "zarr>=3", "icechunk", "pystac"]
+met = ["xarray", "zarr>=3", "icechunk"]
 xarray = ["xarray", "netCDF4"]
 all = ["tidesurgedata[usgs,met,xarray]"]
 test = ["pytest", "pytest-socket", "pytest-recording", "vcrpy"]
@@ -50,10 +51,12 @@ packages = ["src/tidesurgedata"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--disable-socket --allow-unix-socket -ra --strict-markers"
+addopts = "-ra --strict-markers"
 markers = [
     "live: real network access; nightly job only",
     "rtide: RTide compatibility job only",
+    "vcr: idk",
+    "enable_socket: aslo idk"
 ]
 xfail_strict = true
 
