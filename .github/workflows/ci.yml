@@ -16,19 +16,25 @@ jobs:
   lint:
     name: lint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
-      - run: python -m pip install ruff
+          cache-dependency-path: pyproject.toml
+      # Keep the ruff version in sync with .pre-commit-config.yaml.
+      - run: python -m pip install "ruff==0.16.8" actionlint-py
       - run: ruff check .
       - run: ruff format --check .
+      - name: Lint workflows
+        run: actionlint
 
-  unit:
-    name: unit
+  unit-matrix:
+    name: unit (${{ matrix.python-version }})
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -39,19 +45,38 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
+          cache-dependency-path: pyproject.toml
       - run: python -m pip install --upgrade pip
       - run: pip install -e ".[test]"
       - run: pytest -m "not live and not rtide"
 
+  # Single required check that summarises the matrix, so branch protection does not need
+  # updating when Python versions are added or removed.
+  unit:
+    name: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: unit-matrix
+    if: always()
+    steps:
+      - name: Check matrix result
+        env:
+          RESULT: ${{ needs.unit-matrix.result }}
+        run: |
+          echo "unit-matrix result: $RESULT"
+          test "$RESULT" = "success"
+
   extras:
     name: extras
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: pyproject.toml
       - run: python -m pip install --upgrade pip
       - run: pip install -e ".[all,test]"
       - run: pytest -m "not live and not rtide"

@@ -21,6 +21,7 @@ jobs:
   rtide-compat:
     name: rtide-compat
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     env:
       DE421_DIR: ${{ github.workspace }}/.cache/ephemeris
     steps:
@@ -29,6 +30,7 @@ jobs:
         with:
           python-version: "3.12" # a version supported by TensorFlow
           cache: pip
+          cache-dependency-path: pyproject.toml
       - name: Cache Skyfield ephemeris
         uses: actions/cache@v6
         with:
