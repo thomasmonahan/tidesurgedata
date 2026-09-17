@@ -9,7 +9,6 @@ from tidesurgedata.contract import ContractError, validate_series
 
 from ..test_meta import make_meta
 
-BL11 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-11")
 
 T0 = pd.Timestamp("2024-01-01T00:00Z")
 
@@ -170,7 +169,6 @@ def hourly(n=48, name="discharge"):
     return minutes_series("1h", n, name=name) / 60.0  # value = hours since T0
 
 
-@BL11
 def test_materialise_lags_values_and_names():
     s = hourly()
     out = materialise_lags(s, "discharge", (-24, -1, 0, 2))
@@ -186,7 +184,6 @@ def test_materialise_lags_values_and_names():
     assert out["discharge_lag2h"].iloc[-2:].isna().all()
 
 
-@BL11
 def test_materialise_lags_sub_hourly_grid():
     s = minutes_series("15min", 20, name="discharge")
     out = materialise_lags(s, "discharge", (-0.25, -0.5))
@@ -194,7 +191,6 @@ def test_materialise_lags_sub_hourly_grid():
     assert out.iloc[5, 0] == 60.0 and out.iloc[5, 1] == 45.0
 
 
-@BL11
 def test_materialise_lags_non_multiple_raises():
     with pytest.raises(ValueError, match="multiple"):
         materialise_lags(hourly(), "discharge", (-1.5,))

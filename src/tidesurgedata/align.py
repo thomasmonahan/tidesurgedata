@@ -201,4 +201,36 @@ def materialise_lags(
     ValueError
         If any lag is not an exact multiple of the grid step, or the index is not regular.
     """
-    raise NotImplementedError("BL-11: align.materialise_lags")
+
+    # Check that the time series is long enough
+    if len(series_on_grid.index) < 2:
+        raise ValueError("at least two timestamps are required to infer grid spacing")
+
+    steps = np.diff(series_on_grid.index.as_unit("ns").asi8)
+
+    if not np.all(steps == steps[0]):
+        raise ValueError("index is not regular")
+
+    # Keep the step in the same integer-nanosecond unit as the lag values.
+    step = series_on_grid.index[1] - series_on_grid.index[0]
+
+    lags = [pd.Timedelta(hours=float(lag_hour)) for lag_hour in lags_hours]
+    lag_ns = np.asarray([lag.value for lag in lags], dtype=np.int64)
+    step_ns = step.value
+
+    if not np.all(lag_ns % step_ns == 0):
+        raise ValueError("some lags are not an exact multiple of the grid step")
+
+    values = series_on_grid.to_numpy(dtype="float64", copy=False)
+    result = {}
+    for lag_hour, lag, lag_value in zip(lags_hours, lags, lag_ns):
+        offset = int(lag_value // step_ns)
+        shifted = np.full(values.shape, np.nan, dtype="float64")
+        if offset >= 0:
+            if offset < len(values):
+                shifted[: len(values) - offset] = values[offset:]
+        elif -offset < len(values):
+            shifted[-offset:] = values[: len(values) + offset]
+        result[lag_column_name(driver_name, lag_hour)] = shifted
+
+    return pd.DataFrame(result, index=series_on_grid.index)
