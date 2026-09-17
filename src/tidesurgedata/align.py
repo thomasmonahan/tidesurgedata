@@ -83,6 +83,28 @@ def to_grid(
     ValueError
         If ``how`` is invalid or ``freq`` / ``max_gap`` are not positive.
     """
+
+    from tidesurgedata.contract import validate_series
+
+    validate_series(series, meta)
+
+    # Protects against invalid how, freq and max_gap
+    if how not in {"instant", "mean"}:
+        raise ValueError(f"how must be 'instant' or 'mean', got {how!r}.")
+    try:
+        grid_freq = pd.Timedelta(freq)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"freq must be a positive duration, got {freq!r}.") from exc
+    if grid_freq <= pd.Timedelta(0):
+        raise ValueError(f"freq must be positive, got {freq!r}.")
+    if max_gap is not None:
+        try:
+            gap = pd.Timedelta(max_gap)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"max_gap must be a positive duration, got {max_gap!r}.") from exc
+        if gap <= pd.Timedelta(0):
+            raise ValueError(f"max_gap must be positive, got {max_gap!r}.")
+
     raise NotImplementedError("BL-10: align.to_grid resampling and gap policy")
 
 
