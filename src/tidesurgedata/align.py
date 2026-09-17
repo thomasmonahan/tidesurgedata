@@ -86,6 +86,7 @@ def to_grid(
 
     from tidesurgedata.contract import validate_series
 
+    # Check whether series breaks the data contract
     validate_series(series, meta)
 
     # Protects against invalid how, freq and max_gap
@@ -105,7 +106,72 @@ def to_grid(
         if gap <= pd.Timedelta(0):
             raise ValueError(f"max_gap must be positive, got {max_gap!r}.")
 
-    raise NotImplementedError("BL-10: align.to_grid resampling and gap policy")
+    if series.empty:
+        return pd.Series(
+            np.array([], dtype="float64"),
+            index=pd.DatetimeIndex([], tz="UTC", name="time"),
+            name=series.name,
+        )
+
+    aligned = series.copy()
+    if meta.sampling == "window_mean":
+        if meta.label == "start":
+            aligned.index = aligned.index + meta.window / 2
+        elif meta.label == "end":
+            aligned.index = aligned.index - meta.window / 2
+
+    first = aligned.index[0].floor(grid_freq)
+    last = aligned.index[-1].ceil(grid_freq)
+    grid = pd.date_range(first, last, freq=grid_freq, tz="UTC", name="time")
+
+    if how == "instant":
+        result = pd.Series(np.nan, index=grid, dtype="float64", name=series.name)
+        positions = grid.searchsorted(aligned.index)
+        exact = positions < len(grid)
+        exact_positions = positions[exact]
+        exact_index = aligned.index[exact]
+        exact_match = grid[exact_positions] == exact_index
+        result.iloc[exact_positions[exact_match]] = aligned.iloc[np.flatnonzero(exact)[exact_match]]
+
+        tolerance = grid_freq / 10
+        nearest = aligned.reindex(grid, method="nearest", tolerance=tolerance)
+        result = result.fillna(nearest)
+    else:
+        differences = np.diff(aligned.index.as_unit("ns").asi8)
+        positive = differences[differences > 0]
+        if len(positive) == 0:
+            native_spacing = grid_freq
+        else:
+            native_spacing = pd.to_timedelta(np.median(positive), unit="ns")
+        expected = grid_freq / native_spacing
+        values = np.full(len(grid), np.nan, dtype="float64")
+        for position, timestamp in enumerate(grid):
+            start = timestamp - grid_freq / 2
+            stop = timestamp + grid_freq / 2
+            left = aligned.index.searchsorted(start, side="left")
+            right = aligned.index.searchsorted(stop, side="left")
+            window_values = aligned.iloc[left:right]
+            valid = window_values.dropna()
+            if len(valid) >= expected / 2:
+                values[position] = valid.mean()
+        result = pd.Series(values, index=grid, name=series.name)
+
+    if max_gap is not None:
+        values = result.to_numpy(copy=True)
+        valid_positions = np.flatnonzero(~np.isnan(values))
+        for left, right in zip(valid_positions[:-1], valid_positions[1:]):
+            if right == left + 1 or grid[right] - grid[left] > gap:
+                continue
+            missing = np.arange(left + 1, right)
+            values[missing] = np.interp(
+                missing,
+                [left, right],
+                [values[left], values[right]],
+            )
+        result = pd.Series(values, index=grid, name=series.name)
+
+    validate_series(result, meta)
+    return result
 
 
 def materialise_lags(
