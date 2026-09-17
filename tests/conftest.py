@@ -1,13 +1,13 @@
 """Shared fixtures: fake sources, a fake recipe and VCR configuration for recorded cassettes."""
 
-from pathlib import Path
-
 import pytest
 
 from tidesurgedata import Driver, Recipe
 from tidesurgedata.sources.fake import FakeMet, FakeRiver, FakeTideGauge
 
-CASSETTE_ROOT = Path(__file__).parent / "cassettes"
+from .cassette_check import CASSETTE_ROOT, FILTER_HEADERS, FILTER_QUERY_PARAMETERS
+
+__all__ = ["CASSETTE_ROOT"]
 
 
 @pytest.fixture
@@ -41,12 +41,15 @@ def fake_recipe(fake_tide_gauge: FakeTideGauge, fake_river: FakeRiver, fake_met:
 
 @pytest.fixture(scope="module")
 def vcr_config() -> dict:
-    """Never record secrets: strip auth headers and API-key query parameters."""
+    """Never record secrets: strip auth headers and API-key query parameters.
+
+    The record mode is deliberately not set here: it would override ``--record-mode`` on the
+    command line. Without that option pytest-recording replays only (``"none"``).
+    """
     return {
-        "filter_headers": ["authorization", "x-api-key", "api-key", "cookie"],
-        "filter_query_parameters": ["api_key", "apikey", "token", "key", "access_token"],
+        "filter_headers": list(FILTER_HEADERS),
+        "filter_query_parameters": list(FILTER_QUERY_PARAMETERS),
         "decode_compressed_response": True,
-        "record_mode": "none",
     }
 
 

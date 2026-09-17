@@ -1,0 +1,85 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://environment.data.gov.uk/flood-monitoring/id/stations/E72639
+  response:
+    body:
+      string: "{ \n  \"@context\" : \"http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld\"
+        ,\n  \"meta\" : { \n    \"publisher\" : \"Environment Agency\" ,\n    \"licence\"
+        : \"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\"
+        ,\n    \"documentation\" : \"http://environment.data.gov.uk/flood-monitoring/doc/reference\"
+        ,\n    \"version\" : \"0.9\" ,\n    \"comment\" : \"Status: Beta service\"
+        ,\n    \"hasFormat\" : [ \"http://environment.data.gov.uk/flood-monitoring/id/stations/E72639.rdf\",
+        \"http://environment.data.gov.uk/flood-monitoring/id/stations/E72639.ttl\",
+        \"http://environment.data.gov.uk/flood-monitoring/id/stations/E72639.html\"
+        ]\n  }\n   ,\n  \"items\" : { \n    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/E72639\"
+        ,\n    \"RLOIid\" : \"3014\" ,\n    \"catchmentName\" : \"England - South
+        Coast\" ,\n    \"dateOpened\" : \"2012-02-24\" ,\n    \"eaAreaName\" : \"Anglian
+        - Wessex\" ,\n    \"eaRegionName\" : \"Anglian\" ,\n    \"easting\" : 349530
+        ,\n    \"gridReference\" : \"ST 4953 7815\" ,\n    \"label\" : \"Avonmouth
+        Portbury\" ,\n    \"lat\" : 51.49999 ,\n    \"long\" : -2.728468 ,\n    \"measures\"
+        : { \n      \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/E72639-level-tidal_level-Mean-15_min-mAOD\"
+        ,\n      \"datumType\" : \"http://environment.data.gov.uk/flood-monitoring/def/core/datumAOD\"
+        ,\n      \"label\" : \"Avonmouth Portbury - level-tidal_level-Mean-15_min-mAOD\"
+        ,\n      \"latestReading\" : { \n        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/E72639-level-tidal_level-Mean-15_min-mAOD/2026-09-17T08-30-00Z\"
+        ,\n        \"date\" : \"2026-09-17\" ,\n        \"dateTime\" : \"2026-09-17T08:30:00Z\"
+        ,\n        \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/E72639-level-tidal_level-Mean-15_min-mAOD\"
+        ,\n        \"value\" : 3.206\n      }\n       ,\n      \"localDatumMeasure\"
+        : \"http://environment.data.gov.uk/flood-monitoring/id/measures/E72624-level-tidal_level-Mean-15_min-m\"
+        ,\n      \"notation\" : \"E72639-level-tidal_level-Mean-15_min-mAOD\" ,\n
+        \     \"parameter\" : \"level\" ,\n      \"parameterName\" : \"Water Level\"
+        ,\n      \"period\" : 900 ,\n      \"qualifier\" : \"Tidal Level\" ,\n      \"station\"
+        : \"http://environment.data.gov.uk/flood-monitoring/id/stations/E72639\" ,\n
+        \     \"stationReference\" : \"E72639\" ,\n      \"type\" : [ \"http://environment.data.gov.uk/flood-monitoring/def/core/Measure\",
+        \"http://environment.data.gov.uk/flood-monitoring/def/core/WaterLevel\" ]
+        ,\n      \"unit\" : \"http://qudt.org/1.1/vocab/unit#Meter\" ,\n      \"unitName\"
+        : \"mAOD\" ,\n      \"valueType\" : \"mean\"\n    }\n     ,\n    \"northing\"
+        : 178147 ,\n    \"notation\" : \"E72639\" ,\n    \"riverName\" : \"Tide\"
+        ,\n    \"stageScale\" : { \n      \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/E72639/stageScale\"
+        ,\n      \"datum\" : 0 ,\n      \"maxOnRecord\" : { \n        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/E72639/stageScale/maxOnRecord\"
+        ,\n        \"dateTime\" : \"2014-01-03T08:15:00\" ,\n        \"value\" : 8.626\n
+        \     }\n       ,\n      \"scaleMax\" : 10\n    }\n     ,\n    \"stationReference\"
+        : \"E72639\" ,\n    \"status\" : \"http://environment.data.gov.uk/flood-monitoring/def/core/statusActive\"
+        ,\n    \"statusDate\" : \"2017-10-25T07:00:00\" ,\n    \"town\" : \"Avonmouth\"
+        ,\n    \"type\" : [ \"http://environment.data.gov.uk/flood-monitoring/def/core/Coastal\",
+        \"http://environment.data.gov.uk/flood-monitoring/def/core/Station\", \"http://environment.data.gov.uk/flood-monitoring/def/core/TideGauge\"
+        ] ,\n    \"wiskiID\" : \"530102_FW\"\n  }\n}\n\n"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '235'
+      Cache-Control:
+      - no-transform, max-age=300
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 17 Sep 2026 10:56:42 GMT
+      Last-Modified:
+      - Thu, 17 Sep 2026 10:48:12 GMT
+      Server:
+      - openresty/1.25.3.2
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept
+      content-length:
+      - '3458'
+    status:
+      code: 200
+      message: OK
+version: 1

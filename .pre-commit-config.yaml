@@ -13,3 +13,11 @@ repos:
       - id: trailing-whitespace
       - id: check-added-large-files
         args: [--maxkb=500]
+  - repo: local
+    hooks:
+      - id: check-cassettes
+        name: check cassettes for secrets and size
+        entry: python tests/cassette_check.py
+        language: python
+        additional_dependencies: [pyyaml]
+        files: ^tests/cassettes/.*\.ya?ml$
