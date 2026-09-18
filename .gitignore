@@ -14,6 +14,7 @@ htmlcov/
 # Environments and caches
 .venv/
 .pytest_cache/
+uv.lock
 .cache/
 
 # Consumers / large files

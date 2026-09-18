@@ -41,7 +41,7 @@ usgs = ["dataretrieval>=1.1.0"]
 met = ["xarray", "zarr>=3", "icechunk"]
 xarray = ["xarray", "netCDF4"]
 all = ["tidesurgedata[usgs,met,xarray]"]
-test = ["pytest", "pytest-socket", "pytest-recording", "vcrpy"]
+test = ["pytest", "pytest-socket", "pytest-recording", "vcrpy", "pyyaml"]
 dev = ["tidesurgedata[all,test]", "ruff", "pre-commit"]
 
 [project.urls]

@@ -83,7 +83,95 @@ def to_grid(
     ValueError
         If ``how`` is invalid or ``freq`` / ``max_gap`` are not positive.
     """
-    raise NotImplementedError("BL-10: align.to_grid resampling and gap policy")
+
+    from tidesurgedata.contract import validate_series
+
+    # Check whether series breaks the data contract
+    validate_series(series, meta)
+
+    # Protects against invalid how, freq and max_gap
+    if how not in {"instant", "mean"}:
+        raise ValueError(f"how must be 'instant' or 'mean', got {how!r}.")
+    try:
+        grid_freq = pd.Timedelta(freq)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"freq must be a positive duration, got {freq!r}.") from exc
+    if grid_freq <= pd.Timedelta(0):
+        raise ValueError(f"freq must be positive, got {freq!r}.")
+    if max_gap is not None:
+        try:
+            gap = pd.Timedelta(max_gap)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"max_gap must be a positive duration, got {max_gap!r}.") from exc
+        if gap <= pd.Timedelta(0):
+            raise ValueError(f"max_gap must be positive, got {max_gap!r}.")
+
+    if series.empty:
+        return pd.Series(
+            np.array([], dtype="float64"),
+            index=pd.DatetimeIndex([], tz="UTC", name="time"),
+            name=series.name,
+        )
+
+    aligned = series.copy()
+    if meta.sampling == "window_mean":
+        if meta.label == "start":
+            aligned.index = aligned.index + meta.window / 2
+        elif meta.label == "end":
+            aligned.index = aligned.index - meta.window / 2
+
+    first = aligned.index[0].floor(grid_freq)
+    last = aligned.index[-1].ceil(grid_freq)
+    grid = pd.date_range(first, last, freq=grid_freq, tz="UTC", name="time")
+
+    if how == "instant":
+        result = pd.Series(np.nan, index=grid, dtype="float64", name=series.name)
+        positions = grid.searchsorted(aligned.index)
+        exact = positions < len(grid)
+        exact_positions = positions[exact]
+        exact_index = aligned.index[exact]
+        exact_match = grid[exact_positions] == exact_index
+        result.iloc[exact_positions[exact_match]] = aligned.iloc[np.flatnonzero(exact)[exact_match]]
+
+        tolerance = grid_freq / 10
+        nearest = aligned.reindex(grid, method="nearest", tolerance=tolerance)
+        result = result.fillna(nearest)
+    else:
+        differences = np.diff(aligned.index.as_unit("ns").asi8)
+        positive = differences[differences > 0]
+        if len(positive) == 0:
+            native_spacing = grid_freq
+        else:
+            native_spacing = pd.to_timedelta(np.median(positive), unit="ns")
+        expected = grid_freq / native_spacing
+        values = np.full(len(grid), np.nan, dtype="float64")
+        for position, timestamp in enumerate(grid):
+            start = timestamp - grid_freq / 2
+            stop = timestamp + grid_freq / 2
+            left = aligned.index.searchsorted(start, side="left")
+            right = aligned.index.searchsorted(stop, side="left")
+            window_values = aligned.iloc[left:right]
+            valid = window_values.dropna()
+            if len(valid) >= expected / 2:
+                values[position] = valid.mean()
+        result = pd.Series(values, index=grid, name=series.name)
+
+    if max_gap is not None:
+        values = result.to_numpy(copy=True)
+        valid_positions = np.flatnonzero(~np.isnan(values))
+        for left, right in zip(valid_positions[:-1], valid_positions[1:], strict=True):
+            if right == left + 1 or grid[right] - grid[left] > gap:
+                continue
+            missing = np.arange(left + 1, right)
+            values[missing] = np.interp(
+                missing,
+                [left, right],
+                [values[left], values[right]],
+            )
+        result = pd.Series(values, index=grid, name=series.name)
+
+    validate_series(result, meta)
+    return result
 
 
 def materialise_lags(
@@ -113,4 +201,36 @@ def materialise_lags(
     ValueError
         If any lag is not an exact multiple of the grid step, or the index is not regular.
     """
-    raise NotImplementedError("BL-11: align.materialise_lags")
+
+    # Check that the time series is long enough
+    if len(series_on_grid.index) < 2:
+        raise ValueError("at least two timestamps are required to infer grid spacing")
+
+    steps = np.diff(series_on_grid.index.as_unit("ns").asi8)
+
+    if not np.all(steps == steps[0]):
+        raise ValueError("index is not regular")
+
+    # Keep the step in the same integer-nanosecond unit as the lag values.
+    step = series_on_grid.index[1] - series_on_grid.index[0]
+
+    lags = [pd.Timedelta(hours=float(lag_hour)) for lag_hour in lags_hours]
+    lag_ns = np.asarray([lag.value for lag in lags], dtype=np.int64)
+    step_ns = step.value
+
+    if not np.all(lag_ns % step_ns == 0):
+        raise ValueError("some lags are not an exact multiple of the grid step")
+
+    values = series_on_grid.to_numpy(dtype="float64", copy=False)
+    result = {}
+    for lag_hour, lag_value in zip(lags_hours, lag_ns, strict=True):
+        offset = int(lag_value // step_ns)
+        shifted = np.full(values.shape, np.nan, dtype="float64")
+        if offset >= 0:
+            if offset < len(values):
+                shifted[: len(values) - offset] = values[offset:]
+        elif -offset < len(values):
+            shifted[-offset:] = values[: len(values) + offset]
+        result[lag_column_name(driver_name, lag_hour)] = shifted
+
+    return pd.DataFrame(result, index=series_on_grid.index)

@@ -9,9 +9,6 @@ from tidesurgedata.contract import ContractError, validate_series
 
 from ..test_meta import make_meta
 
-BL10 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-10")
-BL11 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-11")
-
 T0 = pd.Timestamp("2024-01-01T00:00Z")
 
 
@@ -29,7 +26,6 @@ def discharge_meta(**kwargs):
 # --- to_grid: instant ---------------------------------------------------------------------------
 
 
-@BL10
 def test_instant_exact_times():
     s = minutes_series("6min", 10 * 24)
     out = to_grid(s, make_meta(), "1h", how="instant")
@@ -42,7 +38,6 @@ def test_instant_exact_times():
     )
 
 
-@BL10
 def test_instant_nearest_within_tenth_of_freq():
     s = minutes_series("1h", 12, start=T0 + pd.Timedelta("5min"))  # 00:05, 01:05, ...
     out = to_grid(s, make_meta(), "1h", how="instant")
@@ -52,7 +47,6 @@ def test_instant_nearest_within_tenth_of_freq():
     assert np.isnan(out[T0 + pd.Timedelta("1h")])  # 7 min away: NaN
 
 
-@BL10
 def test_instant_is_not_interpolated_without_max_gap():
     s = minutes_series("1h", 10)
     s.iloc[4] = np.nan
@@ -63,7 +57,6 @@ def test_instant_is_not_interpolated_without_max_gap():
 # --- to_grid: mean ------------------------------------------------------------------------------
 
 
-@BL10
 def test_mean_uses_centred_window():
     s = minutes_series("15min", 4 * 24, name="discharge")
     out = to_grid(s, discharge_meta(), "1h", how="mean")
@@ -72,7 +65,6 @@ def test_mean_uses_centred_window():
     assert out[t] == pytest.approx(300.0 - 7.5)
 
 
-@BL10
 def test_mean_relabels_end_labelled_window_means():
     s = minutes_series("15min", 4 * 24, name="discharge")  # value = label time in minutes
     meta = discharge_meta(sampling="window_mean", window=pd.Timedelta("15min"), label="end")
@@ -82,7 +74,6 @@ def test_mean_relabels_end_labelled_window_means():
     assert out[t] == pytest.approx(np.mean([285.0, 300.0, 315.0, 330.0]))
 
 
-@BL10
 def test_mean_relabels_start_labelled_window_means():
     s = minutes_series("15min", 4 * 24, name="discharge")
     meta = discharge_meta(sampling="window_mean", window=pd.Timedelta("15min"), label="start")
@@ -92,7 +83,6 @@ def test_mean_relabels_start_labelled_window_means():
     assert out[t] == pytest.approx(np.mean([270.0, 285.0, 300.0, 315.0]))
 
 
-@BL10
 def test_mean_centre_labelled_window_means_unchanged():
     s = minutes_series("15min", 4 * 24, name="discharge")
     meta = discharge_meta(sampling="window_mean", window=pd.Timedelta("15min"), label="centre")
@@ -100,7 +90,6 @@ def test_mean_centre_labelled_window_means_unchanged():
     assert out[T0 + pd.Timedelta("5h")] == pytest.approx(300.0 - 7.5)
 
 
-@BL10
 def test_mean_hourly_end_labelled_does_not_lag_tide():
     """An hourly mean labelled at the end of its hour lags a tide by 30 min unless relabelled."""
     index = pd.date_range(T0, periods=24 * 60 * 3, freq="1min", tz="UTC")
@@ -113,7 +102,6 @@ def test_mean_hourly_end_labelled_does_not_lag_tide():
     np.testing.assert_allclose(out.reindex(centres).to_numpy(), end_labelled.to_numpy())
 
 
-@BL10
 def test_mean_fifty_percent_rule():
     s = minutes_series("15min", 4 * 24, name="discharge")
     t = T0 + pd.Timedelta("5h")
@@ -134,7 +122,6 @@ def test_mean_fifty_percent_rule():
 # --- to_grid: gaps ------------------------------------------------------------------------------
 
 
-@BL10
 def test_max_gap_interpolates_short_gaps_only():
     s = minutes_series("1h", 24)
     s.iloc[5] = np.nan  # bounding values 2 h apart
@@ -147,7 +134,6 @@ def test_max_gap_interpolates_short_gaps_only():
     assert out[s.index[11]] == pytest.approx(660.0)
 
 
-@BL10
 def test_max_gap_never_extrapolates():
     s = minutes_series("1h", 24)
     s.iloc[:2] = np.nan
@@ -160,7 +146,6 @@ def test_max_gap_never_extrapolates():
 # --- to_grid: errors ----------------------------------------------------------------------------
 
 
-@BL10
 def test_to_grid_rejects_contract_violations():
     s = minutes_series("1h", 5)
     s.index = s.index.tz_localize(None)
@@ -168,7 +153,6 @@ def test_to_grid_rejects_contract_violations():
         to_grid(s, make_meta(), "1h", how="instant")
 
 
-@BL10
 @pytest.mark.parametrize("kwargs", [dict(how="median"), dict(freq="0h"), dict(max_gap="-1h")])
 def test_to_grid_invalid_arguments(kwargs):
     params = dict(freq="1h", how="instant", max_gap=None)
@@ -184,7 +168,6 @@ def hourly(n=48, name="discharge"):
     return minutes_series("1h", n, name=name) / 60.0  # value = hours since T0
 
 
-@BL11
 def test_materialise_lags_values_and_names():
     s = hourly()
     out = materialise_lags(s, "discharge", (-24, -1, 0, 2))
@@ -200,7 +183,6 @@ def test_materialise_lags_values_and_names():
     assert out["discharge_lag2h"].iloc[-2:].isna().all()
 
 
-@BL11
 def test_materialise_lags_sub_hourly_grid():
     s = minutes_series("15min", 20, name="discharge")
     out = materialise_lags(s, "discharge", (-0.25, -0.5))
@@ -208,7 +190,6 @@ def test_materialise_lags_sub_hourly_grid():
     assert out.iloc[5, 0] == 60.0 and out.iloc[5, 1] == 45.0
 
 
-@BL11
 def test_materialise_lags_non_multiple_raises():
     with pytest.raises(ValueError, match="multiple"):
         materialise_lags(hourly(), "discharge", (-1.5,))

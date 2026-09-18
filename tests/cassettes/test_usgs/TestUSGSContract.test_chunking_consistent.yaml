@@ -1,0 +1,2162 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items?id=USGS-05427718&limit=50000
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"id\": \"USGS-05427718\",\n
+        \       \"agency_code\": \"USGS\",\n        \"agency_name\": \"U.S. Geological
+        Survey\",\n        \"monitoring_location_number\": \"05427718\",\n        \"monitoring_location_name\":
+        \"YAHARA RIVER AT WINDSOR, WI\",\n        \"district_code\": \"55\",\n        \"country_code\":
+        \"US\",\n        \"country_name\": \"United States of America\",\n        \"state_code\":
+        \"55\",\n        \"state_name\": \"Wisconsin\",\n        \"county_code\":
+        \"025\",\n        \"county_name\": \"Dane County\",\n        \"minor_civil_division_code\":
+        \"87725\",\n        \"site_type_code\": \"ST\",\n        \"site_type\": \"Stream\",\n
+        \       \"hydrologic_unit_code\": \"070900020504\",\n        \"basin_code\":
+        null,\n        \"altitude\": 871.0,\n        \"altitude_accuracy\": 1.0,\n
+        \       \"altitude_method_code\": \"N\",\n        \"altitude_method_name\":
+        \"Interpolated from Digital Elevation Model\",\n        \"vertical_datum\":
+        \"NAVD88\",\n        \"vertical_datum_name\": \"North American Vertical Datum
+        of 1988\",\n        \"horizontal_positional_accuracy_code\": \"S\",\n        \"horizontal_positional_accuracy\":
+        \"Accurate to + or - 1 sec.\",\n        \"horizontal_position_method_code\":
+        \"M\",\n        \"horizontal_position_method_name\": \"Interpolated from map\",\n
+        \       \"original_horizontal_datum\": \"NAD83\",\n        \"original_horizontal_datum_name\":
+        \"North American Datum of 1983\",\n        \"drainage_area\": 73.6,\n        \"contributing_drainage_area\":
+        37.0,\n        \"time_zone_abbreviation\": \"CST\",\n        \"uses_daylight_savings\":
+        \"Y\",\n        \"construction_date\": null,\n        \"aquifer_code\": null,\n
+        \       \"national_aquifer_code\": null,\n        \"aquifer_type_code\": null,\n
+        \       \"well_constructed_depth\": null,\n        \"hole_constructed_depth\":
+        null,\n        \"depth_source_code\": null,\n        \"revision_note\": null,\n
+        \       \"revision_created\": null,\n        \"revision_modified\": null\n
+        \     },\n      \"id\": \"USGS-05427718\",\n      \"geometry\": {\n        \"type\":
+        \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n          43.20888888888889\n
+        \       ]\n      }\n    }\n  ],\n  \"numberReturned\": 1,\n  \"links\": [\n
+        \   {\n      \"type\": \"application/geo+json\",\n      \"rel\": \"self\",\n
+        \     \"title\": \"This document as GeoJSON\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Monitoring
+        locations\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:25:25.351173Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '3'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - public, max-age=3600
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '3386'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:25:28 GMT
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 5502255f9557c1e2c098b94110b6151c.cloudfront.net (CloudFront), https/1.1
+        api-umbrella (ApacheTrafficServer [cMsSfW])
+      x-amz-cf-id:
+      - vsgz875lIY2ygpuRXif0ZTom22ljziVfDp0qUFGHkP7PvfKaHNFS0w==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mg6bmdukrbena2v0c0
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - Hit from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - 52f24109-fd92-4ca6-5d2e-25847e3922b3
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?limit=50000&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:00:00+00:00\",\n
+        \       \"value\": \"18.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3a32375d-1d9a-48b4-9874-2da82a15ee9a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:15:00+00:00\",\n
+        \       \"value\": \"18.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"45a5dd52-f5e6-47c6-83df-a2771c02d4e9\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:30:00+00:00\",\n
+        \       \"value\": \"18.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c2a22f08-58d7-43ea-8ffa-1220d5f9f077\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:45:00+00:00\",\n
+        \       \"value\": \"18.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e4fbe502-0115-44e7-97e8-1ba6d01398f3\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:00:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"b22fef8a-0a6c-4078-8cf2-f952c3aecae6\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:15:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6e950740-9333-4a23-8a8c-9fb9aec81a95\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:30:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e69eaedc-b4d3-4aa9-a071-e5bf003a2db0\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"be3fd175-0814-4f8b-9377-0cda04b43248\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:00:00+00:00\",\n
+        \       \"value\": \"18.2\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"764b7b64-368e-4128-89f9-0b5e88b30a5d\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ced5424a-4c19-447f-be9f-eafaf4c3b4ac\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:30:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3ae9290b-52f8-4638-aabf-91aedf830339\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"12e6afd7-8069-4c2f-a0fe-73ce7c40ccb9\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a86ae14c-4955-438d-a081-c7e7d51f5467\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6b4650b3-9b51-4bc4-a971-2c229d85591a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"abdf6366-529d-447c-960d-a082d648c2c3\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3d8664c2-3a54-438b-9fdc-bbbc3002060a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8604a21a-72e4-4604-893f-1cf161aff110\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:15:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a354a6a6-3568-42e2-bb47-4a484d843e14\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"9665eba5-2193-405f-8530-8d95193b12a9\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6f950816-b1d2-4410-959e-3b3cc9990b4a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"4ad2c909-90be-43bc-93d0-691b755b2d31\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:15:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"56568331-4d8c-4d10-9fb1-5634a74e500f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:30:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"885eee6f-4237-4324-a4aa-b0b35f1c9275\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:45:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"fd6a94a1-e156-4068-b418-cb04ca94b62e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"01099636-046c-4963-84b1-c9a2d1752759\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:15:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"d674db3a-1d75-430d-9de6-c53d5e53cb8d\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:30:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"56d0c593-a492-4396-9308-08e2ac34b72c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3e92b7b0-402c-4f83-ad10-4e4c5f5e75e2\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:00:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"21d743d0-b9cc-46e8-b5cc-09b46878fae0\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:15:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"af6ac229-1956-4b09-8558-3a6d6d75c380\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:30:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"cdb74581-ef07-4d22-a2cc-5c4b03f21fbf\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:45:00+00:00\",\n
+        \       \"value\": \"17.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"19346688-633d-48a0-8075-e9f59831f3ac\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"90216dac-c4a1-4393-9277-62fb4d4ca87e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:15:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"80b764ef-e72d-4235-b135-ead60a81037a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:30:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8717fb64-b8dc-4129-8a5b-2adb1c9a1196\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:45:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"1b3c6709-df3f-4489-bc02-c5666c5f3926\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"0f5695b6-c1d0-4ae9-ac79-9f87153ae331\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:15:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"2f954af8-6989-4812-a41a-01c1fa7a52ac\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"863f5864-c228-457c-9a3c-a47562811ec6\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"b5edbe66-bb81-4665-858f-e5a05e85fb80\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c4917816-012c-4f1e-b0dd-e5961206a34c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:15:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"7171179f-fae0-4e4b-8dc4-2c7390d08535\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:30:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"da9ea2dc-6cfc-4ae7-8e75-549785473992\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:45:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c12c6ae9-9b5b-43db-9535-603d8f5f7165\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e8d777ce-7102-403a-9fa3-d4acbca2ae3f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:15:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"280da40b-2c26-44d9-b4f6-84e7a591986a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"f6133bae-c27d-4cd7-aa45-251797bc6852\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"11026295-b83f-4928-9c37-d6996d6a7456\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"9d652718-b1ed-46ca-aed1-9ffab9bd2943\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:15:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"bf0fc005-6baf-4880-8584-5a0ead75f216\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:30:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"7f2b8d4c-082e-4e52-852f-754b40fa6c86\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"1e99f2a3-f276-4b9a-b4c4-e860fd71afef\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ee1d5e74-71a6-4cfb-9e67-da6f54eacd16\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"2e9e89f6-51ec-434a-9f6a-87aac19748cd\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"583016d0-cd54-4109-ae5d-9d8eadf06725\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ec62996e-de69-4272-bbf6-f49b123a23f0\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c02a496f-b2ee-4ee9-a776-98b0c9989f02\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"f3e148b0-c7b0-443d-8e7f-fae02a0db654\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:30:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a9ac7734-5a91-4fb3-8c8f-e6cdf657364d\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:45:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"58d9a25a-a7a2-4a37-8b47-91b3e257f209\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c65c8746-4c56-4a6b-91ba-c4cdc6ae8142\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a2d5c79a-f7e8-4e0f-9498-470c8b21a70b\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:30:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6ba4ec81-96f7-4e04-b114-36a8a355bc15\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"9b399f43-1d89-4485-a036-26b63a67878a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"56abd1c5-ee78-4904-ad8e-e24b64de70d4\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8b5875d4-440b-41ad-829a-2ef9db3ddd11\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c98478e8-f412-4f51-9fd2-7e43dc0e265e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"7b66076e-def4-4e87-a131-892c2ec9285f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:00:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"bdc16b3b-e162-4e22-b6b8-1b65bd03ca4c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"aba76441-40ad-4b7f-b4f3-873285981ce8\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:30:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e2efca88-78e8-4578-adc9-c87043b4217c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:45:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"42bc930b-a14d-47b2-86e2-97872198ea6c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:00:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"16c9846a-fedb-4a37-9d0d-f9960aa24269\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6009c0c2-2fac-4fad-ba9f-9ea3ad9b2e2a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:30:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ae2f0e9e-a2ab-4ae3-b2a9-09abbab94f30\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6ca6f9fc-9d15-4c33-880b-e586fce7dff1\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:00:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"fc554182-86e1-4013-8be6-67a3652cd4dc\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"2be527c2-3353-445d-a545-958b8f999a2b\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:30:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"af66a149-4e8a-4664-b9a8-e6004d464e0b\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:45:00+00:00\",\n
+        \       \"value\": \"18.2\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"092e9c49-1664-4d06-b5c7-5d963428fa97\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:00:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"edd3e557-c2d6-4efa-bde8-eea61fbcab71\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3d82fabd-d9bc-4683-b5b1-a7a61c912999\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:30:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"63432542-9099-471f-ab83-7270874f574c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:45:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6eba4213-02ac-4cd2-9cdc-4e2404ec6d9f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:00:00+00:00\",\n
+        \       \"value\": \"18.2\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"19a08377-0675-46b2-9ea5-6b88069c6a9e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"27d495b5-7e17-4d06-bbbd-883d8752a8f5\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"fe46a450-1b79-45a5-9dd5-b316e3312802\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"122cca72-e7b5-4f06-8447-213157786456\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:00:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8ba34dfd-ea93-4a7c-ab85-af8e424c0f50\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:15:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ca932727-103b-41ef-a463-5a6d45b420c4\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:30:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c9acad99-7f75-4d46-b1de-413f942e9deb\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"53ec4533-fcc3-43a4-9354-e562b577479c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"84188527-4c06-4e3e-a485-d743285dc8fa\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a2290c23-3e2c-4ef2-8b32-88ada5f6b2a8\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3b6e21c5-d7b8-499f-a0fa-a02dea0825c5\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"188e105c-8263-4587-8a9a-f776083bcfa4\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-02T00:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"d736b1ef-bc32-41f0-bb98-834fe04ef82c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    }\n  ],\n  \"numberReturned\":
+        97,\n  \"links\": [\n    {\n      \"type\": \"application/geo+json\",\n      \"rel\":
+        \"self\",\n      \"title\": \"This document as GeoJSON\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=jsonld&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=html&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=csv&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Continuous
+        values\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:25:29.155327Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '0'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - no-cache, no-store, must-revalidate
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '67805'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:25:29 GMT
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 e92cc925fc8895560cd0628c67f58828.cloudfront.net (CloudFront), https/1.1
+        api-umbrella (ApacheTrafficServer [cMsSf ])
+      x-amz-cf-id:
+      - 1rTdBonJ-0DccEQ38gKcVP66xyA6bijvRTcIheQ9csAJ0hjoEeeXyw==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mg6bs2v594gpqttq00
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - Miss from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - 42568059-2e5b-4673-5f3b-df376baad489
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items?id=USGS-05427718&limit=50000
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"id\": \"USGS-05427718\",\n
+        \       \"agency_code\": \"USGS\",\n        \"agency_name\": \"U.S. Geological
+        Survey\",\n        \"monitoring_location_number\": \"05427718\",\n        \"monitoring_location_name\":
+        \"YAHARA RIVER AT WINDSOR, WI\",\n        \"district_code\": \"55\",\n        \"country_code\":
+        \"US\",\n        \"country_name\": \"United States of America\",\n        \"state_code\":
+        \"55\",\n        \"state_name\": \"Wisconsin\",\n        \"county_code\":
+        \"025\",\n        \"county_name\": \"Dane County\",\n        \"minor_civil_division_code\":
+        \"87725\",\n        \"site_type_code\": \"ST\",\n        \"site_type\": \"Stream\",\n
+        \       \"hydrologic_unit_code\": \"070900020504\",\n        \"basin_code\":
+        null,\n        \"altitude\": 871.0,\n        \"altitude_accuracy\": 1.0,\n
+        \       \"altitude_method_code\": \"N\",\n        \"altitude_method_name\":
+        \"Interpolated from Digital Elevation Model\",\n        \"vertical_datum\":
+        \"NAVD88\",\n        \"vertical_datum_name\": \"North American Vertical Datum
+        of 1988\",\n        \"horizontal_positional_accuracy_code\": \"S\",\n        \"horizontal_positional_accuracy\":
+        \"Accurate to + or - 1 sec.\",\n        \"horizontal_position_method_code\":
+        \"M\",\n        \"horizontal_position_method_name\": \"Interpolated from map\",\n
+        \       \"original_horizontal_datum\": \"NAD83\",\n        \"original_horizontal_datum_name\":
+        \"North American Datum of 1983\",\n        \"drainage_area\": 73.6,\n        \"contributing_drainage_area\":
+        37.0,\n        \"time_zone_abbreviation\": \"CST\",\n        \"uses_daylight_savings\":
+        \"Y\",\n        \"construction_date\": null,\n        \"aquifer_code\": null,\n
+        \       \"national_aquifer_code\": null,\n        \"aquifer_type_code\": null,\n
+        \       \"well_constructed_depth\": null,\n        \"hole_constructed_depth\":
+        null,\n        \"depth_source_code\": null,\n        \"revision_note\": null,\n
+        \       \"revision_created\": null,\n        \"revision_modified\": null\n
+        \     },\n      \"id\": \"USGS-05427718\",\n      \"geometry\": {\n        \"type\":
+        \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n          43.20888888888889\n
+        \       ]\n      }\n    }\n  ],\n  \"numberReturned\": 1,\n  \"links\": [\n
+        \   {\n      \"type\": \"application/geo+json\",\n      \"rel\": \"self\",\n
+        \     \"title\": \"This document as GeoJSON\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Monitoring
+        locations\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:25:26.107634Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '3'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - public, max-age=3600
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '3386'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:25:29 GMT
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 88a7ff956a5b49ec3a35abfc0027af12.cloudfront.net (CloudFront), https/1.1
+        api-umbrella (ApacheTrafficServer [cMsSfW])
+      x-amz-cf-id:
+      - VisGkXODjpZkBJkW-Lmc1lgFJXXsrLKD2ZFxWNqfwUe45MBzGIEoDw==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mg6c25tk9r3efqbts0
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - Hit from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - ce050ed8-db6b-4308-45e1-5bae6012d3ae
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?limit=50000&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-01T12%3A00%3A00%2B00%3A00
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:00:00+00:00\",\n
+        \       \"value\": \"18.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3a32375d-1d9a-48b4-9874-2da82a15ee9a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:15:00+00:00\",\n
+        \       \"value\": \"18.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"45a5dd52-f5e6-47c6-83df-a2771c02d4e9\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:30:00+00:00\",\n
+        \       \"value\": \"18.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c2a22f08-58d7-43ea-8ffa-1220d5f9f077\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T00:45:00+00:00\",\n
+        \       \"value\": \"18.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e4fbe502-0115-44e7-97e8-1ba6d01398f3\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:00:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"b22fef8a-0a6c-4078-8cf2-f952c3aecae6\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:15:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6e950740-9333-4a23-8a8c-9fb9aec81a95\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:30:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e69eaedc-b4d3-4aa9-a071-e5bf003a2db0\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T01:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"be3fd175-0814-4f8b-9377-0cda04b43248\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:00:00+00:00\",\n
+        \       \"value\": \"18.2\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"764b7b64-368e-4128-89f9-0b5e88b30a5d\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ced5424a-4c19-447f-be9f-eafaf4c3b4ac\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:30:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3ae9290b-52f8-4638-aabf-91aedf830339\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T02:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"12e6afd7-8069-4c2f-a0fe-73ce7c40ccb9\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a86ae14c-4955-438d-a081-c7e7d51f5467\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6b4650b3-9b51-4bc4-a971-2c229d85591a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"abdf6366-529d-447c-960d-a082d648c2c3\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T03:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3d8664c2-3a54-438b-9fdc-bbbc3002060a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8604a21a-72e4-4604-893f-1cf161aff110\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:15:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a354a6a6-3568-42e2-bb47-4a484d843e14\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"9665eba5-2193-405f-8530-8d95193b12a9\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T04:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6f950816-b1d2-4410-959e-3b3cc9990b4a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"4ad2c909-90be-43bc-93d0-691b755b2d31\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:15:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"56568331-4d8c-4d10-9fb1-5634a74e500f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:30:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"885eee6f-4237-4324-a4aa-b0b35f1c9275\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T05:45:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"fd6a94a1-e156-4068-b418-cb04ca94b62e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"01099636-046c-4963-84b1-c9a2d1752759\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:15:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"d674db3a-1d75-430d-9de6-c53d5e53cb8d\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:30:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"56d0c593-a492-4396-9308-08e2ac34b72c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T06:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3e92b7b0-402c-4f83-ad10-4e4c5f5e75e2\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:00:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"21d743d0-b9cc-46e8-b5cc-09b46878fae0\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:15:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"af6ac229-1956-4b09-8558-3a6d6d75c380\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:30:00+00:00\",\n
+        \       \"value\": \"17.6\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"cdb74581-ef07-4d22-a2cc-5c4b03f21fbf\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T07:45:00+00:00\",\n
+        \       \"value\": \"17.5\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"19346688-633d-48a0-8075-e9f59831f3ac\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"90216dac-c4a1-4393-9277-62fb4d4ca87e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:15:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"80b764ef-e72d-4235-b135-ead60a81037a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:30:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8717fb64-b8dc-4129-8a5b-2adb1c9a1196\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T08:45:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"1b3c6709-df3f-4489-bc02-c5666c5f3926\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"0f5695b6-c1d0-4ae9-ac79-9f87153ae331\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:15:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"2f954af8-6989-4812-a41a-01c1fa7a52ac\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"863f5864-c228-457c-9a3c-a47562811ec6\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T09:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"b5edbe66-bb81-4665-858f-e5a05e85fb80\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c4917816-012c-4f1e-b0dd-e5961206a34c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:15:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"7171179f-fae0-4e4b-8dc4-2c7390d08535\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:30:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"da9ea2dc-6cfc-4ae7-8e75-549785473992\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T10:45:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c12c6ae9-9b5b-43db-9535-603d8f5f7165\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:00:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e8d777ce-7102-403a-9fa3-d4acbca2ae3f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:15:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"280da40b-2c26-44d9-b4f6-84e7a591986a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"f6133bae-c27d-4cd7-aa45-251797bc6852\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T11:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"11026295-b83f-4928-9c37-d6996d6a7456\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"9d652718-b1ed-46ca-aed1-9ffab9bd2943\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    }\n  ],\n  \"numberReturned\":
+        49,\n  \"links\": [\n    {\n      \"type\": \"application/geo+json\",\n      \"rel\":
+        \"self\",\n      \"title\": \"This document as GeoJSON\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-01T12%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=jsonld&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-01T12%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=html&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-01T12%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=csv&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T00%3A00%3A00%2B00%3A00%2F2024-03-01T12%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Continuous
+        values\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:25:30.650042Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '0'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - no-cache, no-store, must-revalidate
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '35117'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:25:30 GMT
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 ec27e2bbc77d9805bead471453d2094c.cloudfront.net (CloudFront), https/1.1
+        api-umbrella (ApacheTrafficServer [cMsSf ])
+      x-amz-cf-id:
+      - WiJrPOmti7wkZzarmNDwAxDMjqV81Gnkk1mXceCtKElvkUjhkyAaRw==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mg6c7tttopu5ngansg
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - Miss from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - 66521034-67a0-48cf-65db-7f05527c50a6
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items?id=USGS-05427718&limit=50000
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"id\": \"USGS-05427718\",\n
+        \       \"agency_code\": \"USGS\",\n        \"agency_name\": \"U.S. Geological
+        Survey\",\n        \"monitoring_location_number\": \"05427718\",\n        \"monitoring_location_name\":
+        \"YAHARA RIVER AT WINDSOR, WI\",\n        \"district_code\": \"55\",\n        \"country_code\":
+        \"US\",\n        \"country_name\": \"United States of America\",\n        \"state_code\":
+        \"55\",\n        \"state_name\": \"Wisconsin\",\n        \"county_code\":
+        \"025\",\n        \"county_name\": \"Dane County\",\n        \"minor_civil_division_code\":
+        \"87725\",\n        \"site_type_code\": \"ST\",\n        \"site_type\": \"Stream\",\n
+        \       \"hydrologic_unit_code\": \"070900020504\",\n        \"basin_code\":
+        null,\n        \"altitude\": 871.0,\n        \"altitude_accuracy\": 1.0,\n
+        \       \"altitude_method_code\": \"N\",\n        \"altitude_method_name\":
+        \"Interpolated from Digital Elevation Model\",\n        \"vertical_datum\":
+        \"NAVD88\",\n        \"vertical_datum_name\": \"North American Vertical Datum
+        of 1988\",\n        \"horizontal_positional_accuracy_code\": \"S\",\n        \"horizontal_positional_accuracy\":
+        \"Accurate to + or - 1 sec.\",\n        \"horizontal_position_method_code\":
+        \"M\",\n        \"horizontal_position_method_name\": \"Interpolated from map\",\n
+        \       \"original_horizontal_datum\": \"NAD83\",\n        \"original_horizontal_datum_name\":
+        \"North American Datum of 1983\",\n        \"drainage_area\": 73.6,\n        \"contributing_drainage_area\":
+        37.0,\n        \"time_zone_abbreviation\": \"CST\",\n        \"uses_daylight_savings\":
+        \"Y\",\n        \"construction_date\": null,\n        \"aquifer_code\": null,\n
+        \       \"national_aquifer_code\": null,\n        \"aquifer_type_code\": null,\n
+        \       \"well_constructed_depth\": null,\n        \"hole_constructed_depth\":
+        null,\n        \"depth_source_code\": null,\n        \"revision_note\": null,\n
+        \       \"revision_created\": null,\n        \"revision_modified\": null\n
+        \     },\n      \"id\": \"USGS-05427718\",\n      \"geometry\": {\n        \"type\":
+        \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n          43.20888888888889\n
+        \       ]\n      }\n    }\n  ],\n  \"numberReturned\": 1,\n  \"links\": [\n
+        \   {\n      \"type\": \"application/geo+json\",\n      \"rel\": \"self\",\n
+        \     \"title\": \"This document as GeoJSON\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Monitoring
+        locations\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:25:26.107634Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '5'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - public, max-age=3600
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '3386'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:25:31 GMT
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 88a7ff956a5b49ec3a35abfc0027af12.cloudfront.net (CloudFront), http/1.1
+        api-umbrella (ApacheTrafficServer [cRs f ])
+      x-amz-cf-id:
+      - VisGkXODjpZkBJkW-Lmc1lgFJXXsrLKD2ZFxWNqfwUe45MBzGIEoDw==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mg6cdqu9mkgdvuppv0
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - HIT
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - fa914439-e17c-47ce-5e1c-daf959e2743c
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?limit=50000&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T12%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"9d652718-b1ed-46ca-aed1-9ffab9bd2943\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:15:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"bf0fc005-6baf-4880-8584-5a0ead75f216\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:30:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"7f2b8d4c-082e-4e52-852f-754b40fa6c86\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T12:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"1e99f2a3-f276-4b9a-b4c4-e860fd71afef\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ee1d5e74-71a6-4cfb-9e67-da6f54eacd16\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"2e9e89f6-51ec-434a-9f6a-87aac19748cd\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"583016d0-cd54-4109-ae5d-9d8eadf06725\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T13:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ec62996e-de69-4272-bbf6-f49b123a23f0\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:00:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c02a496f-b2ee-4ee9-a776-98b0c9989f02\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"f3e148b0-c7b0-443d-8e7f-fae02a0db654\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:30:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a9ac7734-5a91-4fb3-8c8f-e6cdf657364d\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T14:45:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"58d9a25a-a7a2-4a37-8b47-91b3e257f209\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c65c8746-4c56-4a6b-91ba-c4cdc6ae8142\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a2d5c79a-f7e8-4e0f-9498-470c8b21a70b\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:30:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6ba4ec81-96f7-4e04-b114-36a8a355bc15\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T15:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"9b399f43-1d89-4485-a036-26b63a67878a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"56abd1c5-ee78-4904-ad8e-e24b64de70d4\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8b5875d4-440b-41ad-829a-2ef9db3ddd11\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c98478e8-f412-4f51-9fd2-7e43dc0e265e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T16:45:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"7b66076e-def4-4e87-a131-892c2ec9285f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:00:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"bdc16b3b-e162-4e22-b6b8-1b65bd03ca4c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"aba76441-40ad-4b7f-b4f3-873285981ce8\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:30:00+00:00\",\n
+        \       \"value\": \"17.7\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"e2efca88-78e8-4578-adc9-c87043b4217c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T17:45:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"42bc930b-a14d-47b2-86e2-97872198ea6c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:00:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"16c9846a-fedb-4a37-9d0d-f9960aa24269\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6009c0c2-2fac-4fad-ba9f-9ea3ad9b2e2a\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:30:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ae2f0e9e-a2ab-4ae3-b2a9-09abbab94f30\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T18:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6ca6f9fc-9d15-4c33-880b-e586fce7dff1\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:00:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"fc554182-86e1-4013-8be6-67a3652cd4dc\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:15:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"2be527c2-3353-445d-a545-958b8f999a2b\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:30:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"af66a149-4e8a-4664-b9a8-e6004d464e0b\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T19:45:00+00:00\",\n
+        \       \"value\": \"18.2\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"092e9c49-1664-4d06-b5c7-5d963428fa97\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:00:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"edd3e557-c2d6-4efa-bde8-eea61fbcab71\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3d82fabd-d9bc-4683-b5b1-a7a61c912999\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:30:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"63432542-9099-471f-ab83-7270874f574c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T20:45:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"6eba4213-02ac-4cd2-9cdc-4e2404ec6d9f\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:00:00+00:00\",\n
+        \       \"value\": \"18.2\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"19a08377-0675-46b2-9ea5-6b88069c6a9e\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"27d495b5-7e17-4d06-bbbd-883d8752a8f5\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"fe46a450-1b79-45a5-9dd5-b316e3312802\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T21:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"122cca72-e7b5-4f06-8447-213157786456\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:00:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"8ba34dfd-ea93-4a7c-ab85-af8e424c0f50\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:15:00+00:00\",\n
+        \       \"value\": \"18.3\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"ca932727-103b-41ef-a463-5a6d45b420c4\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:30:00+00:00\",\n
+        \       \"value\": \"18.0\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"c9acad99-7f75-4d46-b1de-413f942e9deb\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T22:45:00+00:00\",\n
+        \       \"value\": \"18.1\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"53ec4533-fcc3-43a4-9354-e562b577479c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"84188527-4c06-4e3e-a485-d743285dc8fa\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:15:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"a2290c23-3e2c-4ef2-8b32-88ada5f6b2a8\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:30:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"3b6e21c5-d7b8-499f-a0fa-a02dea0825c5\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-01T23:45:00+00:00\",\n
+        \       \"value\": \"17.8\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"188e105c-8263-4587-8a9a-f776083bcfa4\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    },\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"time_series_id\": \"238546af566645dca2c3c88954da7899\",\n
+        \       \"monitoring_location_id\": \"USGS-05427718\",\n        \"parameter_code\":
+        \"00060\",\n        \"statistic_id\": \"00011\",\n        \"time\": \"2024-03-02T00:00:00+00:00\",\n
+        \       \"value\": \"17.9\",\n        \"unit_of_measure\": \"ft^3/s\",\n        \"approval_status\":
+        \"Approved\",\n        \"qualifier\": null,\n        \"last_modified\": \"2025-09-13T00:55:38.634659+00:00\"\n
+        \     },\n      \"id\": \"d736b1ef-bc32-41f0-bb98-834fe04ef82c\",\n      \"geometry\":
+        {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n
+        \         43.20888888888889\n        ]\n      }\n    }\n  ],\n  \"numberReturned\":
+        49,\n  \"links\": [\n    {\n      \"type\": \"application/geo+json\",\n      \"rel\":
+        \"self\",\n      \"title\": \"This document as GeoJSON\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T12%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=jsonld&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T12%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=html&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T12%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=csv&monitoring_location_id=USGS-05427718&parameter_code=00060&time=2024-03-01T12%3A00%3A00%2B00%3A00%2F2024-03-02T00%3A00%3A00%2B00%3A00&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Continuous
+        values\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:25:32.125498Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '0'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - no-cache, no-store, must-revalidate
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '35117'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:25:32 GMT
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 e92cc925fc8895560cd0628c67f58828.cloudfront.net (CloudFront), https/1.1
+        api-umbrella (ApacheTrafficServer [cMsSf ])
+      x-amz-cf-id:
+      - 5nce5ul-ZbjmMpeba_-dZtjsJQ_LQ_bDLzlQWqpSzYgKvR8okg47jg==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mg6cjgqfvnf4igimk0
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - Miss from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - da9a2122-4ba8-42c1-73aa-dece0ffdf969
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
