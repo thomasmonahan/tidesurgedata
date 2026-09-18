@@ -8,6 +8,8 @@ from tidesurgedata.sources.usgs import USGS
 
 from ..contract_suite import SourceContractTests
 
+pytest.importorskip("dataretrieval", reason='requires the "usgs" extra')
+
 STUB = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-06")
 
 
