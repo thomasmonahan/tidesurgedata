@@ -1,8 +1,8 @@
 # Inputs and outputs: US MVP issues
 
-A practical companion to the docstrings for the five issues on the US MVP path. For each one:
-what your code is handed, what it must give back, a worked example with real output, the mistakes
-that are easy to make, and how to know you are done.
+A practical companion to the docstrings for the issues on the US path. For each one: what your
+code is handed, what it must give back, a worked example with real output, the common errors, and
+how to know you are done.
 
 | Issue | What you implement | Spec tests |
 |---|---|---|
@@ -11,6 +11,9 @@ that are easy to make, and how to know you are done.
 | [#13 BL-12](https://github.com/thomasmonahan/tidesurgedata/issues/13) | `Recipe.training_frame`, `Recipe.provenance` | `tests/spec/test_recipe_frames.py` |
 | [#14 BL-13](https://github.com/thomasmonahan/tidesurgedata/issues/14) | `Recipe.forecast_frame` | `tests/spec/test_recipe_frames.py` |
 | [#20 BL-19](https://github.com/thomasmonahan/tidesurgedata/issues/20) | `examples/us_demo.py` | none (runs live) |
+| [#16 BL-15](https://github.com/thomasmonahan/tidesurgedata/issues/16) | `sources/dynamical.py` analysis | `tests/sources/test_dynamical.py` |
+| [#17 BL-16](https://github.com/thomasmonahan/tidesurgedata/issues/17) | `sources/dynamical.py` forecasts | `tests/sources/test_dynamical.py` |
+| [#18 BL-17](https://github.com/thomasmonahan/tidesurgedata/issues/18) | `discovery.find_stations` | `tests/spec/test_discovery.py` |
 
 The docstring in the code is the specification; this guide adds shape, dtype and worked examples.
 Where they disagree, the docstring wins — tell the channel so this file gets fixed.
@@ -40,19 +43,21 @@ Freq: 6min, Name: water_level, dtype: float64
 
 ```python
 SeriesMeta(
-    source="noaa_coops",            # your registry name
+    source="noaa_coops",  # your registry name
     station_id="8518750",
-    variable="water_level",         # also the series name
-    lat=40.7003, lon=-74.0139,      # lat [-90, 90], lon [-180, 360)
-    units="m",                      # canonical only: m, m s-1, m3 s-1, Pa, K, kg m-2 s-1, W m-2, 1
-    datum="MSL",                    # required for water_level and stage, else None
-    sampling="instantaneous",       # or "window_mean" -> then window and label are required
-    window=None, label=None,        # e.g. pd.Timedelta("15min"), "start"|"centre"|"end"
+    variable="water_level",  # also the series name
+    lat=40.7003,
+    lon=-74.0139,  # lat [-90, 90], lon [-180, 360)
+    units="m",  # canonical only: m, m s-1, m3 s-1, Pa, K, kg m-2 s-1, W m-2, 1
+    datum="MSL",  # required for water_level and stage, else None
+    sampling="instantaneous",  # or "window_mean" -> then window and label are required
+    window=None,
+    label=None,  # e.g. pd.Timedelta("15min"), "start"|"centre"|"end"
     licence="US Government Work (public domain)",
     attribution="Data from NOAA/NOS/CO-OPS",
     url="https://tidesandcurrents.noaa.gov/stationhome.html?id=8518750",
     name="The Battery, NY",
-    extra={"product": "water_level", "interval": "6"},   # str -> str only
+    extra={"product": "water_level", "interval": "6"},  # str -> str only
 )
 ```
 
@@ -70,7 +75,7 @@ SeriesMeta(
 }
 ```
 
-Two conventions that catch people out:
+Two conventions that are easy to get wrong:
 
 - **Ranges are half-open**, `[start, end)`. `end` itself is never included.
 - **Lags are in hours and negative means the past.** A column `discharge_lag-24h` holds, at time
@@ -80,14 +85,15 @@ Check your own output any time:
 
 ```python
 from tidesurgedata.contract import validate_series, validate_frame
-validate_series(series, meta)                       # raises ContractError naming the broken rule
+
+validate_series(series, meta)  # raises ContractError naming the broken rule
 validate_frame(df, "observations", feature_columns)
 ```
 
-### Proposed canonical variable names
+### Canonical variable names
 
-Use these names so recipes are portable across providers. Confirm at BL-00 sign-off; add to this
-table rather than inventing a synonym.
+Agreed at kickoff. Use these names so recipes are portable across providers; add to this table
+rather than introducing a synonym.
 
 | Quantity | Variable | Units | Notes |
 |---|---|---|---|
@@ -192,13 +198,23 @@ US Government data.
 **Worked example of what `metadata()` must return** (this exact object passes validation):
 
 ```python
-SeriesMeta(source="noaa_coops", station_id="8518750", variable="water_level",
-           lat=40.7003, lon=-74.0139, units="m", datum="MSL",
-           sampling="instantaneous", window=None, label=None,
-           licence="US Government Work (public domain)",
-           attribution="Data from NOAA/NOS/CO-OPS",
-           url="https://tidesandcurrents.noaa.gov/stationhome.html?id=8518750",
-           name="The Battery, NY", extra={"product": "water_level", "interval": "6"})
+SeriesMeta(
+    source="noaa_coops",
+    station_id="8518750",
+    variable="water_level",
+    lat=40.7003,
+    lon=-74.0139,
+    units="m",
+    datum="MSL",
+    sampling="instantaneous",
+    window=None,
+    label=None,
+    licence="US Government Work (public domain)",
+    attribution="Data from NOAA/NOS/CO-OPS",
+    url="https://tidesandcurrents.noaa.gov/stationhome.html?id=8518750",
+    name="The Battery, NY",
+    extra={"product": "water_level", "interval": "6"},
+)
 ```
 
 and the series `_fetch` returns for that station:
@@ -285,7 +301,7 @@ shape: (168, 4)   dtypes: all float64   index: datetime64[us, UTC], freq 1h
 first: 2024-06-01 00:00:00+00:00   last: 2024-06-07 23:00:00+00:00
 ```
 
-Rules, in the order they bite:
+Rules, in the order they apply:
 
 1. **Resolve first:** call `self.resolved()` so gridded drivers with no location take the target's
    location.
@@ -318,8 +334,8 @@ a frozen dataclass, so store the records with
 
 - Building the frame column by column with `pd.DataFrame(dict)` preserves insertion order — build
   the target first, then features in `feature_columns` order, or `validate_frame` will reject it.
-- An all-NaN column is a bug in the fetch window, not something to paper over; check the lag
-  widening.
+- An all-NaN column indicates a fetch window that is too narrow; check the lag widening rather
+  than filling the values.
 - Empty or inverted ranges (`end <= start`) raise `ValueError`.
 
 ---
@@ -367,9 +383,9 @@ Rules:
 4. **Target column is all NaN**, but must be present, `float64`, and first.
 5. **Validate** with `validate_frame` before returning.
 
-**The pitfall that cost me an hour:** `materialise_lags` keeps its input index. If the gridded
-driver series ends at the cutoff, every lagged value at future valid times is NaN. **Extend the
-gridded series to the end of the forecast grid (with NaN) before lagging.**
+**Common error:** `materialise_lags` keeps its input index. If the gridded driver series ends at
+the cutoff, every lagged value at future valid times is NaN. **Extend the gridded series to the end
+of the forecast grid (with NaN) before lagging.**
 
 **How leakage is tested:** the spec test builds the frame twice, once with the normal source and
 once with a source truncated at `issued - latency`, and requires the two frames to be identical. If
@@ -408,7 +424,194 @@ state the resulting `max_lead_time` in the script's docstring. Long horizons nee
 
 ---
 
-## 7. Checking your work
+## 7. #16 BL-15 — dynamical.org analysis at a point
+
+```python
+Dynamical(
+    dataset="noaa-gfs-analysis", variable="pressure_surface", lat=51.5, lon=-3.0, method="nearest"
+)
+```
+
+| Parameter | Type | Notes |
+|---|---|---|
+| `dataset` | `str` | dataset identifier from the STAC catalog, e.g. `"noaa-gfs-analysis"` |
+| `variable` | `str` | **canonical** name (section 0), not the provider's variable name |
+| `lat`, `lon` | `float \| None` | sample point; `None` means "not yet located" |
+| `method` | `str` | `"nearest"` first; `"linear"` later if wanted |
+
+`Dynamical` subclasses `GriddedSource`, so it inherits `with_location(lat, lon)`, which returns a
+copy with a new location. `Recipe.resolved()` calls it for any gridded driver left unlocated, so a
+recipe can say "pressure at the target station" without repeating coordinates. Keep `lat`/`lon` as
+plain floats: `to_spec()` must stay JSON-serialisable.
+
+**Lazy imports.** `xarray`, `zarr`, `icechunk` and `pystac` must be imported **inside** functions,
+never at module level, and a missing dependency must name the extra:
+
+```python
+def _open(dataset: str):
+    try:
+        import icechunk, xarray as xr  # noqa: F401
+    except ImportError as exc:
+        raise ImportError(
+            "The dynamical.org adapter needs the 'met' extra: pip install 'tidesurgedata[met]'"
+        ) from exc
+    ...
+```
+
+`tests/test_import_isolation.py` imports every module in a subprocess and fails if any of those
+packages is loaded.
+
+### `metadata()`
+
+The returned `SeriesMeta` describes **the grid cell actually sampled**, not the point requested:
+
+| Field | Value |
+|---|---|
+| `source` | `"dynamical"` |
+| `station_id` | a stable label for the grid point, e.g. `"noaa-gfs-analysis@51.500,-3.000"` |
+| `variable` | canonical name; `units` the matching canonical unit (`Pa`, `K`, `m s-1`) |
+| `lat`, `lon` | coordinates of the selected cell (the spec test allows 0.5° from the request) |
+| `datum` | `None` |
+| `sampling` | `"instantaneous"` for instantaneous fields; `"window_mean"` for averaged or accumulated fields, then `window` and `label` are required and must come from the dataset attributes |
+| `licence` | `"CC-BY-4.0"`, plus ECMWF Terms of Use for ECMWF datasets |
+| `attribution` | dataset attribution text from the catalog |
+| `extra` | useful provenance: requested point, grid resolution, STAC item id |
+
+Getting `sampling`, `window` and `label` right matters: `to_grid` shifts window means onto centred
+labels, and a wrong label silently shifts a driver in time (ADR 0004).
+
+### `_fetch(start, end)`
+
+Same contract as any adapter (section 1): a `float64`, UTC-indexed series in canonical units for
+`[start, end)`, its quality, and the non-secret request parameters. Open the dataset lazily, select
+the nearest cell, slice the time axis, then convert units. Record `dataset`, `variable`, `method`
+and the selected coordinates in the request dictionary.
+
+Also set, with evidence in the PR:
+
+- `max_request` — chunk long ranges so a single read stays reasonable.
+- `latency` — how long after valid time the analysis appears. This feeds the lead-time rule.
+- `adapter_version` — bump if a change alters returned values.
+
+Each dataset has a different **archive start date**; a request before it should come back empty or
+raise a clear error, not silently return NaN for years.
+
+**Done when:** the BL-15 tests in `tests/sources/test_dynamical.py` pass with markers removed, the
+contract suite replays from a recorded fixture, and `tests/test_import_isolation.py` still passes.
+
+---
+
+## 8. #17 BL-16 — dynamical.org forecasts and ensembles
+
+Two more methods on the same class, making it a `ForecastSource`. Forecast datasets are indexed by
+`init_time` and `lead_time` (and a member dimension for ensembles), where
+`valid_time = init_time + lead_time`.
+
+### `init_times(start, end) -> pd.DatetimeIndex`
+
+Initialisation times available in `[start, end)`: UTC, sorted, unique, named `init_time`. Half-open,
+so a run exactly at `end` is excluded. The contract suite checks this directly.
+
+### `fetch_forecast(issued, horizon, members=None) -> Forecast`
+
+| | |
+|---|---|
+| **`issued`** | timezone-aware issue time |
+| **`horizon`** | `pd.Timedelta`; valid times must extend to at least `issued + horizon` |
+| **`members`** | list of member labels, or `None` for all |
+
+Returns a `Forecast` dataclass:
+
+```python
+Forecast(
+    values=...,  # DataFrame: index = valid_time (UTC), columns = member labels (str)
+    init_time=...,  # the initialisation actually used (UTC Timestamp)
+    record=...,  # FetchRecord, meta equal to self.metadata()
+)
+```
+
+**The rule that matters (ADR 0006):** use the **latest initialisation available by
+`issued - self.latency`**, and never one after it. In code:
+
+```python
+cutoff = to_utc(issued) - self.latency
+candidates = self.init_times(cutoff - pd.Timedelta("10D"), cutoff + pd.Timedelta(1, "ns"))
+init = candidates.max()
+```
+
+The contract suite asserts exactly this, so an off-by-one on the half-open bound will fail.
+
+**Member labels are strings.** A deterministic dataset uses the single column `"control"`; GEFS-style
+ensembles use `"control"` plus `"1"`, `"2"`, … Requesting an unknown member raises `ValueError`.
+Validate before returning:
+
+```python
+from tidesurgedata.contract import validate_forecast
+
+validate_forecast(forecast, self.metadata())
+```
+
+`FakeMet` in `tests/conftest.py` is a working reference implementation of this behaviour: 6-hourly
+initialisations, 4-hour latency, `"control"` plus ten members. Read it before starting, and compare
+your output shape against `FakeMet(...).fetch_forecast("2024-01-10T12:00Z", pd.Timedelta("48h"))`.
+
+**Open question to settle in the PR:** how to test this without large downloads. VCR cassettes
+suit plain HTTP, but Icechunk/Zarr reads are many ranged requests and may record badly. A small
+committed fixture (one point, a few times, saved as netCDF or a tiny Zarr store) is likely better.
+Whatever you choose, unit tests must not touch the network, and the cassette or fixture must stay
+well under 500 kB (`python tests/cassette_check.py`).
+
+**Done when:** the BL-16 tests pass with markers removed, `TestDynamicalForecastContract` runs from
+a fixture, and the live smoke test passes nightly.
+
+---
+
+## 9. #18 BL-17 — cross-provider `find_stations`
+
+```python
+tidesurgedata.discovery.find_stations(lat, lon, radius_km, variables=None, sources=None)
+```
+
+| Parameter | Type | Notes |
+|---|---|---|
+| `lat`, `lon` | `float` | search centre in degrees |
+| `radius_km` | `float` | positive search radius |
+| `variables` | `Sequence[str] \| None` | keep only these canonical variable names; `None` = all |
+| `sources` | `Sequence[str] \| None` | registry names to query; `None` = all registered; unknown name raises `KeyError` |
+
+**Returns** a `DataFrame` with one row per station **and variable**:
+
+- columns: every `SeriesMeta` field in dataclass order, then `distance_km`;
+- `window` stays a `pd.Timedelta` (this is a DataFrame, not JSON);
+- sorted by `distance_km` ascending, ties broken by `source` then `station_id`;
+- a fresh `RangeIndex`;
+- when nothing is found: an **empty DataFrame with those same columns**, not an empty one with no
+  columns.
+
+```python
+columns = [f.name for f in dataclasses.fields(SeriesMeta)] + ["distance_km"]
+```
+
+**Iterating the registry:**
+
+```python
+from tidesurgedata.sources.registry import registered_sources
+from tidesurgedata.sources.base import haversine_km
+```
+
+`registered_sources()` returns `{name: class}` for every registered adapter, including stubs. Any
+adapter whose `find_stations` raises `NotImplementedError` is **skipped with a `UserWarning`**, not
+propagated: discovery must keep working while adapters are unimplemented. That behaviour is asserted
+by `tests/spec/test_discovery.py`, which runs against the fake sources.
+
+Use `haversine_km` for `distance_km` so it matches the adapters' own radius filtering.
+
+**Done when:** `tests/spec/test_discovery.py` passes with markers removed, and the result is
+demonstrated across two real adapters once BL-05 and BL-06 land.
+
+---
+
+## 10. Checking your work
 
 ```bash
 pytest -m "not live and not rtide"    # everything, no network
@@ -429,6 +632,7 @@ Fake sources are the fastest way to experiment without network access:
 
 ```python
 from tidesurgedata.sources.fake import FakeMet, FakeRiver, FakeTideGauge
+
 gauge = FakeTideGauge(pressure=FakeMet(), river=FakeRiver())
 series, record = gauge.fetch_with_record("2024-06-01T00:00Z", "2024-06-03T00:00Z")
 ```
