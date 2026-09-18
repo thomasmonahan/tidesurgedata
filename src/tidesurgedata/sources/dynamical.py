@@ -77,7 +77,7 @@ class Dynamical(GriddedSource):
         if self.lat is None or self.lon is None: raise ValueError("lat and lon must be set before requesting metadata") #check lat-long req
 
         # Open the dynamical.org STAC catalogue. 
-        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json") ### opens Dynamical's STAC catalogue and selects the dataset passed to the class (Dynamical)
+        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json") ### opens Dynamical's STAC catalogue - below we will select the dataset passed to the class (Dynamical)
 
         # Find the collection requested when Dynamical(...) was constructed. 
         collection = catalog.get_child(self.dataset)
