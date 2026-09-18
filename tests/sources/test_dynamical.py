@@ -30,7 +30,8 @@ def test_is_gridded_forecast_source():
 
 
 # @pytest.mark.skip(reason="BL-15: needs cassette")
-@pytest.mark.vcr
+# @pytest.mark.vcr
+@pytest.mark.enable_socket
 class TestDynamicalContract(SourceContractTests):
     @pytest.fixture
     def source(self):
@@ -41,8 +42,8 @@ class TestDynamicalContract(SourceContractTests):
         return ("2024-01-01T00:00Z", "2024-01-03T00:00Z")
 
 
-@pytest.mark.skip(reason="BL-16: needs cassette")
-@pytest.mark.vcr
+# @pytest.mark.skip(reason="BL-16: needs cassette")
+@pytest.mark.enable_socket
 class TestDynamicalForecastContract(ForecastSourceContractTests):
     @pytest.fixture
     def source(self):
@@ -67,7 +68,7 @@ def test_metadata():
     assert "CC" in meta.licence and "BY" in meta.licence
 
 
-@BL16
+# @BL16
 def test_forecast_members():
     fc = forecast().fetch_forecast("2024-01-10T12:00Z", pd.Timedelta("24h"))
     assert "control" in fc.values.columns or len(fc.values.columns) > 1
@@ -84,7 +85,7 @@ def test_live_smoke_analysis():
 
 @pytest.mark.live
 @pytest.mark.enable_socket
-@BL16
+# @BL16
 def test_live_smoke_forecast():
     issued = pd.Timestamp.now(tz="UTC").floor("1D") - pd.Timedelta("3D")
     fc = forecast().fetch_forecast(issued, pd.Timedelta("24h"))
