@@ -32,7 +32,7 @@ from dataclasses import dataclass
 import pandas as pd
 
 from tidesurgedata.meta import Quality, SeriesMeta
-from tidesurgedata.sources.base import Forecast, GriddedSource
+from tidesurgedata.sources.base import FetchRecord, Forecast, GriddedSource
 from tidesurgedata.sources.registry import register_source
 from tidesurgedata.timeutil import TimeLike
 
@@ -231,17 +231,130 @@ class Dynamical(GriddedSource):
 
     def init_times(self, start: TimeLike, end: TimeLike) -> pd.DatetimeIndex:
         """Initialisation times of the forecast dataset in ``[start, end)``."""
-        raise NotImplementedError("BL-16")
+        import icechunk
+        import pystac
+        import xarray as xr
+
+        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
+        collection = catalog.get_child(self.dataset)
+
+        if collection is None:
+            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
+
+        asset = collection.assets["icechunk-https"]
+        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
+        session = repo.readonly_session("main")
+        ds = xr.open_zarr(session.store, chunks=None)
+
+        times = pd.DatetimeIndex(pd.to_datetime(ds.init_time.values, utc=True))
+
+        start = pd.Timestamp(start)
+        end = pd.Timestamp(end)
+
+        return times[(times >= start) & (times < end)]
 
     def fetch_forecast(
         self, issued: TimeLike, horizon: pd.Timedelta, members: Sequence[str] | None = None
     ) -> Forecast:
-        """Use the latest initialisation time available by `issued` (respecting latency).
+        """Fetch the latest forecast available at `issued`
+
+        Use the latest initialisation time available by `issued` (respecting latency).
         Never use data initialised after that.
 
         Returns a :class:`~tidesurgedata.sources.base.Forecast` with valid times from the
         initialisation time to ``issued + horizon`` and one column per requested member
         (``"control"`` for deterministic datasets); validated with
-        :func:`tidesurgedata.contract.validate_forecast`.
-        """
-        raise NotImplementedError("BL-16")
+        :func:`tidesurgedata.contract.validate_forecast`."""
+
+        import icechunk
+        import pystac
+        import xarray as xr
+
+        issued = pd.Timestamp(issued)
+        issued = issued.tz_localize("UTC") if issued.tzinfo is None else issued.tz_convert("UTC")
+
+        # Find the latest forecast that would have been available at `issued`.
+        cutoff = issued - self.latency
+        init_times = self.init_times(
+            pd.Timestamp.min.tz_localize("UTC"), cutoff + pd.Timedelta("1ns")
+        )
+
+        if len(init_times) == 0:
+            raise ValueError(f"No forecast available by {issued}")
+
+        init_time = init_times[-1]
+
+        # Open the Dynamical dataset.
+        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
+        collection = catalog.get_child(self.dataset)
+
+        if collection is None:
+            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
+
+        asset = collection.assets["icechunk-https"]
+        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
+        session = repo.readonly_session("main")
+        ds = xr.open_zarr(session.store, chunks=None)
+
+        # xarray coordinates are timezone-naive.
+        init_naive = init_time.tz_localize(None)
+
+        data = ds[self.variable].sel(
+            init_time=init_naive,
+            latitude=self.lat,
+            longitude=self.lon,
+        )
+
+        # Convert lead times into actual forecast valid times.
+        valid_time = init_time + pd.to_timedelta(data.lead_time.values)
+
+        # Keep forecasts only through issued + horizon.
+        keep = valid_time <= issued + horizon
+        data = data.isel(lead_time=keep)
+        valid_time = valid_time[keep]
+
+        # Convert to the DataFrame required by Forecast.
+        # Find any dimension other than lead_time.
+        member_dims = [dim for dim in data.dims if dim != "lead_time"]
+
+        if member_dims:
+            member_dim = member_dims[0]
+
+            # Rows = lead times, columns = ensemble members.
+            data = data.transpose("lead_time", member_dim)
+
+            frame = pd.DataFrame(
+                data.values,
+                index=valid_time,
+                columns=[str(m) for m in data[member_dim].values],
+            )
+
+            if members is not None:
+                frame = frame[list(map(str, members))]
+
+        else:
+            frame = pd.DataFrame(
+                {"control": data.values},
+                index=valid_time,
+            )
+
+        frame = frame.astype("float64")  # convert the float32 output from the Dynamical data to f64
+        frame.index.name = "valid_time"
+
+        record = FetchRecord(
+            meta=self.metadata(),
+            start=init_time,
+            end=issued + horizon,
+            retrieved_at=pd.Timestamp.now(tz="UTC"),
+            quality="unknown",
+            n_values=int(frame.size),
+            n_missing=int(frame.isna().sum().sum()),
+            request={
+                "dataset": self.dataset,
+                "variable": self.variable,
+                "lat": str(self.lat),
+                "lon": str(self.lon),
+            },
+        )
+
+        return Forecast(record=record, init_time=init_time, values=frame)
