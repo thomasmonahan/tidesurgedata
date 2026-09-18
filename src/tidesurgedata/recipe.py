@@ -11,12 +11,13 @@ import json
 import math
 import re
 from collections.abc import Mapping
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from typing import Any, Literal
 
 import pandas as pd
 
-from tidesurgedata.align import lag_column_name
+from tidesurgedata.align import lag_column_name, materialise_lags, to_grid
+from tidesurgedata.contract import validate_frame
 from tidesurgedata.meta import FetchRecord
 from tidesurgedata.sources.base import BaseSource, ForecastSource, GriddedSource
 from tidesurgedata.sources.registry import source_from_spec
@@ -143,6 +144,9 @@ class Recipe:
     target_how: Literal["instant", "mean"] = "instant"
     target_column: str | None = None
     schema_version: int = SCHEMA_VERSION
+    _last_provenance: tuple[FetchRecord, ...] = field(
+        default=(), init=False, repr=False, compare=False
+    )
 
     def __post_init__(self) -> None:
         if not isinstance(self.target, BaseSource):
@@ -303,7 +307,65 @@ class Recipe:
         ValueError
             If ``start``/``end`` are naive or ``end <= start``.
         """
-        raise NotImplementedError("BL-12: Recipe.training_frame")
+        from tidesurgedata.timeutil import regular_grid, to_utc
+
+        start_utc = to_utc(start)
+        end_utc = to_utc(end)
+
+        if end_utc <= start_utc:
+            raise ValueError("end must be after start")
+
+        # Generate index
+        index = regular_grid(start_utc, end_utc, self.freq)
+        columns = {}
+        records: list[FetchRecord] = []
+
+        recipe = self.resolved()
+
+        # Target
+        target_series, target_record = recipe.target.fetch_with_record(start_utc, end_utc)
+        records.append(target_record)
+        target_grid = to_grid(
+            target_series,
+            recipe.target.metadata(),
+            recipe.freq,
+            how=recipe.target_how,
+            max_gap=None,
+        ) # align target to grid
+        columns[recipe.target_column_name] = target_grid.reindex(index) # add target to column dict
+
+        # Drivers 
+        for driver in recipe.drivers:
+            lag_start = start_utc + pd.Timedelta(hours=min(0.0, min(driver.lags_hours)))
+            lag_end = end_utc + pd.Timedelta(hours=max(0.0, max(driver.lags_hours)))
+            driver_series, driver_record = driver.source.fetch_with_record(lag_start, lag_end)
+            records.append(driver_record)
+
+            # align driver to grid
+            driver_grid = to_grid(
+                driver_series,
+                driver.source.metadata(),
+                recipe.freq,
+                how=driver.how,
+                max_gap=driver.max_gap
+            )
+
+            # Lags
+            lagged = materialise_lags(
+                driver_grid,
+                driver.name,
+                driver.lags_hours,
+            )
+
+            for col in lagged:
+                columns[col] = lagged[col].reindex(index) # add lag to column dict
+
+        # Assemble target and lags
+        df = pd.DataFrame(columns, index=index, dtype="float64")
+        df = df[[recipe.target_column_name, *recipe.feature_columns]]
+        validate_frame(df, recipe.target_column_name, recipe.feature_columns)
+        object.__setattr__(self, "_last_provenance", tuple(records))
+        return df
 
     def forecast_frame(
         self, issued: TimeLike, horizon_hours: float, member: str | None = None
@@ -375,4 +437,4 @@ class Recipe:
             Target first, then drivers in order (forecast records after their driver's
             observation record). Empty if no frame has been built.
         """
-        raise NotImplementedError("BL-12: Recipe.provenance")
+        return list(self._last_provenance)

@@ -47,7 +47,6 @@ class TruncatedRiver(FakeRiver):
 # --- training_frame (BL-12) ---------------------------------------------------------------------
 
 
-@BL12
 def test_training_frame_shape_and_columns(fake_recipe):
     df = fake_recipe.training_frame(START, END)
     validate_frame(df, fake_recipe.target_column_name, fake_recipe.feature_columns)
@@ -62,7 +61,6 @@ def test_training_frame_shape_and_columns(fake_recipe):
     ]
 
 
-@BL12
 def test_training_frame_values(fake_recipe, fake_tide_gauge, fake_river):
     df = fake_recipe.training_frame(START, END)
     # target: instant values on the grid, never interpolated
@@ -81,7 +79,6 @@ def test_training_frame_values(fake_recipe, fake_tide_gauge, fake_river):
     assert df.loc[t, "discharge_lag-24h"] == pytest.approx(around.mean())
 
 
-@BL12
 def test_training_frame_keeps_nan_rows(fake_recipe):
     recipe = dataclasses.replace(fake_recipe, target=GappyTideGauge())
     df = recipe.training_frame(START, END)
@@ -90,7 +87,6 @@ def test_training_frame_keeps_nan_rows(fake_recipe):
     assert len(gap) == 3 and gap.isna().all()  # target never interpolated, rows kept
 
 
-@BL12
 def test_training_frame_custom_target_column(fake_recipe):
     recipe = dataclasses.replace(fake_recipe, target_column="observations")
     df = recipe.training_frame(START, END)
@@ -98,7 +94,6 @@ def test_training_frame_custom_target_column(fake_recipe):
     validate_frame(df, "observations", recipe.feature_columns)
 
 
-@BL12
 def test_training_frame_resolves_gridded_drivers(fake_recipe, fake_met):
     unlocated = fake_met.with_location(None, None)
     recipe = dataclasses.replace(
@@ -109,8 +104,6 @@ def test_training_frame_resolves_gridded_drivers(fake_recipe, fake_met):
     expected = fake_recipe.training_frame(START, END)
     pd.testing.assert_frame_equal(df, expected)
 
-
-@BL12
 def test_training_frame_rejects_bad_ranges(fake_recipe):
     with pytest.raises(ValueError):
         fake_recipe.training_frame("2024-01-10", END)
@@ -118,7 +111,6 @@ def test_training_frame_rejects_bad_ranges(fake_recipe):
         fake_recipe.training_frame(END, START)
 
 
-@BL12
 def test_provenance_after_training_frame(fake_recipe):
     fake_recipe.training_frame(START, END)
     records = fake_recipe.provenance()

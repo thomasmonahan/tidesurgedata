@@ -240,15 +240,9 @@ def materialise_lags(
 
     values = series_on_grid.to_numpy(dtype="float64", copy=False)
     result = {}
-<<<<<<< HEAD
     for lag_hour, lag_value in zip(lags_hours, lag_ns):
         offset = int(lag_value // step_ns)  # Converts each lag into an integer number of grid positions
         shifted = np.full(values.shape, np.nan, dtype="float64") # shift values
-=======
-    for lag_hour, lag_value in zip(lags_hours, lag_ns, strict=True):
-        offset = int(lag_value // step_ns)
-        shifted = np.full(values.shape, np.nan, dtype="float64")
->>>>>>> origin/main
         if offset >= 0:
             if offset < len(values):
                 shifted[: len(values) - offset] = values[offset:]
