@@ -179,6 +179,23 @@ def materialise_lags(
 ) -> pd.DataFrame:
     """Build one column per lag from a gridded driver series.
 
+    For example, if lags_hours = (-1, 0, 2) and series_on_grid is
+
+    time    discharge
+    00:00   0
+    01:00   1
+    02:00   2
+    03:00   3
+
+    The output should be:
+    
+    time    lag-1h  lag0h  lag2h
+    00:00    NaN      0      2
+    01:00     0       1      3
+    02:00     1       2     NaN
+    03:00     2       3     NaN
+
+
     Parameters
     ----------
     series_on_grid : pandas.Series
@@ -223,9 +240,9 @@ def materialise_lags(
 
     values = series_on_grid.to_numpy(dtype="float64", copy=False)
     result = {}
-    for lag_hour, lag, lag_value in zip(lags_hours, lags, lag_ns):
-        offset = int(lag_value // step_ns)
-        shifted = np.full(values.shape, np.nan, dtype="float64")
+    for lag_hour, lag_value in zip(lags_hours, lag_ns):
+        offset = int(lag_value // step_ns)  # Converts each lag into an integer number of grid positions
+        shifted = np.full(values.shape, np.nan, dtype="float64") # shift values
         if offset >= 0:
             if offset < len(values):
                 shifted[: len(values) - offset] = values[offset:]
