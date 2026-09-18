@@ -1,0 +1,214 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/time-series-metadata/items?bbox=-74.21888485976658%2C40.6399099099099%2C-73.98111514023341%2C40.82009009009009&computation_identifier=Instantaneous&limit=50000&parameter_code=00060&statistic_id=00011
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"id\": \"5da18276468743d08b7b78baf430a576\",\n
+        \       \"unit_of_measure\": \"ft^3/s\",\n        \"parameter_name\": \"Discharge\",\n
+        \       \"parameter_code\": \"00060\",\n        \"statistic_id\": \"00011\",\n
+        \       \"hydrologic_unit_code\": \"020301030805\",\n        \"state_name\":
+        \"New Jersey\",\n        \"last_modified\": \"2026-09-18T07:22:27.680225\",\n
+        \       \"begin\": \"2011-05-01T04:00:00.000001\",\n        \"end\": \"2026-09-18T07:15:00.000001\",\n
+        \       \"begin_utc\": \"2011-05-01T08:00:00+00:00\",\n        \"end_utc\":
+        \"2026-09-18T11:15:00+00:00\",\n        \"computation_period_identifier\":
+        \"Points\",\n        \"computation_identifier\": \"Instantaneous\",\n        \"thresholds\":
+        [],\n        \"sublocation_identifier\": null,\n        \"primary\": \"Primary\",\n
+        \       \"monitoring_location_id\": \"USGS-01392500\",\n        \"web_description\":
+        null,\n        \"parameter_description\": \"Discharge, cubic feet per second\",\n
+        \       \"parent_time_series_id\": \"bf195c257abe4b0b82983bd0161480d0\",\n
+        \       \"data_gap_interval\": \"PT1H12M\"\n      },\n      \"id\": \"5da18276468743d08b7b78baf430a576\",\n
+        \     \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\":
+        [\n          -74.1716666666667,\n          40.7880555555556\n        ]\n      }\n
+        \   }\n  ],\n  \"numberReturned\": 1,\n  \"links\": [\n    {\n      \"type\":
+        \"application/geo+json\",\n      \"rel\": \"self\",\n      \"title\": \"This
+        document as GeoJSON\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v0/collections/time-series-metadata/items?f=json&parameter_code=00060&statistic_id=00011&computation_identifier=Instantaneous&limit=50000&bbox=-74.21888485976658,40.6399099099099,-73.98111514023341,40.82009009009009\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v0/collections/time-series-metadata/items?f=jsonld&parameter_code=00060&statistic_id=00011&computation_identifier=Instantaneous&limit=50000&bbox=-74.21888485976658,40.6399099099099,-73.98111514023341,40.82009009009009\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v0/collections/time-series-metadata/items?f=html&parameter_code=00060&statistic_id=00011&computation_identifier=Instantaneous&limit=50000&bbox=-74.21888485976658,40.6399099099099,-73.98111514023341,40.82009009009009\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v0/collections/time-series-metadata/items?f=csv&parameter_code=00060&statistic_id=00011&computation_identifier=Instantaneous&limit=50000&bbox=-74.21888485976658,40.6399099099099,-73.98111514023341,40.82009009009009\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Time
+        series metadata\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v0/collections/time-series-metadata\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:04:35.187283Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '3275'
+      api-version:
+      - 0.72.0
+      cache-control:
+      - public, max-age=3600
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '3131'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:59:10 GMT
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 4e4278a2778e72cc34feef6db603088c.cloudfront.net (CloudFront), https/1.1
+        api-umbrella (ApacheTrafficServer [cMsSfW])
+      x-amz-cf-id:
+      - L1MeuVoTttdO2DHbJBuEm-xGdoZK7nJCdwbiXpmo4rdayllnOx848Q==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mglpcm5cglnur2ori0
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - Hit from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - eb671a29-790e-4ca0-5b46-cdd270d9d596
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items?id=USGS-01392500&limit=50000
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"id\": \"USGS-01392500\",\n
+        \       \"agency_code\": \"USGS\",\n        \"agency_name\": \"U.S. Geological
+        Survey\",\n        \"monitoring_location_number\": \"01392500\",\n        \"monitoring_location_name\":
+        \"Second River at Belleville NJ\",\n        \"district_code\": \"34\",\n        \"country_code\":
+        \"US\",\n        \"country_name\": \"United States of America\",\n        \"state_code\":
+        \"34\",\n        \"state_name\": \"New Jersey\",\n        \"county_code\":
+        \"013\",\n        \"county_name\": \"Essex County\",\n        \"minor_civil_division_code\":
+        null,\n        \"site_type_code\": \"ST\",\n        \"site_type\": \"Stream\",\n
+        \       \"hydrologic_unit_code\": \"020301030805\",\n        \"basin_code\":
+        null,\n        \"altitude\": 62.6,\n        \"altitude_accuracy\": 0.01,\n
+        \       \"altitude_method_code\": \"L\",\n        \"altitude_method_name\":
+        \"Level or other surveyed method.\",\n        \"vertical_datum\": \"NGVD29\",\n
+        \       \"vertical_datum_name\": \"National Geodetic Vertical Datum of 1929\",\n
+        \       \"horizontal_positional_accuracy_code\": \"S\",\n        \"horizontal_positional_accuracy\":
+        \"Accurate to + or - 1 sec.\",\n        \"horizontal_position_method_code\":
+        \"M\",\n        \"horizontal_position_method_name\": \"Interpolated from MAP.\",\n
+        \       \"original_horizontal_datum\": \"NAD83\",\n        \"original_horizontal_datum_name\":
+        \"North American Datum of 1983\",\n        \"drainage_area\": 11.6,\n        \"contributing_drainage_area\":
+        null,\n        \"time_zone_abbreviation\": \"EST\",\n        \"uses_daylight_savings\":
+        \"Y\",\n        \"construction_date\": null,\n        \"aquifer_code\": null,\n
+        \       \"national_aquifer_code\": null,\n        \"aquifer_type_code\": null,\n
+        \       \"well_constructed_depth\": null,\n        \"hole_constructed_depth\":
+        null,\n        \"depth_source_code\": null,\n        \"revision_note\": null,\n
+        \       \"revision_created\": null,\n        \"revision_modified\": null\n
+        \     },\n      \"id\": \"USGS-01392500\",\n      \"geometry\": {\n        \"type\":
+        \"Point\",\n        \"coordinates\": [\n          -74.1716666666667,\n          40.7880555555556\n
+        \       ]\n      }\n    }\n  ],\n  \"numberReturned\": 1,\n  \"links\": [\n
+        \   {\n      \"type\": \"application/geo+json\",\n      \"rel\": \"self\",\n
+        \     \"title\": \"This document as GeoJSON\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-01392500&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-01392500&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-01392500&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-01392500&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Monitoring
+        locations\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:55:45.619594Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '206'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - public, max-age=3600
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '3379'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:59:11 GMT
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 fb2e3e161147dc940086f9545b8e0e4a.cloudfront.net (CloudFront), https/1.1
+        api-umbrella (ApacheTrafficServer [cMsSfW])
+      x-amz-cf-id:
+      - 8yo4KAARs0--IY5bR78qi40cSx4Or36JOyveOvsuIbTgZ2zbfF0Y_g==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mglpiaavu4n246c35g
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - Hit from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - 1c44b1ec-c1a1-46be-7ce6-75b93a2af892
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
