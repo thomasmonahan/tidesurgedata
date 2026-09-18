@@ -159,7 +159,7 @@ def to_grid(
     if max_gap is not None:
         values = result.to_numpy(copy=True)
         valid_positions = np.flatnonzero(~np.isnan(values))
-        for left, right in zip(valid_positions[:-1], valid_positions[1:]):
+        for left, right in zip(valid_positions[:-1], valid_positions[1:], strict=True):
             if right == left + 1 or grid[right] - grid[left] > gap:
                 continue
             missing = np.arange(left + 1, right)
@@ -240,9 +240,15 @@ def materialise_lags(
 
     values = series_on_grid.to_numpy(dtype="float64", copy=False)
     result = {}
+<<<<<<< HEAD
     for lag_hour, lag_value in zip(lags_hours, lag_ns):
         offset = int(lag_value // step_ns)  # Converts each lag into an integer number of grid positions
         shifted = np.full(values.shape, np.nan, dtype="float64") # shift values
+=======
+    for lag_hour, lag_value in zip(lags_hours, lag_ns, strict=True):
+        offset = int(lag_value // step_ns)
+        shifted = np.full(values.shape, np.nan, dtype="float64")
+>>>>>>> origin/main
         if offset >= 0:
             if offset < len(values):
                 shifted[: len(values) - offset] = values[offset:]
