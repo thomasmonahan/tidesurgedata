@@ -12,10 +12,10 @@ STUB = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-06"
 
 
 def make_source():
-    return USGS("01376500", parameter="discharge")
+    return USGS("05427718", parameter="discharge")
 
 
-@pytest.mark.skip(reason="BL-06: needs cassette")
+# @pytest.mark.skip(reason="BL-06: needs cassette")
 @pytest.mark.vcr
 class TestUSGSContract(SourceContractTests):
     @pytest.fixture
@@ -24,10 +24,11 @@ class TestUSGSContract(SourceContractTests):
 
     @pytest.fixture
     def window(self):
-        return ("2024-01-01T00:00Z", "2024-01-03T00:00Z")
+        return ("2024-03-01T00:00Z", "2024-03-02T00:00Z")
 
 
-@STUB
+# @STUB
+@pytest.mark.vcr
 def test_metadata():
     meta = make_source().metadata()
     assert meta.source == "usgs"
@@ -36,7 +37,38 @@ def test_metadata():
     assert meta.datum is None
 
 
-@STUB
+@pytest.mark.live
+@pytest.mark.enable_socket
+def test_fetch():
+    source = USGS("05427718", parameter="discharge")
+
+    series = source.fetch(
+        "2024-03-01T00:00Z",
+        "2024-03-02T00:00Z",
+    )
+
+    assert len(series) == 96
+    assert series.name == "discharge"
+    assert str(series.index.tz) == "UTC"
+
+
+@pytest.mark.live
+@pytest.mark.enable_socket
+def test_fetch_stage():
+    source = USGS("05427718", parameter="stage")
+
+    series = source.fetch(
+        "2024-03-01T00:00Z",
+        "2024-03-02T00:00Z",
+    )
+
+    assert len(series) == 96
+    assert series.name == "stage"
+    assert str(series.index.tz) == "UTC"
+
+
+# @STUB
+@pytest.mark.vcr
 def test_find_stations():
     stations = USGS.find_stations(40.73, -74.10, radius_km=10, variable="discharge")
     assert stations and all(isinstance(m, SeriesMeta) for m in stations)
@@ -45,7 +77,7 @@ def test_find_stations():
 
 @pytest.mark.live
 @pytest.mark.enable_socket
-@STUB
+# @STUB
 def test_live_smoke():
     end = pd.Timestamp.now(tz="UTC").floor("1h") - pd.Timedelta("2D")
     series = make_source().fetch(end - pd.Timedelta("1D"), end)
