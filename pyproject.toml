@@ -28,7 +28,6 @@ dependencies = [
     "pandas>=2.2",
     "requests",
     "pyarrow",
-    "pytest>=9.1.1",
 ]
 
 [project.optional-dependencies]

@@ -9,7 +9,6 @@ from tidesurgedata.contract import ContractError, validate_series
 
 from ..test_meta import make_meta
 
-
 T0 = pd.Timestamp("2024-01-01T00:00Z")
 
 
