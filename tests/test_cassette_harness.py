@@ -20,6 +20,7 @@ CASSETTE = CASSETTE_ROOT / "test_cassette_harness" / "test_replays_recorded_resp
 
 STUB = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-15")
 
+
 @pytest.mark.vcr
 def test_replays_recorded_response():
     response = requests.get(STATION_URL, headers={"X-Api-Key": DUMMY_KEY}, timeout=30)
@@ -38,7 +39,7 @@ def test_cassette_does_not_contain_filtered_credentials():
 @pytest.mark.live
 @pytest.mark.enable_socket
 @STUB
-#@pytest.mark.filterwarnings("ignore:A test tried to use socket:UserWarning")
+# @pytest.mark.filterwarnings("ignore:A test tried to use socket:UserWarning")
 def test_network_is_blocked_without_cassette():
     import pytest_socket
 

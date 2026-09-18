@@ -69,29 +69,55 @@ class Dynamical(GriddedSource):
     def metadata(self) -> SeriesMeta:
         """Return metadata for the selected dynamical.org variable and location."""
 
-        # Import pystac here so the optional ``met`` dependency stays lazy. 
-        import pystac 
-        #try: 
-        #except: ImportError("import pystac required")
+        # Import pystac here so the optional ``met`` dependency stays lazy.
+        import pystac
+        # try:
+        # except: ImportError("import pystac required")
 
-        if self.lat is None or self.lon is None: raise ValueError("lat and lon must be set before requesting metadata") #check lat-long req
+        if self.lat is None or self.lon is None:
+            raise ValueError(
+                "lat and lon must be set before requesting metadata"
+            )  # check lat-long req
 
-        # Open the dynamical.org STAC catalogue. 
-        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json") ### opens Dynamical's STAC catalogue - below we will select the dataset passed to the class (Dynamical)
+        # Open the dynamical.org STAC catalogue.
+        catalog = pystac.Catalog.from_file(
+            "https://stac.dynamical.org/catalog.json"
+        )  ### opens Dynamical's STAC catalogue -
+        # below we will select the dataset passed to the class (Dynamical)
 
-        # Find the collection requested when Dynamical(...) was constructed. 
+        # Find the collection requested when Dynamical(...) was constructed.
         collection = catalog.get_child(self.dataset)
 
-        if collection is None: raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}") #Check for valid dataset
+        if collection is None:
+            raise ValueError(
+                f"Unknown dynamical.org dataset: {self.dataset}"
+            )  # Check for valid dataset
 
         variables = collection.extra_fields.get("cube:variables", {})
-        if self.variable not in variables: raise ValueError( f"Variable {self.variable!r} is not available in {self.dataset!r}" ) 
+        if self.variable not in variables:
+            raise ValueError(f"Variable {self.variable!r} is not available in {self.dataset!r}")
 
         variable = variables[self.variable]
 
-        return SeriesMeta( source="dynamical", station_id=f"{self.dataset}:{self.lat},{self.lon}", variable=self.variable, lat=self.lat, lon=self.lon, units=variable["unit"], datum=None, sampling="instantaneous", window=None, label=None, licence=collection.extra_fields.get("license", "CC-BY-4.0"), attribution=collection.extra_fields.get("attribution", ""), url=collection.get_self_href() or "https://stac.dynamical.org/catalog.json", name=collection.title or self.dataset, extra={"dataset": self.dataset})
+        return SeriesMeta(
+            source="dynamical",
+            station_id=f"{self.dataset}:{self.lat},{self.lon}",
+            variable=self.variable,
+            lat=self.lat,
+            lon=self.lon,
+            units=variable["unit"],
+            datum=None,
+            sampling="instantaneous",
+            window=None,
+            label=None,
+            licence=collection.extra_fields.get("license", "CC-BY-4.0"),
+            attribution=collection.extra_fields.get("attribution", ""),
+            url=collection.get_self_href() or "https://stac.dynamical.org/catalog.json",
+            name=collection.title or self.dataset,
+            extra={"dataset": self.dataset},
+        )
 
-    #def _fetch(self, start: pd.Timestamp, end: pd.Timestamp) -> tuple[pd.Series, Quality, dict]:
+    # def _fetch(self, start: pd.Timestamp, end: pd.Timestamp) -> tuple[pd.Series, Quality, dict]:
     #    raise NotImplementedError("BL-15")
 
     def _fetch(self, start: pd.Timestamp, end: pd.Timestamp) -> tuple[pd.Series, Quality, dict]:
@@ -102,13 +128,17 @@ class Dynamical(GriddedSource):
         import pystac
         import xarray as xr
 
-        if self.lat is None or self.lon is None: raise ValueError("lat and lon must be set before fetching data") #check lat-long req
+        if self.lat is None or self.lon is None:
+            raise ValueError("lat and lon must be set before fetching data")  # check lat-long req
 
         # Find the requested dataset in the dynamical.org STAC catalogue.
         catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
-        collection = catalog.get_child(self.dataset) #same synbtax here to access dynamics's STAC as in metadata()
+        collection = catalog.get_child(
+            self.dataset
+        )  # same synbtax here to access dynamics's STAC as in metadata()
 
-        if collection is None: raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
+        if collection is None:
+            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
 
         # STAC tells us where the Icechunk repository is stored.
         asset = collection.assets["icechunk-https"]
@@ -120,9 +150,10 @@ class Dynamical(GriddedSource):
         # Open the repository as an xarray Dataset.
         ds = xr.open_zarr(session.store, chunks=None)
 
-        # Have to be careful at htis point: xarray uses timezone-naive datetime64 coordinates, while tidesurgedata
-        # supplies timezone-aware UTC timestamps.
-        # so here I am converting to UTC to conform with the rest of tidesurge. This neeeds a global check
+        # Have to be careful at htis point: xarray uses timezone-naive datetime64 coordinates
+        # , while tidesurgedata supplies timezone-aware UTC timestamps.
+        # so here I am converting to UTC to conform with the rest of tidesurge.
+        #  This neeeds a global check
         start = start.tz_convert("UTC").tz_localize(None)
         end = end.tz_convert("UTC").tz_localize(None)
 
@@ -143,45 +174,60 @@ class Dynamical(GriddedSource):
 
         return series, "unknown", request
 
-
-
     @classmethod
-    def find_stations(cls, lat: float, lon: float, radius_km: float, variable: str | None = None) -> list[SeriesMeta]:
-        """Return the Dynamical grid points within the specified radius_km of the location specified by the lat long."""
+    def find_stations(
+        cls, lat: float, lon: float, radius_km: float, variable: str | None = None
+    ) -> list[SeriesMeta]:
+        """Return the Dynamical grid points within the specified radius_km
+        of the location specified by the lat long."""
 
         import icechunk
         import pystac
         import xarray as xr
-        from tidesurgedata.sources.base import haversine_km #use the great circle distance calculator that we have from sources functions.
 
-        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json") #access STAC catalog again
+        from tidesurgedata.sources.base import (
+            haversine_km,
+        )
+        # use the great circle distance calculator that we have from sources functions.
 
-        stations = [] #initialise empty stations list
+        catalog = pystac.Catalog.from_file(
+            "https://stac.dynamical.org/catalog.json"
+        )  # access STAC catalog again
+
+        stations = []  # initialise empty stations list
 
         for collection in catalog.get_children():
-            variables = collection.extra_fields.get("cube:variables", {}) 
+            variables = collection.extra_fields.get("cube:variables", {})
 
             asset = collection.assets["icechunk-https"]
 
-            repo = icechunk.Repository.open(icechunk.http_storage(asset.href)) #load the icechunk dataset
-            session = repo.readonly_session("main") 
-            
-            ds = xr.open_zarr(session.store, chunks=None) #open up the grid
-            grid_lat = float(ds.latitude.sel(latitude=lat, method="nearest")) #Find the nearest grid cell to coordinates, lat
-            grid_lon = float(ds.longitude.sel(longitude=lon, method="nearest")) #Find the nearest grid cell to coordinates, lon
+            repo = icechunk.Repository.open(
+                icechunk.http_storage(asset.href)
+            )  # load the icechunk dataset
+            session = repo.readonly_session("main")
 
-            # Only return the grid point if it is inside the search radius. Using the nicely pre-defined great-circle calc
-            if haversine_km(lat, lon, grid_lat, grid_lon) > radius_km: continue
+            ds = xr.open_zarr(session.store, chunks=None)  # open up the grid
+            grid_lat = float(
+                ds.latitude.sel(latitude=lat, method="nearest")
+            )  # Find the nearest grid cell to coordinates, lat
+            grid_lon = float(
+                ds.longitude.sel(longitude=lon, method="nearest")
+            )  # Find the nearest grid cell to coordinates, lon
 
-            # Return one SeriesMeta for each requested variable. 
-            names = [variable] if variable else variables 
-            for name in names: source = cls(collection.id, name, lat=grid_lat, lon=grid_lon) #just packaging for the correct SeriesMeta output
+            # Only return the grid point if it is inside the search radius.
+            # Using the nicely pre-defined great-circle calc
+            if haversine_km(lat, lon, grid_lat, grid_lon) > radius_km:
+                continue
+
+            # Return one SeriesMeta for each requested variable.
+            names = [variable] if variable else variables
+            for name in names:
+                source = cls(
+                    collection.id, name, lat=grid_lat, lon=grid_lon
+                )  # just packaging for the correct SeriesMeta output
             stations.append(source.metadata())
 
         return stations
-
-
-    
 
     def init_times(self, start: TimeLike, end: TimeLike) -> pd.DatetimeIndex:
         """Initialisation times of the forecast dataset in ``[start, end)``."""

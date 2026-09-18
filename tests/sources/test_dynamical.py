@@ -29,7 +29,7 @@ def test_is_gridded_forecast_source():
     )
 
 
-#@pytest.mark.skip(reason="BL-15: needs cassette")
+# @pytest.mark.skip(reason="BL-15: needs cassette")
 @pytest.mark.vcr
 class TestDynamicalContract(SourceContractTests):
     @pytest.fixture
@@ -57,7 +57,7 @@ class TestDynamicalForecastContract(ForecastSourceContractTests):
         return pd.Timedelta("48h")
 
 
-#@BL15
+# @BL15
 def test_metadata():
     meta = analysis().metadata()
     assert meta.source == "dynamical"
@@ -76,7 +76,7 @@ def test_forecast_members():
 
 @pytest.mark.live
 @pytest.mark.enable_socket
-#@BL15
+# @BL15
 def test_live_smoke_analysis():
     end = pd.Timestamp.now(tz="UTC").floor("1D") - pd.Timedelta("3D")
     assert len(analysis().fetch(end - pd.Timedelta("1D"), end)) > 0
