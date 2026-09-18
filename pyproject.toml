@@ -29,7 +29,9 @@ dependencies = [
     "requests",
     "pyarrow",
     "pystac",
-    "pytest-recording"
+    "pytest-recording",
+    "icechunk",
+    "zarr",
 ]
 
 [project.optional-dependencies]
