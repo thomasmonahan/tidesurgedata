@@ -1,0 +1,1232 @@
+interactions:
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - pystac/1.15.2
+    method: GET
+    uri: https://stac.dynamical.org/catalog.json
+  response:
+    body:
+      string: "{\n  \"type\": \"Catalog\",\n  \"id\": \"dynamical-org\",\n  \"stac_version\":
+        \"1.1.0\",\n  \"description\": \"Cloud-optimized weather and climate datasets
+        from dynamical.org\",\n  \"links\": [\n    {\n      \"rel\": \"root\",\n      \"href\":
+        \"https://stac.dynamical.org/catalog.json\",\n      \"type\": \"application/json\",\n
+        \     \"title\": \"dynamical.org STAC Catalog\"\n    },\n    {\n      \"rel\":
+        \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS forecast\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gefs-forecast-35-day/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GEFS forecast,
+        35 day\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gefs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GEFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-forecast-18-hour-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        18 hour, virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/noaa-hrrr-forecast-48-hour/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        48 hour\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-forecast-48-hour-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        48 hour, virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/noaa-hrrr-analysis/collection.json\",\n      \"type\":
+        \"application/json\",\n      \"title\": \"NOAA HRRR analysis\"\n    },\n    {\n
+        \     \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-analysis-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR analysis,
+        virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-mrms-conus-analysis-hourly/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA MRMS CONUS
+        analysis, hourly\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-aifs-single-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF AIFS Single
+        forecast\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/ecmwf-aifs-ens-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF AIFS ENS forecast\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-15-day-0-25-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        15 day, 0.25 degree\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-46-day-daily-1-5-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        46 day, daily, 1.5 degree\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-46-day-6-hourly-1-5-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        46 day, 6 hourly, 1.5 degree\"\n    },\n    {\n      \"rel\": \"child\",\n
+        \     \"href\": \"https://stac.dynamical.org/dwd-icon-eu-forecast-5-day/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"DWD ICON-EU forecast,
+        5 day\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/nasa-imerg-analysis-early/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NASA IMERG analysis,
+        early\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/nasa-imerg-analysis-late/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NASA IMERG analysis,
+        late\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/eccc-hrdps-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECCC HRDPS forecast\"\n
+        \   },\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    }\n  ],\n  \"title\": \"dynamical.org STAC Catalog\"\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      CF-RAY:
+      - a3cfd377ec91ed03-LHR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4436'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 18 Sep 2026 10:56:47 GMT
+      ETag:
+      - '"b78b3bce865bd49111feba0c7cedab3d"'
+      Last-Modified:
+      - Fri, 18 Sep 2026 02:29:08 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=XWspHxb4Sr2Q94fFJX%2Fsyqwcr7nqcN2K25A%2F3HBhLgBW2%2FRYxx1icUoIgvQmxQzdpU9%2Bh4g4tff0RRcR1CzjQOti2%2FRQTNOSug3Y8uKcCfVpAYG4SbXL0ODblifH0z120CwpTlc%3D"}]}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfCacheStatus;desc="DYNAMIC"
+      - cfEdge;dur=8,cfOrigin;dur=140
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - pystac/1.15.2
+    method: GET
+    uri: https://stac.dynamical.org/noaa-gfs-analysis/collection.json
+  response:
+    body:
+      string: "{\n  \"type\": \"Collection\",\n  \"id\": \"noaa-gfs-analysis\",\n
+        \ \"stac_version\": \"1.1.0\",\n  \"description\": \"Weather analysis from
+        the Global Forecast System (GFS) operated by NOAA NWS NCEP.\",\n  \"links\":
+        [\n    {\n      \"rel\": \"root\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    },\n    {\n      \"rel\": \"license\",\n      \"href\": \"https://creativecommons.org/licenses/by/4.0/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"CC-BY-4.0\"\n    },\n    {\n
+        \     \"rel\": \"about\",\n      \"href\": \"https://dynamical.org/catalog/noaa-gfs-analysis/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Dataset documentation\"\n
+        \   },\n    {\n      \"rel\": \"about\",\n      \"href\": \"https://dynamical.org/catalog/noaa-gfs-analysis/validation/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Validation report\"\n    },\n
+        \   {\n      \"rel\": \"example\",\n      \"href\": \"https://github.com/dynamical-org/notebooks/blob/main/noaa-gfs-analysis.ipynb\",\n
+        \     \"type\": \"application/x-ipynb+json\",\n      \"title\": \"Quickstart
+        (GitHub)\"\n    },\n    {\n      \"rel\": \"example\",\n      \"href\": \"https://colab.research.google.com/github/dynamical-org/notebooks/blob/main/noaa-gfs-analysis.ipynb\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Quickstart (Colab)\"\n
+        \   },\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"parent\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    }\n  ],\n  \"stac_extensions\": [\n    \"https://stac-extensions.github.io/xarray-assets/v1.0.0/schema.json\",\n
+        \   \"https://stac-extensions.github.io/datacube/v2.2.0/schema.json\"\n  ],\n
+        \ \"attribution\": \"NOAA NWS NCEP GFS data processed by dynamical.org from
+        NOAA Open Data Dissemination archives.\",\n  \"version\": \"0.1.0\",\n  \"model_id\":
+        \"noaa-gfs\",\n  \"model_name\": \"NOAA GFS\",\n  \"description_summary\":
+        \"This analysis dataset is an archive of the model's best estimate of past
+        weather. It is created by concatenating the first few hours of each historical
+        forecast to provide a dataset with dimensions time, latitude, and longitude.\",\n
+        \ \"description_details\": \"### Construction\\n\\nGFS starts a new model
+        run every 6 hours and dynamical.org has created this analysis by concatenating
+        the first 6 hours of each forecast along the time dimension.\\n\\n### Source\\n\\nThe
+        source grib files this archive is constructed from are provided by [NOAA Open
+        Data Dissemination (NODD)](https://www.noaa.gov/information-technology/open-data-dissemination)
+        and accessed from the [AWS Open Data Registry](https://registry.opendata.aws/noaa-gfs-bdp-pds/).
+        Operational data is additionally accessed from [NOAA NOMADS](https://nomads.ncep.noaa.gov/).\\n\\n###
+        Storage\\n\\nStorage for this dataset is generously provided by [Source Cooperative](https://source.coop/),
+        a [Radiant Earth](https://radiant.earth/) initiative. Icechunk storage generously
+        provided by [AWS Open Data](https://aws.amazon.com/opendata/).\\n\\n### Chunks
+        & shards\\n\\nThis dataset is stored in [Zarr](https://zarr.dev/) format,
+        which splits each variable into a grid of **chunks** \\u2014 the smallest
+        unit read from storage. Chunks are grouped into larger **shards** (the objects
+        actually written to storage), which keeps the object count manageable for
+        long-archive datasets. When possible, aligning your reads with this dataset's
+        chunk grid can significantly improve data access speed.\\n\\nThe element count
+        and coordinate span of this dataset:\\n\\n| dimension | chunk | shard |\\n|---|---|---|\\n|
+        time | 1440 (60 days) | 1440 (60 days) |\\n| latitude | 50 (12.5\\u00b0) |
+        400 (100\\u00b0) |\\n| longitude | 50 (12.5\\u00b0) | 400 (100\\u00b0) |\\n|
+        **uncompressed** | 13.7 MiB | 878.9 MiB |\\n\\n### Validation report\\n\\nReview
+        the [validation report](https://dynamical.org/catalog/noaa-gfs-analysis/validation/)
+        for variable availability, missing data, known quirks, fill values, value
+        distributions, and sample plots.\\n\\n### Compression\\n\\nThe data values
+        in this dataset have been rounded in their binary floating point representation
+        to improve compression. See [Kl\\u00f6wer et al. 2021](https://www.nature.com/articles/s43588-021-00156-2)
+        for more information on this approach. The exact number of rounded bits can
+        be found in our [reformatting code](https://github.com/dynamical-org/reformatters/blob/main/src/reformatters/noaa/gfs/analysis/template_config.py).\\n\\n###
+        Related dataset\\n\\n[NOAA GEFS analysis](/catalog/noaa-gefs-analysis/) provides
+        a much longer historical record.\",\n  \"description_model\": \"The Global
+        Forecast System (GFS) is a National Oceanic and Atmospheric Administration
+        (NOAA) National Centers for Environmental Prediction (NCEP) weather forecast
+        model that generates data for dozens of atmospheric and land-soil variables,
+        including temperatures, winds, precipitation, soil moisture, and atmospheric
+        ozone concentration. The system couples four separate models (atmosphere,
+        ocean model, land/soil model, and sea ice) that work together to depict weather
+        conditions.\",\n  \"examples\": [\n    {\n      \"title\": \"Temperature at
+        a place and time\",\n      \"variants\": [\n        {\n          \"label\":
+        \"dynamical-catalog\",\n          \"code\": \"import dynamical_catalog  #
+        dynamical-catalog>=0.8.0\\n\\nds = dynamical_catalog.open(\\\"noaa-gfs-analysis\\\",
+        chunks=None)\\nds[\\\"temperature_2m\\\"].sel(time=\\\"2026-01-01T00\\\",
+        latitude=0, longitude=0)\",\n          \"language\": \"python\"\n        },\n
+        \       {\n          \"label\": \"pystac + icechunk\",\n          \"code\":
+        \"import icechunk\\nimport pystac\\nimport xarray as xr\\n\\ncatalog = pystac.Catalog.from_file(\\\"https://stac.dynamical.org/catalog.json\\\")\\ncollection
+        = catalog.get_child(\\\"noaa-gfs-analysis\\\")\\nasset = collection.assets[\\\"icechunk-https\\\"]\\n\\nrepo
+        = icechunk.Repository.open(icechunk.http_storage(asset.href))\\nsession =
+        repo.readonly_session(\\\"main\\\")\\n\\nds = xr.open_zarr(session.store,
+        chunks=None)\\nds[\\\"temperature_2m\\\"].sel(time=\\\"2026-01-01T00\\\",
+        latitude=0, longitude=0)\",\n          \"language\": \"python\"\n        }\n
+        \     ]\n    }\n  ],\n  \"cube:dimensions\": {\n    \"latitude\": {\n      \"type\":
+        \"spatial\",\n      \"extent\": [\n        -90.0,\n        90.0\n      ],\n
+        \     \"axis\": \"y\",\n      \"unit\": \"degree_north\",\n      \"size\":
+        721\n    },\n    \"longitude\": {\n      \"type\": \"spatial\",\n      \"extent\":
+        [\n        -180.0,\n        179.75\n      ],\n      \"axis\": \"x\",\n      \"unit\":
+        \"degree_east\",\n      \"size\": 1440\n    },\n    \"time\": {\n      \"type\":
+        \"temporal\",\n      \"extent\": [\n        \"2021-05-01T00:00:00Z\",\n        null\n
+        \     ],\n      \"unit\": \"seconds since 1970-01-01\"\n    }\n  },\n  \"cube:variables\":
+        {\n    \"categorical_freezing_rain_surface\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical freezing
+        rain\",\n      \"short_name\": \"cfrzr\",\n      \"comment\": \"Presence/absence
+        over the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z,
+        18Z). 0=no; 1=yes.\"\n    },\n    \"categorical_ice_pellets_surface\": {\n
+        \     \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical
+        ice pellets\",\n      \"short_name\": \"cicep\",\n      \"comment\": \"Presence/absence
+        over the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z,
+        18Z). 0=no; 1=yes.\"\n    },\n    \"categorical_rain_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical rain\",\n
+        \     \"short_name\": \"crain\",\n      \"comment\": \"Presence/absence over
+        the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).
+        0=no; 1=yes.\"\n    },\n    \"categorical_snow_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical snow\",\n
+        \     \"short_name\": \"csnow\",\n      \"comment\": \"Presence/absence over
+        the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).
+        0=no; 1=yes.\"\n    },\n    \"downward_long_wave_radiation_flux_surface\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"W m-2\",\n      \"long_name\": \"Surface
+        downward long-wave radiation flux\",\n      \"standard_name\": \"surface_downwelling_longwave_flux_in_air\",\n
+        \     \"short_name\": \"sdlwrf\",\n      \"comment\": \"Average over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"downward_short_wave_radiation_flux_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"W m-2\",\n      \"long_name\": \"Surface downward
+        short-wave radiation flux\",\n      \"standard_name\": \"surface_downwelling_shortwave_flux_in_air\",\n
+        \     \"short_name\": \"sdswrf\",\n      \"comment\": \"Average over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"geopotential_height_cloud_ceiling\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m\",\n
+        \     \"long_name\": \"Geopotential height\",\n      \"standard_name\": \"geopotential_height\",\n
+        \     \"short_name\": \"gh\",\n      \"comment\": \"Values near 20,000m mark
+        no cloud ceiling. Interpolation in the source mixes the no data value with
+        real ceiling heights, so unusable values span a range rather than one value
+        and are not converted to NaN. Mask values above 19,000m.\"\n    },\n    \"maximum_temperature_2m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"degree_Celsius\",\n      \"long_name\":
+        \"Maximum temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"tmax\",\n      \"comment\": \"Maximum over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"minimum_temperature_2m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"degree_Celsius\",\n
+        \     \"long_name\": \"Minimum temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"tmin\",\n      \"comment\": \"Minimum over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"percent_frozen_precipitation_surface\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"Percent frozen
+        precipitation\",\n      \"short_name\": \"cpofp\",\n      \"comment\": \"Negative
+        values mark no precipitation. Interpolation in the source mixes the no data
+        value with real percentages, so unusable values span a range rather than one
+        value and are not converted to NaN. Mask values < -0.1.\"\n    },\n    \"precipitable_water_atmosphere\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"kg m-2\",\n      \"long_name\": \"Precipitable
+        water\",\n      \"standard_name\": \"atmosphere_mass_content_of_water_vapor\",\n
+        \     \"short_name\": \"pwat\"\n    },\n    \"precipitation_surface\": {\n
+        \     \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"kg m-2 s-1\",\n      \"long_name\":
+        \"Precipitation rate\",\n      \"standard_name\": \"precipitation_flux\",\n
+        \     \"short_name\": \"prate\",\n      \"comment\": \"Average precipitation
+        rate since the previous forecast step. Units equivalent to mm/s.\"\n    },\n
+        \   \"pressure_80m\": {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n
+        \       \"longitude\"\n      ],\n      \"type\": \"data\",\n      \"chunks\":
+        [\n        1440,\n        50,\n        50\n      ],\n      \"shards\": [\n
+        \       1440,\n        400,\n        400\n      ],\n      \"unit\": \"Pa\",\n
+        \     \"long_name\": \"80 metre pressure\",\n      \"standard_name\": \"air_pressure\",\n
+        \     \"short_name\": \"80sp\"\n    },\n    \"pressure_reduced_to_mean_sea_level\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"Pa\",\n      \"long_name\": \"Pressure
+        reduced to MSL\",\n      \"standard_name\": \"air_pressure_at_mean_sea_level\",\n
+        \     \"short_name\": \"prmsl\"\n    },\n    \"pressure_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"Pa\",\n      \"long_name\": \"Surface pressure\",\n
+        \     \"standard_name\": \"surface_air_pressure\",\n      \"short_name\":
+        \"sp\"\n    },\n    \"relative_humidity_2m\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"2 metre relative
+        humidity\",\n      \"standard_name\": \"relative_humidity\",\n      \"short_name\":
+        \"2r\"\n    },\n    \"temperature_2m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"degree_Celsius\",\n
+        \     \"long_name\": \"2 metre temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"2t\"\n    },\n    \"temperature_80m\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"degree_Celsius\",\n      \"long_name\": \"80 metre
+        temperature\",\n      \"standard_name\": \"air_temperature\",\n      \"short_name\":
+        \"80t\"\n    },\n    \"total_cloud_cover_atmosphere\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"Total cloud
+        cover\",\n      \"standard_name\": \"cloud_area_fraction\",\n      \"short_name\":
+        \"tcc\",\n      \"comment\": \"Average over the previous 1-6 hours, reset
+        every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n    \"wind_u_100m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"100
+        metre U wind component\",\n      \"standard_name\": \"eastward_wind\",\n      \"short_name\":
+        \"100u\"\n    },\n    \"wind_u_10m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m
+        s-1\",\n      \"long_name\": \"10 metre U wind component\",\n      \"standard_name\":
+        \"eastward_wind\",\n      \"short_name\": \"10u\"\n    },\n    \"wind_u_80m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"80
+        metre U wind component\",\n      \"standard_name\": \"eastward_wind\",\n      \"short_name\":
+        \"80u\"\n    },\n    \"wind_v_100m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m
+        s-1\",\n      \"long_name\": \"100 metre V wind component\",\n      \"standard_name\":
+        \"northward_wind\",\n      \"short_name\": \"100v\"\n    },\n    \"wind_v_10m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"10
+        metre V wind component\",\n      \"standard_name\": \"northward_wind\",\n
+        \     \"short_name\": \"10v\"\n    },\n    \"wind_v_80m\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"80 metre V wind
+        component\",\n      \"standard_name\": \"northward_wind\",\n      \"short_name\":
+        \"80v\"\n    }\n  },\n  \"dynamical-org:chunking\": {\n    \"dtype\": \"float32\",\n
+        \   \"chunk\": {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n
+        \       \"longitude\"\n      ],\n      \"shape\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"lengths\": {\n        \"time\": \"60 days\",\n
+        \       \"latitude\": \"12.5\\u00b0\",\n        \"longitude\": \"12.5\\u00b0\"\n
+        \     },\n      \"uncompressed_size_bytes\": 14400000,\n      \"uncompressed_size\":
+        \"13.7 MiB\"\n    },\n    \"shard\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"shape\": [\n
+        \       1440,\n        400,\n        400\n      ],\n      \"lengths\": {\n
+        \       \"time\": \"60 days\",\n        \"latitude\": \"100\\u00b0\",\n        \"longitude\":
+        \"100\\u00b0\"\n      },\n      \"uncompressed_size_bytes\": 921600000,\n
+        \     \"uncompressed_size\": \"878.9 MiB\"\n    }\n  },\n  \"title\": \"NOAA
+        GFS analysis\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n
+        \       [\n          -180.0,\n          -90.0,\n          179.75,\n          90.0\n
+        \       ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n
+        \         \"2021-05-01T00:00:00Z\",\n          null\n        ]\n      ]\n
+        \   }\n  },\n  \"license\": \"CC-BY-4.0\",\n  \"summaries\": {\n    \"spatial_domain\":
+        [\n      \"Global\"\n    ],\n    \"spatial_resolution\": [\n      \"0.25 degrees
+        (~20km)\"\n    ],\n    \"time_domain\": [\n      \"2021-05-01 00:00:00 UTC
+        to Present\"\n    ],\n    \"time_resolution\": [\n      \"1 hour\"\n    ]\n
+        \ },\n  \"assets\": {\n    \"icechunk\": {\n      \"href\": \"s3://dynamical-noaa-gfs/noaa-gfs-analysis/v0.1.0.icechunk/\",\n
+        \     \"type\": \"application/x-icechunk\",\n      \"title\": \"Icechunk v2
+        repository\",\n      \"xarray:open_kwargs\": {\n        \"engine\": \"zarr\"\n
+        \     },\n      \"xarray:storage_options\": {\n        \"anon\": true,\n        \"client_kwargs\":
+        {\n          \"region_name\": \"us-west-2\"\n        }\n      },\n      \"roles\":
+        [\n        \"data\"\n      ]\n    },\n    \"icechunk-https\": {\n      \"href\":
+        \"https://dynamical-noaa-gfs.s3.us-west-2.amazonaws.com/noaa-gfs-analysis/v0.1.0.icechunk\",\n
+        \     \"type\": \"application/x-icechunk\",\n      \"title\": \"Icechunk v2
+        repository (HTTPS)\",\n      \"xarray:open_kwargs\": {\n        \"engine\":
+        \"zarr\"\n      },\n      \"roles\": [\n        \"data\"\n      ]\n    }\n
+        \ }\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      CF-RAY:
+      - a3cfd3795da863fc-LHR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '20897'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 18 Sep 2026 10:56:47 GMT
+      ETag:
+      - '"baea0772f922ce16cfacbb5810dfc7f0"'
+      Last-Modified:
+      - Fri, 18 Sep 2026 02:29:12 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=R276AQPTgAcLYfdFmccR5fsPhdZLZqXhsk5P%2BwJsjiOjg9mL5kkhbHH6KADKatupoPyKBqf6mrlxezOLwwAYtIsyCTbo7kXsCx7ydgbhYGkAsVFsti7t02poYBq8itrYE83dGns%3D"}]}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfCacheStatus;desc="DYNAMIC"
+      - cfEdge;dur=14,cfOrigin;dur=188
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - pystac/1.15.2
+    method: GET
+    uri: https://stac.dynamical.org/catalog.json
+  response:
+    body:
+      string: "{\n  \"type\": \"Catalog\",\n  \"id\": \"dynamical-org\",\n  \"stac_version\":
+        \"1.1.0\",\n  \"description\": \"Cloud-optimized weather and climate datasets
+        from dynamical.org\",\n  \"links\": [\n    {\n      \"rel\": \"root\",\n      \"href\":
+        \"https://stac.dynamical.org/catalog.json\",\n      \"type\": \"application/json\",\n
+        \     \"title\": \"dynamical.org STAC Catalog\"\n    },\n    {\n      \"rel\":
+        \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS forecast\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gefs-forecast-35-day/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GEFS forecast,
+        35 day\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gefs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GEFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-forecast-18-hour-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        18 hour, virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/noaa-hrrr-forecast-48-hour/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        48 hour\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-forecast-48-hour-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        48 hour, virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/noaa-hrrr-analysis/collection.json\",\n      \"type\":
+        \"application/json\",\n      \"title\": \"NOAA HRRR analysis\"\n    },\n    {\n
+        \     \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-analysis-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR analysis,
+        virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-mrms-conus-analysis-hourly/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA MRMS CONUS
+        analysis, hourly\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-aifs-single-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF AIFS Single
+        forecast\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/ecmwf-aifs-ens-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF AIFS ENS forecast\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-15-day-0-25-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        15 day, 0.25 degree\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-46-day-daily-1-5-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        46 day, daily, 1.5 degree\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-46-day-6-hourly-1-5-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        46 day, 6 hourly, 1.5 degree\"\n    },\n    {\n      \"rel\": \"child\",\n
+        \     \"href\": \"https://stac.dynamical.org/dwd-icon-eu-forecast-5-day/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"DWD ICON-EU forecast,
+        5 day\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/nasa-imerg-analysis-early/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NASA IMERG analysis,
+        early\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/nasa-imerg-analysis-late/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NASA IMERG analysis,
+        late\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/eccc-hrdps-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECCC HRDPS forecast\"\n
+        \   },\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    }\n  ],\n  \"title\": \"dynamical.org STAC Catalog\"\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      CF-RAY:
+      - a3cfd37c9a12e8fe-LHR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4436'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 18 Sep 2026 10:56:48 GMT
+      ETag:
+      - '"b78b3bce865bd49111feba0c7cedab3d"'
+      Last-Modified:
+      - Fri, 18 Sep 2026 02:29:08 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=SnptdEeYtqp3eSC4lMdejzLwUxtX36sUFknE62hzwVVY6oE4tCJ0b%2FNvRVCu1XqqiDxlPPA1HW%2FDooLg3newC00kZpGPbXGdB21Sfn%2Fy9ka1UwWFzDjOWOLAh8%2BQn6YNAZuPbuM%3D"}]}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfCacheStatus;desc="DYNAMIC"
+      - cfEdge;dur=13,cfOrigin;dur=145
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - pystac/1.15.2
+    method: GET
+    uri: https://stac.dynamical.org/noaa-gfs-analysis/collection.json
+  response:
+    body:
+      string: "{\n  \"type\": \"Collection\",\n  \"id\": \"noaa-gfs-analysis\",\n
+        \ \"stac_version\": \"1.1.0\",\n  \"description\": \"Weather analysis from
+        the Global Forecast System (GFS) operated by NOAA NWS NCEP.\",\n  \"links\":
+        [\n    {\n      \"rel\": \"root\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    },\n    {\n      \"rel\": \"license\",\n      \"href\": \"https://creativecommons.org/licenses/by/4.0/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"CC-BY-4.0\"\n    },\n    {\n
+        \     \"rel\": \"about\",\n      \"href\": \"https://dynamical.org/catalog/noaa-gfs-analysis/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Dataset documentation\"\n
+        \   },\n    {\n      \"rel\": \"about\",\n      \"href\": \"https://dynamical.org/catalog/noaa-gfs-analysis/validation/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Validation report\"\n    },\n
+        \   {\n      \"rel\": \"example\",\n      \"href\": \"https://github.com/dynamical-org/notebooks/blob/main/noaa-gfs-analysis.ipynb\",\n
+        \     \"type\": \"application/x-ipynb+json\",\n      \"title\": \"Quickstart
+        (GitHub)\"\n    },\n    {\n      \"rel\": \"example\",\n      \"href\": \"https://colab.research.google.com/github/dynamical-org/notebooks/blob/main/noaa-gfs-analysis.ipynb\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Quickstart (Colab)\"\n
+        \   },\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"parent\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    }\n  ],\n  \"stac_extensions\": [\n    \"https://stac-extensions.github.io/xarray-assets/v1.0.0/schema.json\",\n
+        \   \"https://stac-extensions.github.io/datacube/v2.2.0/schema.json\"\n  ],\n
+        \ \"attribution\": \"NOAA NWS NCEP GFS data processed by dynamical.org from
+        NOAA Open Data Dissemination archives.\",\n  \"version\": \"0.1.0\",\n  \"model_id\":
+        \"noaa-gfs\",\n  \"model_name\": \"NOAA GFS\",\n  \"description_summary\":
+        \"This analysis dataset is an archive of the model's best estimate of past
+        weather. It is created by concatenating the first few hours of each historical
+        forecast to provide a dataset with dimensions time, latitude, and longitude.\",\n
+        \ \"description_details\": \"### Construction\\n\\nGFS starts a new model
+        run every 6 hours and dynamical.org has created this analysis by concatenating
+        the first 6 hours of each forecast along the time dimension.\\n\\n### Source\\n\\nThe
+        source grib files this archive is constructed from are provided by [NOAA Open
+        Data Dissemination (NODD)](https://www.noaa.gov/information-technology/open-data-dissemination)
+        and accessed from the [AWS Open Data Registry](https://registry.opendata.aws/noaa-gfs-bdp-pds/).
+        Operational data is additionally accessed from [NOAA NOMADS](https://nomads.ncep.noaa.gov/).\\n\\n###
+        Storage\\n\\nStorage for this dataset is generously provided by [Source Cooperative](https://source.coop/),
+        a [Radiant Earth](https://radiant.earth/) initiative. Icechunk storage generously
+        provided by [AWS Open Data](https://aws.amazon.com/opendata/).\\n\\n### Chunks
+        & shards\\n\\nThis dataset is stored in [Zarr](https://zarr.dev/) format,
+        which splits each variable into a grid of **chunks** \\u2014 the smallest
+        unit read from storage. Chunks are grouped into larger **shards** (the objects
+        actually written to storage), which keeps the object count manageable for
+        long-archive datasets. When possible, aligning your reads with this dataset's
+        chunk grid can significantly improve data access speed.\\n\\nThe element count
+        and coordinate span of this dataset:\\n\\n| dimension | chunk | shard |\\n|---|---|---|\\n|
+        time | 1440 (60 days) | 1440 (60 days) |\\n| latitude | 50 (12.5\\u00b0) |
+        400 (100\\u00b0) |\\n| longitude | 50 (12.5\\u00b0) | 400 (100\\u00b0) |\\n|
+        **uncompressed** | 13.7 MiB | 878.9 MiB |\\n\\n### Validation report\\n\\nReview
+        the [validation report](https://dynamical.org/catalog/noaa-gfs-analysis/validation/)
+        for variable availability, missing data, known quirks, fill values, value
+        distributions, and sample plots.\\n\\n### Compression\\n\\nThe data values
+        in this dataset have been rounded in their binary floating point representation
+        to improve compression. See [Kl\\u00f6wer et al. 2021](https://www.nature.com/articles/s43588-021-00156-2)
+        for more information on this approach. The exact number of rounded bits can
+        be found in our [reformatting code](https://github.com/dynamical-org/reformatters/blob/main/src/reformatters/noaa/gfs/analysis/template_config.py).\\n\\n###
+        Related dataset\\n\\n[NOAA GEFS analysis](/catalog/noaa-gefs-analysis/) provides
+        a much longer historical record.\",\n  \"description_model\": \"The Global
+        Forecast System (GFS) is a National Oceanic and Atmospheric Administration
+        (NOAA) National Centers for Environmental Prediction (NCEP) weather forecast
+        model that generates data for dozens of atmospheric and land-soil variables,
+        including temperatures, winds, precipitation, soil moisture, and atmospheric
+        ozone concentration. The system couples four separate models (atmosphere,
+        ocean model, land/soil model, and sea ice) that work together to depict weather
+        conditions.\",\n  \"examples\": [\n    {\n      \"title\": \"Temperature at
+        a place and time\",\n      \"variants\": [\n        {\n          \"label\":
+        \"dynamical-catalog\",\n          \"code\": \"import dynamical_catalog  #
+        dynamical-catalog>=0.8.0\\n\\nds = dynamical_catalog.open(\\\"noaa-gfs-analysis\\\",
+        chunks=None)\\nds[\\\"temperature_2m\\\"].sel(time=\\\"2026-01-01T00\\\",
+        latitude=0, longitude=0)\",\n          \"language\": \"python\"\n        },\n
+        \       {\n          \"label\": \"pystac + icechunk\",\n          \"code\":
+        \"import icechunk\\nimport pystac\\nimport xarray as xr\\n\\ncatalog = pystac.Catalog.from_file(\\\"https://stac.dynamical.org/catalog.json\\\")\\ncollection
+        = catalog.get_child(\\\"noaa-gfs-analysis\\\")\\nasset = collection.assets[\\\"icechunk-https\\\"]\\n\\nrepo
+        = icechunk.Repository.open(icechunk.http_storage(asset.href))\\nsession =
+        repo.readonly_session(\\\"main\\\")\\n\\nds = xr.open_zarr(session.store,
+        chunks=None)\\nds[\\\"temperature_2m\\\"].sel(time=\\\"2026-01-01T00\\\",
+        latitude=0, longitude=0)\",\n          \"language\": \"python\"\n        }\n
+        \     ]\n    }\n  ],\n  \"cube:dimensions\": {\n    \"latitude\": {\n      \"type\":
+        \"spatial\",\n      \"extent\": [\n        -90.0,\n        90.0\n      ],\n
+        \     \"axis\": \"y\",\n      \"unit\": \"degree_north\",\n      \"size\":
+        721\n    },\n    \"longitude\": {\n      \"type\": \"spatial\",\n      \"extent\":
+        [\n        -180.0,\n        179.75\n      ],\n      \"axis\": \"x\",\n      \"unit\":
+        \"degree_east\",\n      \"size\": 1440\n    },\n    \"time\": {\n      \"type\":
+        \"temporal\",\n      \"extent\": [\n        \"2021-05-01T00:00:00Z\",\n        null\n
+        \     ],\n      \"unit\": \"seconds since 1970-01-01\"\n    }\n  },\n  \"cube:variables\":
+        {\n    \"categorical_freezing_rain_surface\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical freezing
+        rain\",\n      \"short_name\": \"cfrzr\",\n      \"comment\": \"Presence/absence
+        over the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z,
+        18Z). 0=no; 1=yes.\"\n    },\n    \"categorical_ice_pellets_surface\": {\n
+        \     \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical
+        ice pellets\",\n      \"short_name\": \"cicep\",\n      \"comment\": \"Presence/absence
+        over the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z,
+        18Z). 0=no; 1=yes.\"\n    },\n    \"categorical_rain_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical rain\",\n
+        \     \"short_name\": \"crain\",\n      \"comment\": \"Presence/absence over
+        the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).
+        0=no; 1=yes.\"\n    },\n    \"categorical_snow_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical snow\",\n
+        \     \"short_name\": \"csnow\",\n      \"comment\": \"Presence/absence over
+        the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).
+        0=no; 1=yes.\"\n    },\n    \"downward_long_wave_radiation_flux_surface\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"W m-2\",\n      \"long_name\": \"Surface
+        downward long-wave radiation flux\",\n      \"standard_name\": \"surface_downwelling_longwave_flux_in_air\",\n
+        \     \"short_name\": \"sdlwrf\",\n      \"comment\": \"Average over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"downward_short_wave_radiation_flux_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"W m-2\",\n      \"long_name\": \"Surface downward
+        short-wave radiation flux\",\n      \"standard_name\": \"surface_downwelling_shortwave_flux_in_air\",\n
+        \     \"short_name\": \"sdswrf\",\n      \"comment\": \"Average over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"geopotential_height_cloud_ceiling\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m\",\n
+        \     \"long_name\": \"Geopotential height\",\n      \"standard_name\": \"geopotential_height\",\n
+        \     \"short_name\": \"gh\",\n      \"comment\": \"Values near 20,000m mark
+        no cloud ceiling. Interpolation in the source mixes the no data value with
+        real ceiling heights, so unusable values span a range rather than one value
+        and are not converted to NaN. Mask values above 19,000m.\"\n    },\n    \"maximum_temperature_2m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"degree_Celsius\",\n      \"long_name\":
+        \"Maximum temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"tmax\",\n      \"comment\": \"Maximum over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"minimum_temperature_2m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"degree_Celsius\",\n
+        \     \"long_name\": \"Minimum temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"tmin\",\n      \"comment\": \"Minimum over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"percent_frozen_precipitation_surface\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"Percent frozen
+        precipitation\",\n      \"short_name\": \"cpofp\",\n      \"comment\": \"Negative
+        values mark no precipitation. Interpolation in the source mixes the no data
+        value with real percentages, so unusable values span a range rather than one
+        value and are not converted to NaN. Mask values < -0.1.\"\n    },\n    \"precipitable_water_atmosphere\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"kg m-2\",\n      \"long_name\": \"Precipitable
+        water\",\n      \"standard_name\": \"atmosphere_mass_content_of_water_vapor\",\n
+        \     \"short_name\": \"pwat\"\n    },\n    \"precipitation_surface\": {\n
+        \     \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"kg m-2 s-1\",\n      \"long_name\":
+        \"Precipitation rate\",\n      \"standard_name\": \"precipitation_flux\",\n
+        \     \"short_name\": \"prate\",\n      \"comment\": \"Average precipitation
+        rate since the previous forecast step. Units equivalent to mm/s.\"\n    },\n
+        \   \"pressure_80m\": {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n
+        \       \"longitude\"\n      ],\n      \"type\": \"data\",\n      \"chunks\":
+        [\n        1440,\n        50,\n        50\n      ],\n      \"shards\": [\n
+        \       1440,\n        400,\n        400\n      ],\n      \"unit\": \"Pa\",\n
+        \     \"long_name\": \"80 metre pressure\",\n      \"standard_name\": \"air_pressure\",\n
+        \     \"short_name\": \"80sp\"\n    },\n    \"pressure_reduced_to_mean_sea_level\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"Pa\",\n      \"long_name\": \"Pressure
+        reduced to MSL\",\n      \"standard_name\": \"air_pressure_at_mean_sea_level\",\n
+        \     \"short_name\": \"prmsl\"\n    },\n    \"pressure_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"Pa\",\n      \"long_name\": \"Surface pressure\",\n
+        \     \"standard_name\": \"surface_air_pressure\",\n      \"short_name\":
+        \"sp\"\n    },\n    \"relative_humidity_2m\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"2 metre relative
+        humidity\",\n      \"standard_name\": \"relative_humidity\",\n      \"short_name\":
+        \"2r\"\n    },\n    \"temperature_2m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"degree_Celsius\",\n
+        \     \"long_name\": \"2 metre temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"2t\"\n    },\n    \"temperature_80m\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"degree_Celsius\",\n      \"long_name\": \"80 metre
+        temperature\",\n      \"standard_name\": \"air_temperature\",\n      \"short_name\":
+        \"80t\"\n    },\n    \"total_cloud_cover_atmosphere\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"Total cloud
+        cover\",\n      \"standard_name\": \"cloud_area_fraction\",\n      \"short_name\":
+        \"tcc\",\n      \"comment\": \"Average over the previous 1-6 hours, reset
+        every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n    \"wind_u_100m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"100
+        metre U wind component\",\n      \"standard_name\": \"eastward_wind\",\n      \"short_name\":
+        \"100u\"\n    },\n    \"wind_u_10m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m
+        s-1\",\n      \"long_name\": \"10 metre U wind component\",\n      \"standard_name\":
+        \"eastward_wind\",\n      \"short_name\": \"10u\"\n    },\n    \"wind_u_80m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"80
+        metre U wind component\",\n      \"standard_name\": \"eastward_wind\",\n      \"short_name\":
+        \"80u\"\n    },\n    \"wind_v_100m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m
+        s-1\",\n      \"long_name\": \"100 metre V wind component\",\n      \"standard_name\":
+        \"northward_wind\",\n      \"short_name\": \"100v\"\n    },\n    \"wind_v_10m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"10
+        metre V wind component\",\n      \"standard_name\": \"northward_wind\",\n
+        \     \"short_name\": \"10v\"\n    },\n    \"wind_v_80m\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"80 metre V wind
+        component\",\n      \"standard_name\": \"northward_wind\",\n      \"short_name\":
+        \"80v\"\n    }\n  },\n  \"dynamical-org:chunking\": {\n    \"dtype\": \"float32\",\n
+        \   \"chunk\": {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n
+        \       \"longitude\"\n      ],\n      \"shape\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"lengths\": {\n        \"time\": \"60 days\",\n
+        \       \"latitude\": \"12.5\\u00b0\",\n        \"longitude\": \"12.5\\u00b0\"\n
+        \     },\n      \"uncompressed_size_bytes\": 14400000,\n      \"uncompressed_size\":
+        \"13.7 MiB\"\n    },\n    \"shard\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"shape\": [\n
+        \       1440,\n        400,\n        400\n      ],\n      \"lengths\": {\n
+        \       \"time\": \"60 days\",\n        \"latitude\": \"100\\u00b0\",\n        \"longitude\":
+        \"100\\u00b0\"\n      },\n      \"uncompressed_size_bytes\": 921600000,\n
+        \     \"uncompressed_size\": \"878.9 MiB\"\n    }\n  },\n  \"title\": \"NOAA
+        GFS analysis\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n
+        \       [\n          -180.0,\n          -90.0,\n          179.75,\n          90.0\n
+        \       ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n
+        \         \"2021-05-01T00:00:00Z\",\n          null\n        ]\n      ]\n
+        \   }\n  },\n  \"license\": \"CC-BY-4.0\",\n  \"summaries\": {\n    \"spatial_domain\":
+        [\n      \"Global\"\n    ],\n    \"spatial_resolution\": [\n      \"0.25 degrees
+        (~20km)\"\n    ],\n    \"time_domain\": [\n      \"2021-05-01 00:00:00 UTC
+        to Present\"\n    ],\n    \"time_resolution\": [\n      \"1 hour\"\n    ]\n
+        \ },\n  \"assets\": {\n    \"icechunk\": {\n      \"href\": \"s3://dynamical-noaa-gfs/noaa-gfs-analysis/v0.1.0.icechunk/\",\n
+        \     \"type\": \"application/x-icechunk\",\n      \"title\": \"Icechunk v2
+        repository\",\n      \"xarray:open_kwargs\": {\n        \"engine\": \"zarr\"\n
+        \     },\n      \"xarray:storage_options\": {\n        \"anon\": true,\n        \"client_kwargs\":
+        {\n          \"region_name\": \"us-west-2\"\n        }\n      },\n      \"roles\":
+        [\n        \"data\"\n      ]\n    },\n    \"icechunk-https\": {\n      \"href\":
+        \"https://dynamical-noaa-gfs.s3.us-west-2.amazonaws.com/noaa-gfs-analysis/v0.1.0.icechunk\",\n
+        \     \"type\": \"application/x-icechunk\",\n      \"title\": \"Icechunk v2
+        repository (HTTPS)\",\n      \"xarray:open_kwargs\": {\n        \"engine\":
+        \"zarr\"\n      },\n      \"roles\": [\n        \"data\"\n      ]\n    }\n
+        \ }\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      CF-RAY:
+      - a3cfd37e2be04ae0-LHR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '20897'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 18 Sep 2026 10:56:48 GMT
+      ETag:
+      - '"baea0772f922ce16cfacbb5810dfc7f0"'
+      Last-Modified:
+      - Fri, 18 Sep 2026 02:29:12 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=3mtEcgPP177XdFAswLr7L823OmrTLVooPeDS0csGwI30kaIu5ozbhshHSnAC4yDabJy6KEBD%2BUEf6Sy5XnYgX58l6TeMRT7bOYXnWCMmixA1jJlZU%2Bbwo6JN4Al0NJifZF41OZU%3D"}]}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfCacheStatus;desc="DYNAMIC"
+      - cfEdge;dur=12,cfOrigin;dur=160
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - pystac/1.15.2
+    method: GET
+    uri: https://stac.dynamical.org/catalog.json
+  response:
+    body:
+      string: "{\n  \"type\": \"Catalog\",\n  \"id\": \"dynamical-org\",\n  \"stac_version\":
+        \"1.1.0\",\n  \"description\": \"Cloud-optimized weather and climate datasets
+        from dynamical.org\",\n  \"links\": [\n    {\n      \"rel\": \"root\",\n      \"href\":
+        \"https://stac.dynamical.org/catalog.json\",\n      \"type\": \"application/json\",\n
+        \     \"title\": \"dynamical.org STAC Catalog\"\n    },\n    {\n      \"rel\":
+        \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS forecast\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gefs-forecast-35-day/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GEFS forecast,
+        35 day\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-gefs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GEFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-forecast-18-hour-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        18 hour, virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/noaa-hrrr-forecast-48-hour/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        48 hour\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-forecast-48-hour-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR forecast,
+        48 hour, virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/noaa-hrrr-analysis/collection.json\",\n      \"type\":
+        \"application/json\",\n      \"title\": \"NOAA HRRR analysis\"\n    },\n    {\n
+        \     \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-hrrr-analysis-virtual/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA HRRR analysis,
+        virtual\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/noaa-mrms-conus-analysis-hourly/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA MRMS CONUS
+        analysis, hourly\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-aifs-single-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF AIFS Single
+        forecast\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/ecmwf-aifs-ens-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF AIFS ENS forecast\"\n
+        \   },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-15-day-0-25-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        15 day, 0.25 degree\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-46-day-daily-1-5-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        46 day, daily, 1.5 degree\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\":
+        \"https://stac.dynamical.org/ecmwf-ifs-ens-forecast-46-day-6-hourly-1-5-degree/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECMWF IFS ENS forecast,
+        46 day, 6 hourly, 1.5 degree\"\n    },\n    {\n      \"rel\": \"child\",\n
+        \     \"href\": \"https://stac.dynamical.org/dwd-icon-eu-forecast-5-day/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"DWD ICON-EU forecast,
+        5 day\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/nasa-imerg-analysis-early/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NASA IMERG analysis,
+        early\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/nasa-imerg-analysis-late/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NASA IMERG analysis,
+        late\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"https://stac.dynamical.org/eccc-hrdps-forecast/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"ECCC HRDPS forecast\"\n
+        \   },\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    }\n  ],\n  \"title\": \"dynamical.org STAC Catalog\"\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      CF-RAY:
+      - a3cfd39b7f06e58f-LHR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4436'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 18 Sep 2026 10:56:53 GMT
+      ETag:
+      - '"b78b3bce865bd49111feba0c7cedab3d"'
+      Last-Modified:
+      - Fri, 18 Sep 2026 02:29:08 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=rJSwuRtocuzIzOwPSLJAd3ob9%2FQOs3ArYKnWmz1Gs6CgRT1f6LEPMjNZRF7mkpWbDY7DN9usVZ927mJZkJBlhtdvPGN495KvbjSVare%2Fa5plYJIEz57Pfw9VGSLVQlMdngQllRk%3D"}]}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfCacheStatus;desc="DYNAMIC"
+      - cfEdge;dur=8,cfOrigin;dur=147
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - pystac/1.15.2
+    method: GET
+    uri: https://stac.dynamical.org/noaa-gfs-analysis/collection.json
+  response:
+    body:
+      string: "{\n  \"type\": \"Collection\",\n  \"id\": \"noaa-gfs-analysis\",\n
+        \ \"stac_version\": \"1.1.0\",\n  \"description\": \"Weather analysis from
+        the Global Forecast System (GFS) operated by NOAA NWS NCEP.\",\n  \"links\":
+        [\n    {\n      \"rel\": \"root\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    },\n    {\n      \"rel\": \"license\",\n      \"href\": \"https://creativecommons.org/licenses/by/4.0/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"CC-BY-4.0\"\n    },\n    {\n
+        \     \"rel\": \"about\",\n      \"href\": \"https://dynamical.org/catalog/noaa-gfs-analysis/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Dataset documentation\"\n
+        \   },\n    {\n      \"rel\": \"about\",\n      \"href\": \"https://dynamical.org/catalog/noaa-gfs-analysis/validation/\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Validation report\"\n    },\n
+        \   {\n      \"rel\": \"example\",\n      \"href\": \"https://github.com/dynamical-org/notebooks/blob/main/noaa-gfs-analysis.ipynb\",\n
+        \     \"type\": \"application/x-ipynb+json\",\n      \"title\": \"Quickstart
+        (GitHub)\"\n    },\n    {\n      \"rel\": \"example\",\n      \"href\": \"https://colab.research.google.com/github/dynamical-org/notebooks/blob/main/noaa-gfs-analysis.ipynb\",\n
+        \     \"type\": \"text/html\",\n      \"title\": \"Quickstart (Colab)\"\n
+        \   },\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://stac.dynamical.org/noaa-gfs-analysis/collection.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"NOAA GFS analysis\"\n
+        \   },\n    {\n      \"rel\": \"parent\",\n      \"href\": \"https://stac.dynamical.org/catalog.json\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"dynamical.org STAC
+        Catalog\"\n    }\n  ],\n  \"stac_extensions\": [\n    \"https://stac-extensions.github.io/xarray-assets/v1.0.0/schema.json\",\n
+        \   \"https://stac-extensions.github.io/datacube/v2.2.0/schema.json\"\n  ],\n
+        \ \"attribution\": \"NOAA NWS NCEP GFS data processed by dynamical.org from
+        NOAA Open Data Dissemination archives.\",\n  \"version\": \"0.1.0\",\n  \"model_id\":
+        \"noaa-gfs\",\n  \"model_name\": \"NOAA GFS\",\n  \"description_summary\":
+        \"This analysis dataset is an archive of the model's best estimate of past
+        weather. It is created by concatenating the first few hours of each historical
+        forecast to provide a dataset with dimensions time, latitude, and longitude.\",\n
+        \ \"description_details\": \"### Construction\\n\\nGFS starts a new model
+        run every 6 hours and dynamical.org has created this analysis by concatenating
+        the first 6 hours of each forecast along the time dimension.\\n\\n### Source\\n\\nThe
+        source grib files this archive is constructed from are provided by [NOAA Open
+        Data Dissemination (NODD)](https://www.noaa.gov/information-technology/open-data-dissemination)
+        and accessed from the [AWS Open Data Registry](https://registry.opendata.aws/noaa-gfs-bdp-pds/).
+        Operational data is additionally accessed from [NOAA NOMADS](https://nomads.ncep.noaa.gov/).\\n\\n###
+        Storage\\n\\nStorage for this dataset is generously provided by [Source Cooperative](https://source.coop/),
+        a [Radiant Earth](https://radiant.earth/) initiative. Icechunk storage generously
+        provided by [AWS Open Data](https://aws.amazon.com/opendata/).\\n\\n### Chunks
+        & shards\\n\\nThis dataset is stored in [Zarr](https://zarr.dev/) format,
+        which splits each variable into a grid of **chunks** \\u2014 the smallest
+        unit read from storage. Chunks are grouped into larger **shards** (the objects
+        actually written to storage), which keeps the object count manageable for
+        long-archive datasets. When possible, aligning your reads with this dataset's
+        chunk grid can significantly improve data access speed.\\n\\nThe element count
+        and coordinate span of this dataset:\\n\\n| dimension | chunk | shard |\\n|---|---|---|\\n|
+        time | 1440 (60 days) | 1440 (60 days) |\\n| latitude | 50 (12.5\\u00b0) |
+        400 (100\\u00b0) |\\n| longitude | 50 (12.5\\u00b0) | 400 (100\\u00b0) |\\n|
+        **uncompressed** | 13.7 MiB | 878.9 MiB |\\n\\n### Validation report\\n\\nReview
+        the [validation report](https://dynamical.org/catalog/noaa-gfs-analysis/validation/)
+        for variable availability, missing data, known quirks, fill values, value
+        distributions, and sample plots.\\n\\n### Compression\\n\\nThe data values
+        in this dataset have been rounded in their binary floating point representation
+        to improve compression. See [Kl\\u00f6wer et al. 2021](https://www.nature.com/articles/s43588-021-00156-2)
+        for more information on this approach. The exact number of rounded bits can
+        be found in our [reformatting code](https://github.com/dynamical-org/reformatters/blob/main/src/reformatters/noaa/gfs/analysis/template_config.py).\\n\\n###
+        Related dataset\\n\\n[NOAA GEFS analysis](/catalog/noaa-gefs-analysis/) provides
+        a much longer historical record.\",\n  \"description_model\": \"The Global
+        Forecast System (GFS) is a National Oceanic and Atmospheric Administration
+        (NOAA) National Centers for Environmental Prediction (NCEP) weather forecast
+        model that generates data for dozens of atmospheric and land-soil variables,
+        including temperatures, winds, precipitation, soil moisture, and atmospheric
+        ozone concentration. The system couples four separate models (atmosphere,
+        ocean model, land/soil model, and sea ice) that work together to depict weather
+        conditions.\",\n  \"examples\": [\n    {\n      \"title\": \"Temperature at
+        a place and time\",\n      \"variants\": [\n        {\n          \"label\":
+        \"dynamical-catalog\",\n          \"code\": \"import dynamical_catalog  #
+        dynamical-catalog>=0.8.0\\n\\nds = dynamical_catalog.open(\\\"noaa-gfs-analysis\\\",
+        chunks=None)\\nds[\\\"temperature_2m\\\"].sel(time=\\\"2026-01-01T00\\\",
+        latitude=0, longitude=0)\",\n          \"language\": \"python\"\n        },\n
+        \       {\n          \"label\": \"pystac + icechunk\",\n          \"code\":
+        \"import icechunk\\nimport pystac\\nimport xarray as xr\\n\\ncatalog = pystac.Catalog.from_file(\\\"https://stac.dynamical.org/catalog.json\\\")\\ncollection
+        = catalog.get_child(\\\"noaa-gfs-analysis\\\")\\nasset = collection.assets[\\\"icechunk-https\\\"]\\n\\nrepo
+        = icechunk.Repository.open(icechunk.http_storage(asset.href))\\nsession =
+        repo.readonly_session(\\\"main\\\")\\n\\nds = xr.open_zarr(session.store,
+        chunks=None)\\nds[\\\"temperature_2m\\\"].sel(time=\\\"2026-01-01T00\\\",
+        latitude=0, longitude=0)\",\n          \"language\": \"python\"\n        }\n
+        \     ]\n    }\n  ],\n  \"cube:dimensions\": {\n    \"latitude\": {\n      \"type\":
+        \"spatial\",\n      \"extent\": [\n        -90.0,\n        90.0\n      ],\n
+        \     \"axis\": \"y\",\n      \"unit\": \"degree_north\",\n      \"size\":
+        721\n    },\n    \"longitude\": {\n      \"type\": \"spatial\",\n      \"extent\":
+        [\n        -180.0,\n        179.75\n      ],\n      \"axis\": \"x\",\n      \"unit\":
+        \"degree_east\",\n      \"size\": 1440\n    },\n    \"time\": {\n      \"type\":
+        \"temporal\",\n      \"extent\": [\n        \"2021-05-01T00:00:00Z\",\n        null\n
+        \     ],\n      \"unit\": \"seconds since 1970-01-01\"\n    }\n  },\n  \"cube:variables\":
+        {\n    \"categorical_freezing_rain_surface\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical freezing
+        rain\",\n      \"short_name\": \"cfrzr\",\n      \"comment\": \"Presence/absence
+        over the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z,
+        18Z). 0=no; 1=yes.\"\n    },\n    \"categorical_ice_pellets_surface\": {\n
+        \     \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical
+        ice pellets\",\n      \"short_name\": \"cicep\",\n      \"comment\": \"Presence/absence
+        over the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z,
+        18Z). 0=no; 1=yes.\"\n    },\n    \"categorical_rain_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical rain\",\n
+        \     \"short_name\": \"crain\",\n      \"comment\": \"Presence/absence over
+        the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).
+        0=no; 1=yes.\"\n    },\n    \"categorical_snow_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"1\",\n      \"long_name\": \"Categorical snow\",\n
+        \     \"short_name\": \"csnow\",\n      \"comment\": \"Presence/absence over
+        the previous 1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).
+        0=no; 1=yes.\"\n    },\n    \"downward_long_wave_radiation_flux_surface\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"W m-2\",\n      \"long_name\": \"Surface
+        downward long-wave radiation flux\",\n      \"standard_name\": \"surface_downwelling_longwave_flux_in_air\",\n
+        \     \"short_name\": \"sdlwrf\",\n      \"comment\": \"Average over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"downward_short_wave_radiation_flux_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"W m-2\",\n      \"long_name\": \"Surface downward
+        short-wave radiation flux\",\n      \"standard_name\": \"surface_downwelling_shortwave_flux_in_air\",\n
+        \     \"short_name\": \"sdswrf\",\n      \"comment\": \"Average over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"geopotential_height_cloud_ceiling\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m\",\n
+        \     \"long_name\": \"Geopotential height\",\n      \"standard_name\": \"geopotential_height\",\n
+        \     \"short_name\": \"gh\",\n      \"comment\": \"Values near 20,000m mark
+        no cloud ceiling. Interpolation in the source mixes the no data value with
+        real ceiling heights, so unusable values span a range rather than one value
+        and are not converted to NaN. Mask values above 19,000m.\"\n    },\n    \"maximum_temperature_2m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"degree_Celsius\",\n      \"long_name\":
+        \"Maximum temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"tmax\",\n      \"comment\": \"Maximum over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"minimum_temperature_2m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"degree_Celsius\",\n
+        \     \"long_name\": \"Minimum temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"tmin\",\n      \"comment\": \"Minimum over the previous
+        1-6 hours, reset every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n
+        \   \"percent_frozen_precipitation_surface\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"Percent frozen
+        precipitation\",\n      \"short_name\": \"cpofp\",\n      \"comment\": \"Negative
+        values mark no precipitation. Interpolation in the source mixes the no data
+        value with real percentages, so unusable values span a range rather than one
+        value and are not converted to NaN. Mask values < -0.1.\"\n    },\n    \"precipitable_water_atmosphere\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"kg m-2\",\n      \"long_name\": \"Precipitable
+        water\",\n      \"standard_name\": \"atmosphere_mass_content_of_water_vapor\",\n
+        \     \"short_name\": \"pwat\"\n    },\n    \"precipitation_surface\": {\n
+        \     \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"kg m-2 s-1\",\n      \"long_name\":
+        \"Precipitation rate\",\n      \"standard_name\": \"precipitation_flux\",\n
+        \     \"short_name\": \"prate\",\n      \"comment\": \"Average precipitation
+        rate since the previous forecast step. Units equivalent to mm/s.\"\n    },\n
+        \   \"pressure_80m\": {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n
+        \       \"longitude\"\n      ],\n      \"type\": \"data\",\n      \"chunks\":
+        [\n        1440,\n        50,\n        50\n      ],\n      \"shards\": [\n
+        \       1440,\n        400,\n        400\n      ],\n      \"unit\": \"Pa\",\n
+        \     \"long_name\": \"80 metre pressure\",\n      \"standard_name\": \"air_pressure\",\n
+        \     \"short_name\": \"80sp\"\n    },\n    \"pressure_reduced_to_mean_sea_level\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"Pa\",\n      \"long_name\": \"Pressure
+        reduced to MSL\",\n      \"standard_name\": \"air_pressure_at_mean_sea_level\",\n
+        \     \"short_name\": \"prmsl\"\n    },\n    \"pressure_surface\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"Pa\",\n      \"long_name\": \"Surface pressure\",\n
+        \     \"standard_name\": \"surface_air_pressure\",\n      \"short_name\":
+        \"sp\"\n    },\n    \"relative_humidity_2m\": {\n      \"dimensions\": [\n
+        \       \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"2 metre relative
+        humidity\",\n      \"standard_name\": \"relative_humidity\",\n      \"short_name\":
+        \"2r\"\n    },\n    \"temperature_2m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"degree_Celsius\",\n
+        \     \"long_name\": \"2 metre temperature\",\n      \"standard_name\": \"air_temperature\",\n
+        \     \"short_name\": \"2t\"\n    },\n    \"temperature_80m\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"degree_Celsius\",\n      \"long_name\": \"80 metre
+        temperature\",\n      \"standard_name\": \"air_temperature\",\n      \"short_name\":
+        \"80t\"\n    },\n    \"total_cloud_cover_atmosphere\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"percent\",\n      \"long_name\": \"Total cloud
+        cover\",\n      \"standard_name\": \"cloud_area_fraction\",\n      \"short_name\":
+        \"tcc\",\n      \"comment\": \"Average over the previous 1-6 hours, reset
+        every 6-hour forecast step (00Z, 06Z, 12Z, 18Z).\"\n    },\n    \"wind_u_100m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"100
+        metre U wind component\",\n      \"standard_name\": \"eastward_wind\",\n      \"short_name\":
+        \"100u\"\n    },\n    \"wind_u_10m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m
+        s-1\",\n      \"long_name\": \"10 metre U wind component\",\n      \"standard_name\":
+        \"eastward_wind\",\n      \"short_name\": \"10u\"\n    },\n    \"wind_u_80m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"80
+        metre U wind component\",\n      \"standard_name\": \"eastward_wind\",\n      \"short_name\":
+        \"80u\"\n    },\n    \"wind_v_100m\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"type\": \"data\",\n
+        \     \"chunks\": [\n        1440,\n        50,\n        50\n      ],\n      \"shards\":
+        [\n        1440,\n        400,\n        400\n      ],\n      \"unit\": \"m
+        s-1\",\n      \"long_name\": \"100 metre V wind component\",\n      \"standard_name\":
+        \"northward_wind\",\n      \"short_name\": \"100v\"\n    },\n    \"wind_v_10m\":
+        {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n
+        \     ],\n      \"type\": \"data\",\n      \"chunks\": [\n        1440,\n
+        \       50,\n        50\n      ],\n      \"shards\": [\n        1440,\n        400,\n
+        \       400\n      ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"10
+        metre V wind component\",\n      \"standard_name\": \"northward_wind\",\n
+        \     \"short_name\": \"10v\"\n    },\n    \"wind_v_80m\": {\n      \"dimensions\":
+        [\n        \"time\",\n        \"latitude\",\n        \"longitude\"\n      ],\n
+        \     \"type\": \"data\",\n      \"chunks\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"shards\": [\n        1440,\n        400,\n        400\n
+        \     ],\n      \"unit\": \"m s-1\",\n      \"long_name\": \"80 metre V wind
+        component\",\n      \"standard_name\": \"northward_wind\",\n      \"short_name\":
+        \"80v\"\n    }\n  },\n  \"dynamical-org:chunking\": {\n    \"dtype\": \"float32\",\n
+        \   \"chunk\": {\n      \"dimensions\": [\n        \"time\",\n        \"latitude\",\n
+        \       \"longitude\"\n      ],\n      \"shape\": [\n        1440,\n        50,\n
+        \       50\n      ],\n      \"lengths\": {\n        \"time\": \"60 days\",\n
+        \       \"latitude\": \"12.5\\u00b0\",\n        \"longitude\": \"12.5\\u00b0\"\n
+        \     },\n      \"uncompressed_size_bytes\": 14400000,\n      \"uncompressed_size\":
+        \"13.7 MiB\"\n    },\n    \"shard\": {\n      \"dimensions\": [\n        \"time\",\n
+        \       \"latitude\",\n        \"longitude\"\n      ],\n      \"shape\": [\n
+        \       1440,\n        400,\n        400\n      ],\n      \"lengths\": {\n
+        \       \"time\": \"60 days\",\n        \"latitude\": \"100\\u00b0\",\n        \"longitude\":
+        \"100\\u00b0\"\n      },\n      \"uncompressed_size_bytes\": 921600000,\n
+        \     \"uncompressed_size\": \"878.9 MiB\"\n    }\n  },\n  \"title\": \"NOAA
+        GFS analysis\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n
+        \       [\n          -180.0,\n          -90.0,\n          179.75,\n          90.0\n
+        \       ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n
+        \         \"2021-05-01T00:00:00Z\",\n          null\n        ]\n      ]\n
+        \   }\n  },\n  \"license\": \"CC-BY-4.0\",\n  \"summaries\": {\n    \"spatial_domain\":
+        [\n      \"Global\"\n    ],\n    \"spatial_resolution\": [\n      \"0.25 degrees
+        (~20km)\"\n    ],\n    \"time_domain\": [\n      \"2021-05-01 00:00:00 UTC
+        to Present\"\n    ],\n    \"time_resolution\": [\n      \"1 hour\"\n    ]\n
+        \ },\n  \"assets\": {\n    \"icechunk\": {\n      \"href\": \"s3://dynamical-noaa-gfs/noaa-gfs-analysis/v0.1.0.icechunk/\",\n
+        \     \"type\": \"application/x-icechunk\",\n      \"title\": \"Icechunk v2
+        repository\",\n      \"xarray:open_kwargs\": {\n        \"engine\": \"zarr\"\n
+        \     },\n      \"xarray:storage_options\": {\n        \"anon\": true,\n        \"client_kwargs\":
+        {\n          \"region_name\": \"us-west-2\"\n        }\n      },\n      \"roles\":
+        [\n        \"data\"\n      ]\n    },\n    \"icechunk-https\": {\n      \"href\":
+        \"https://dynamical-noaa-gfs.s3.us-west-2.amazonaws.com/noaa-gfs-analysis/v0.1.0.icechunk\",\n
+        \     \"type\": \"application/x-icechunk\",\n      \"title\": \"Icechunk v2
+        repository (HTTPS)\",\n      \"xarray:open_kwargs\": {\n        \"engine\":
+        \"zarr\"\n      },\n      \"roles\": [\n        \"data\"\n      ]\n    }\n
+        \ }\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      CF-RAY:
+      - a3cfd39cfe36631f-LHR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '20897'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 18 Sep 2026 10:56:53 GMT
+      ETag:
+      - '"baea0772f922ce16cfacbb5810dfc7f0"'
+      Last-Modified:
+      - Fri, 18 Sep 2026 02:29:12 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=lj%2B2HzDQSLgw3XI4IMQDOB6PygLMdY8ubGI1VOX8GaiabPbJh10krxdHh5Qnq3UkKrudPT4lfGhpgKvYWtVPXVpzAlYrlJfsXlNAiiQL%2Bc2KbnVYIBkCQhe0qkTHrFYzJZxkR1A%3D"}]}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfCacheStatus;desc="DYNAMIC"
+      - cfEdge;dur=27,cfOrigin;dur=165
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+version: 1
