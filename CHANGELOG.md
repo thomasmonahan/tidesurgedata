@@ -18,5 +18,7 @@ All notable changes to this project are documented here. The format follows
   member labels (`control`, `1`, `2`, …), member selection and as-of initialisation choice (BL-16).
 
 ### Changed
+- Core install is lightweight again: `pystac`, `icechunk`, `zarr` and `xarray` are back in the `met`
+  extra and `pytest-recording` in the `test` extra, rather than being required by every install.
 - Minimum supported Python is 3.12 (CI tests 3.12–3.14): the latest `numpy`, `zarr` and
   `icechunk` releases require it, and `icechunk` has no Python 3.10 wheels.

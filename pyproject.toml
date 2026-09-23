@@ -28,17 +28,12 @@ dependencies = [
     "pandas>=2.2",
     "requests",
     "pyarrow",
-    "pystac",
-    "pytest-recording",
-    "icechunk",
-    "zarr",
-    "xarray"
 ]
 
 [project.optional-dependencies]
 # dataretrieval.waterdata first ships in dataretrieval 1.1.0.
 usgs = ["dataretrieval>=1.1.0"]
-met = ["xarray", "zarr>=3", "icechunk"]
+met = ["xarray", "zarr>=3", "icechunk", "pystac"]
 xarray = ["xarray", "netCDF4"]
 all = ["tidesurgedata[usgs,met,xarray]"]
 test = ["pytest", "pytest-socket", "pytest-recording", "vcrpy", "pyyaml"]
