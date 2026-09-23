@@ -1159,11 +1159,15 @@ wheels = [
 name = "tidesurgedata"
 source = { editable = "." }
 dependencies = [
+    { name = "icechunk" },
     { name = "numpy" },
     { name = "pandas" },
     { name = "pyarrow" },
-    { name = "pytest" },
+    { name = "pystac" },
+    { name = "pytest-recording" },
     { name = "requests" },
+    { name = "xarray" },
+    { name = "zarr" },
 ]
 
 [package.optional-dependencies]
@@ -1171,7 +1175,6 @@ all = [
     { name = "dataretrieval" },
     { name = "icechunk" },
     { name = "netcdf4" },
-    { name = "pystac" },
     { name = "xarray" },
     { name = "zarr" },
 ]
@@ -1180,7 +1183,6 @@ dev = [
     { name = "icechunk" },
     { name = "netcdf4" },
     { name = "pre-commit" },
-    { name = "pystac" },
     { name = "pytest" },
     { name = "pytest-recording" },
     { name = "pytest-socket" },
@@ -1192,7 +1194,6 @@ dev = [
 ]
 met = [
     { name = "icechunk" },
-    { name = "pystac" },
     { name = "xarray" },
     { name = "zarr" },
 ]
@@ -1216,6 +1217,7 @@ requires-dist = [
     { name = "dataretrieval", marker = "extra == 'all'", specifier = ">=1.1.0" },
     { name = "dataretrieval", marker = "extra == 'dev'", specifier = ">=1.1.0" },
     { name = "dataretrieval", marker = "extra == 'usgs'", specifier = ">=1.1.0" },
+    { name = "icechunk" },
     { name = "icechunk", marker = "extra == 'all'" },
     { name = "icechunk", marker = "extra == 'dev'" },
     { name = "icechunk", marker = "extra == 'met'" },
@@ -1226,12 +1228,10 @@ requires-dist = [
     { name = "pandas", specifier = ">=2.2" },
     { name = "pre-commit", marker = "extra == 'dev'" },
     { name = "pyarrow" },
-    { name = "pystac", marker = "extra == 'all'" },
-    { name = "pystac", marker = "extra == 'dev'" },
-    { name = "pystac", marker = "extra == 'met'" },
-    { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pystac" },
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "pytest", marker = "extra == 'test'" },
+    { name = "pytest-recording" },
     { name = "pytest-recording", marker = "extra == 'dev'" },
     { name = "pytest-recording", marker = "extra == 'test'" },
     { name = "pytest-socket", marker = "extra == 'dev'" },
@@ -1242,10 +1242,12 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'" },
     { name = "vcrpy", marker = "extra == 'dev'" },
     { name = "vcrpy", marker = "extra == 'test'" },
+    { name = "xarray" },
     { name = "xarray", marker = "extra == 'all'" },
     { name = "xarray", marker = "extra == 'dev'" },
     { name = "xarray", marker = "extra == 'met'" },
     { name = "xarray", marker = "extra == 'xarray'" },
+    { name = "zarr" },
     { name = "zarr", marker = "extra == 'all'", specifier = ">=3" },
     { name = "zarr", marker = "extra == 'dev'", specifier = ">=3" },
     { name = "zarr", marker = "extra == 'met'", specifier = ">=3" },
