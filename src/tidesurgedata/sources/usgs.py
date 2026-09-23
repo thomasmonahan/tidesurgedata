@@ -263,7 +263,9 @@ class USGS(BaseSource):
             subset=["monitoring_location_id", "parameter_code"]
         )
 
-        results = []
+        # Calculate the distance of every candidate station from the requested
+        # location before making any further provider requests.
+        candidates = []
 
         for _, row in pairs.iterrows():
             geometry = row["geometry"]
@@ -275,26 +277,33 @@ class USGS(BaseSource):
                 station_lon = float(geometry[0])
                 station_lat = float(geometry[1])
 
-            if (
-                haversine_km(
-                    lat,
-                    lon,
-                    station_lat,
-                    station_lon,
-                )
-                > radius_km
-            ):
-                continue
-
-            station_variable = "discharge" if row["parameter_code"] == "00060" else "stage"
-
-            site_id = str(row["monitoring_location_id"]).removeprefix("USGS-")
-
-            results.append(
-                cls(
-                    site_id,
-                    parameter=station_variable,
-                ).metadata()
+            distance_km = haversine_km(
+                lat,
+                lon,
+                station_lat,
+                station_lon,
             )
 
-        return results
+            if distance_km <= radius_km:
+                candidates.append((distance_km, row))
+
+        # No stations within the requested radius.
+        if not candidates:
+            return []
+
+        # Sort geographically, without making any additional USGS requests.
+        candidates.sort(key=lambda candidate: candidate[0])
+
+        # Only resolve metadata for the closest station.
+        _, row = candidates[0]
+
+        station_variable = "discharge" if row["parameter_code"] == "00060" else "stage"
+
+        site_id = str(row["monitoring_location_id"]).removeprefix("USGS-")
+
+        return [
+            cls(
+                site_id,
+                parameter=station_variable,
+            ).metadata()
+        ]
