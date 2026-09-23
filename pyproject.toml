@@ -32,7 +32,8 @@ dependencies = [
     "pytest-recording",
     "icechunk",
     "zarr",
-    "xarray"
+    "xarray",
+    "matplotlib"
 ]
 
 [project.optional-dependencies]

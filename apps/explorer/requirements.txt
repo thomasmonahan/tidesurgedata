@@ -1,0 +1,6 @@
+# Install tidesurgedata itself from the repository root first, including live providers:
+#   pip install -e ".[all]"
+streamlit>=1.40
+streamlit-folium>=0.24
+folium>=0.18
+plotly>=5.24

@@ -158,31 +158,7 @@ class Dynamical(GriddedSource):
         end = end.tz_convert("UTC").tz_localize(None)
 
         # Select only the requested variable, time range, and nearest grid point.
-        #data = ds[self.variable].sel(time=slice(start, end), latitude=self.lat, longitude=self.lon, method=self.method,)
-
-        # First select the requested time range.
-        data = ds[self.variable].sel(
-            time=slice(start, end),
-        )
-
-        # Then sample the spatial grid independently.
-        if self.method == "nearest":
-            data = data.sel(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="nearest",
-            )
-        elif self.method == "linear":
-            data = data.interp(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="linear",
-            )
-        else:
-            raise ValueError(
-                f"Unsupported spatial sampling method: {self.method!r}. "
-                "Expected 'nearest' or 'linear'."
-            )
+        data = ds[self.variable].sel(time=slice(start, end), latitude=self.lat, longitude=self.lon)
 
         # Convert the one-dimensional xarray result to the pandas Series expected
         series = data.to_series().astype("float64")
@@ -325,24 +301,9 @@ class Dynamical(GriddedSource):
 
         data = ds[self.variable].sel(
             init_time=init_naive,
+            latitude=self.lat,
+            longitude=self.lon,
         )
-
-        if self.method == "nearest":
-            data = data.sel(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="nearest",
-            )
-        elif self.method == "linear":
-            data = data.interp(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="linear",
-            )
-        else:
-            raise ValueError(
-                f"Unsupported spatial sampling method: {self.method!r}"
-            )
 
         # Convert lead times into actual forecast valid times.
         valid_time = init_time + pd.to_timedelta(data.lead_time.values)

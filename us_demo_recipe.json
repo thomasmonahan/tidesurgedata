@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "target": {
+    "type": "noaa_coops",
+    "params": {
+      "station_id": "8518750",
+      "product": "water_level",
+      "datum": "MSL",
+      "interval": null
+    }
+  },
+  "drivers": [
+    {
+      "name": "discharge",
+      "source": {
+        "type": "usgs",
+        "params": {
+          "site_id": "01392500",
+          "parameter": "discharge"
+        }
+      },
+      "lags_hours": [
+        -24.0,
+        -12.0
+      ],
+      "forecast": null,
+      "how": "mean",
+      "max_gap": "2h"
+    },
+    {
+      "name": "pressure",
+      "source": {
+        "type": "dynamical",
+        "params": {
+          "dataset": "noaa-gfs-analysis",
+          "variable": "pressure_surface",
+          "lat": 40.7006,
+          "lon": -74.0142,
+          "method": "nearest"
+        }
+      },
+      "lags_hours": [
+        0.0
+      ],
+      "forecast": {
+        "type": "dynamical",
+        "params": {
+          "dataset": "noaa-gfs-forecast",
+          "variable": "pressure_surface",
+          "lat": 40.7006,
+          "lon": -74.0142,
+          "method": "nearest"
+        }
+      },
+      "how": "mean",
+      "max_gap": "2h"
+    }
+  ],
+  "freq": "1h",
+  "target_how": "instant",
+  "target_column": "observations"
+}

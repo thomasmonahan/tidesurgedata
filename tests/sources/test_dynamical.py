@@ -30,7 +30,8 @@ def test_is_gridded_forecast_source():
 
 
 # @pytest.mark.skip(reason="BL-15: needs cassette")
-@pytest.mark.vcr
+# @pytest.mark.vcr
+@pytest.mark.enable_socket
 class TestDynamicalContract(SourceContractTests):
     @pytest.fixture
     def source(self):
