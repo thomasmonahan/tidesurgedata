@@ -15,7 +15,6 @@ def make_source():
     return NOAACoops("8518750", product="water_level", datum="MSL")
 
 
-@pytest.mark.skip(reason="BL-05: needs cassette")
 @pytest.mark.vcr
 class TestNOAACoopsContract(SourceContractTests):
     @pytest.fixture
@@ -27,7 +26,7 @@ class TestNOAACoopsContract(SourceContractTests):
         return ("2024-01-01T00:00Z", "2024-01-03T00:00Z")
 
 
-@STUB
+@pytest.mark.vcr
 def test_metadata():
     meta = make_source().metadata()
     assert meta.source == "noaa_coops"
@@ -37,7 +36,8 @@ def test_metadata():
     assert "NOAA" in meta.attribution or "NOAA" in meta.licence
 
 
-@STUB
+@pytest.mark.live
+@pytest.mark.enable_socket
 def test_find_stations():
     stations = NOAACoops.find_stations(40.70, -74.01, radius_km=5)
     assert stations and all(isinstance(m, SeriesMeta) for m in stations)
@@ -46,7 +46,6 @@ def test_find_stations():
 
 @pytest.mark.live
 @pytest.mark.enable_socket
-@STUB
 def test_live_smoke():
     end = pd.Timestamp.now(tz="UTC").floor("1h") - pd.Timedelta("2D")
     series = make_source().fetch(end - pd.Timedelta("1D"), end)

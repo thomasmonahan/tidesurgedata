@@ -11,12 +11,14 @@ import json
 import math
 import re
 from collections.abc import Mapping
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from typing import Any, Literal
 
+import numpy as np
 import pandas as pd
 
-from tidesurgedata.align import lag_column_name
+from tidesurgedata.align import lag_column_name, materialise_lags, to_grid
+from tidesurgedata.contract import validate_frame
 from tidesurgedata.meta import FetchRecord
 from tidesurgedata.sources.base import BaseSource, ForecastSource, GriddedSource
 from tidesurgedata.sources.registry import source_from_spec
@@ -143,6 +145,9 @@ class Recipe:
     target_how: Literal["instant", "mean"] = "instant"
     target_column: str | None = None
     schema_version: int = SCHEMA_VERSION
+    _last_provenance: tuple[FetchRecord, ...] = field(
+        default=(), init=False, repr=False, compare=False
+    )
 
     def __post_init__(self) -> None:
         if not isinstance(self.target, BaseSource):
@@ -303,12 +308,80 @@ class Recipe:
         ValueError
             If ``start``/``end`` are naive or ``end <= start``.
         """
-        raise NotImplementedError("BL-12: Recipe.training_frame")
+        from tidesurgedata.timeutil import regular_grid, to_utc
+
+        start_utc = to_utc(start)
+        end_utc = to_utc(end)
+
+        if end_utc <= start_utc:
+            raise ValueError("end must be after start")
+
+        # Generate index
+        index = regular_grid(start_utc, end_utc, self.freq)
+        columns = {}
+        records: list[FetchRecord] = []
+
+        recipe = self.resolved()
+
+        # Target
+        target_series, target_record = recipe.target.fetch_with_record(start_utc, end_utc)
+        records.append(target_record)
+        target_grid = to_grid(
+            target_series,
+            recipe.target.metadata(),
+            recipe.freq,
+            how=recipe.target_how,
+            max_gap=None,
+        )  # align target to grid
+        columns[recipe.target_column_name] = target_grid.reindex(index)  # add target to column dict
+
+        # Drivers
+        for driver in recipe.drivers:
+            lag_start = start_utc + pd.Timedelta(hours=min(0.0, min(driver.lags_hours)))
+            lag_end = end_utc + pd.Timedelta(hours=max(0.0, max(driver.lags_hours)))
+            driver_series, driver_record = driver.source.fetch_with_record(lag_start, lag_end)
+            records.append(driver_record)
+
+            # align driver to grid
+            driver_grid = to_grid(
+                driver_series,
+                driver.source.metadata(),
+                recipe.freq,
+                how=driver.how,
+                max_gap=driver.max_gap,
+            )
+
+            # Lags
+            lagged = materialise_lags(
+                driver_grid,
+                driver.name,
+                driver.lags_hours,
+            )
+
+            for col in lagged:
+                columns[col] = lagged[col].reindex(index)  # add lag to column dict
+
+        # Assemble target and lags
+        df = pd.DataFrame(columns, index=index, dtype="float64")
+        df = df[[recipe.target_column_name, *recipe.feature_columns]]
+        validate_frame(df, recipe.target_column_name, recipe.feature_columns)
+        object.__setattr__(self, "_last_provenance", tuple(records))
+        return df
 
     def forecast_frame(
-        self, issued: TimeLike, horizon_hours: float, member: str | None = None
+        self,
+        issued: TimeLike,
+        horizon_hours: float,
+        member: str | None = None,
     ) -> pd.DataFrame:
-        """Build the frame a model needs to forecast from issue time ``issued``.
+        """Assemble the model input frame for future times after forecast issue ``issued``.
+
+        The returned frame combines an all-NaN target column with lagged driver columns. For
+        each driver, observations are used only when they were available by the issue-time
+        latency cutoff; later values come from the driver's forecast source when one exists.
+        The frame index contains the recipe grid from ``issued + freq`` through
+        ``issued + horizon_hours`` inclusive, and each lagged feature at time ``t`` represents
+        the driver's value at ``t + lag``.
 
         Parameters
         ----------
@@ -343,8 +416,119 @@ class Recipe:
         ------
         ValueError
             If ``horizon_hours`` exceeds :attr:`max_lead_time`, or ``issued`` is naive.
+
+        Examples
+        --------
+        Build an 11-hour forecast frame using the control ensemble member::
+
+            frame = recipe.forecast_frame(
+                issued="2024-01-20T00:00Z",
+                horizon_hours=11,
+            )
+
+        Select a specific ensemble member with the ``member`` argument::
+
+            member_frame = recipe.forecast_frame(
+                issued="2024-01-20T00:00Z",
+                horizon_hours=11,
+                member="3",
+            )
+
+        For a recipe with ``freq="1h"`` and a pressure driver with ``lags_hours=(0,)``, an
+        11-hour call returns a frame shaped like::
+
+            index                       water_level  pressure_lag0h
+            2024-01-20 01:00Z                  NaN        102314.9
+            2024-01-20 02:00Z                  NaN        102271.0
+            ...                                ...             ...
+            2024-01-20 11:00Z                  NaN        101653.4
+
+        The exact feature values depend on the source data and selected forecast member.
         """
-        raise NotImplementedError("BL-13: Recipe.forecast_frame")
+        from tidesurgedata.timeutil import to_utc
+
+        # Normalize the issue time and reject invalid or unsupported horizons first.
+        issued_utc = to_utc(issued)
+        try:
+            horizon = pd.Timedelta(hours=float(horizon_hours))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"horizon_hours must be a finite duration, got {horizon_hours!r}."
+            ) from exc
+        if not math.isfinite(float(horizon_hours)) or horizon <= pd.Timedelta(0):
+            raise ValueError("horizon_hours must be positive.")
+        max_lead = self.max_lead_time
+        if max_lead is not None and max_lead <= pd.Timedelta(0):
+            raise ValueError("recipe has no positive forecast lead time.")
+        if max_lead is not None and horizon > max_lead:
+            raise ValueError(
+                f"horizon {horizon} exceeds the recipe's maximum lead time {max_lead}."
+            )
+
+        recipe = self.resolved()
+        step = _positive_timedelta(recipe.freq, "Recipe freq")
+
+        # Forecast rows exclude the issue time and include the requested horizon endpoint.
+        frame_start = issued_utc + step
+        frame_end = issued_utc + horizon
+        index = pd.date_range(frame_start, frame_end, freq=step, inclusive="both", name="time")
+        columns = {recipe.target_column_name: pd.Series(np.nan, index=index, dtype="float64")}
+        records: list[FetchRecord] = []
+
+        for driver in recipe.drivers:
+            # Fetch enough history and future data for every lagged value in the frame.
+            lag_start = frame_start + pd.Timedelta(hours=min(0.0, min(driver.lags_hours)))
+            lag_end = frame_end + pd.Timedelta(hours=max(0.0, max(driver.lags_hours))) + step
+            observed, record = driver.source.fetch_with_record(lag_start, lag_end)
+            records.append(record)
+
+            # Observations are usable only up to the source latency cutoff.
+            cutoff = issued_utc - driver.source.latency
+            observed = observed[observed.index <= cutoff]
+            values = observed
+
+            if driver.forecast is not None:
+                # Replace the unavailable post-issue observation period with forecast values.
+                forecast = driver.forecast.fetch_forecast(
+                    issued_utc,
+                    horizon + pd.Timedelta(hours=max(0.0, max(driver.lags_hours))),
+                    members=[member or "control"],
+                )
+                records.append(forecast.record)
+                forecast_values = forecast.values[member or "control"]
+                forecast_values.name = driver.source.metadata().variable
+                forecast_values = forecast_values[forecast_values.index > issued_utc]
+                values = pd.concat([observed, forecast_values]).sort_index()
+                values = values[~values.index.duplicated(keep="last")]
+
+            # Resample before lagging so every feature uses the recipe grid.
+            gridded = to_grid(
+                values,
+                driver.source.metadata(),
+                recipe.freq,
+                how=driver.how,
+                max_gap=driver.max_gap,
+            )
+
+            # materialise_lags preserves its input index, so extend it through the lag window.
+            lag_grid = pd.date_range(
+                gridded.index[0],
+                lag_end,
+                freq=step,
+                inclusive="both",
+                name="time",
+            )
+            gridded = gridded.reindex(lag_grid)
+            lagged = materialise_lags(gridded, driver.name, driver.lags_hours)
+            for column in lagged:
+                columns[column] = lagged[column].reindex(index)
+
+        # Assemble and validate the final frame in the recipe's declared column order.
+        frame = pd.DataFrame(columns, index=index, dtype="float64")
+        frame = frame[[recipe.target_column_name, *recipe.feature_columns]]
+        validate_frame(frame, recipe.target_column_name, recipe.feature_columns)
+        object.__setattr__(self, "_last_provenance", tuple(records))
+        return frame
 
     def forecast_frames(self, issued: TimeLike, horizon_hours: float) -> dict[str, pd.DataFrame]:
         """Build one forecast frame per ensemble member.
@@ -375,4 +559,4 @@ class Recipe:
             Target first, then drivers in order (forecast records after their driver's
             observation record). Empty if no frame has been built.
         """
-        raise NotImplementedError("BL-12: Recipe.provenance")
+        return list(self._last_provenance)

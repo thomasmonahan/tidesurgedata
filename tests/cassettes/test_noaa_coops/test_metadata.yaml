@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750.json
+  response:
+    body:
+      string: "{\n  \"count\": 1,\n  \"units\": null,\n  \"stations\": [\n    {\n
+        \     \"tidal\": true,\n      \"greatlakes\": false,\n      \"shefcode\":
+        \"BATN6\",\n      \"details\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/details.json\"\n
+        \     },\n      \"sensors\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/sensors.json\"\n
+        \     },\n      \"floodlevels\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/floodlevels.json\"\n
+        \     },\n      \"datums\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/datums.json\"\n
+        \     },\n      \"supersededdatums\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/supersededdatums.json\"\n
+        \     },\n      \"harmonicConstituents\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/harcon.json\"\n
+        \     },\n      \"benchmarks\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/benchmarks.json\"\n
+        \     },\n      \"tidePredOffsets\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/tidepredoffsets.json\"\n
+        \     },\n      \"ofsMapOffsets\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/ofsmapoffsets.json\"\n
+        \     },\n      \"state\": \"NY\",\n      \"timezone\": \"EST\",\n      \"timezonecorr\":
+        -5,\n      \"observedst\": true,\n      \"stormsurge\": false,\n      \"nearby\":
+        {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/nearby.json\"\n
+        \     },\n      \"forecast\": true,\n      \"outlook\": true,\n      \"HTFhistorical\":
+        true,\n      \"HTFmonthly\": true,\n      \"nonNavigational\": false,\n      \"inundationdb\":
+        true,\n      \"id\": \"8518750\",\n      \"name\": \"The Battery\",\n      \"lat\":
+        40.700554,\n      \"lng\": -74.01417,\n      \"affiliations\": \"NWLORTS\",\n
+        \     \"portscode\": \"ny\",\n      \"products\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/products.json\"\n
+        \     },\n      \"disclaimers\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/disclaimers.json\"\n
+        \     },\n      \"notices\": {\n        \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750/notices.json\"\n
+        \     },\n      \"self\": \"https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/8518750.json\",\n
+        \     \"expand\": \"details,sensors,floodlevels,datums,harcon,tidepredoffsets,ofsmapoffsets,products,disclaimers,notices\",\n
+        \     \"tideType\": \"Mixed\"\n    }\n  ],\n  \"self\": null\n}"
+    headers:
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 23 Sep 2026 13:45:46 GMT
+      content-length:
+      - '2637'
+      x-amz-apigw-id:
+      - EJ6xqGRjIAMEZ0Q=
+      x-amzn-Remapped-Connection:
+      - keep-alive
+      x-amzn-Remapped-Content-Length:
+      - '2637'
+      x-amzn-Remapped-Date:
+      - Wed, 23 Sep 2026 13:44:01 GMT
+      x-amzn-Remapped-Server:
+      - nginx
+      x-amzn-RequestId:
+      - 929f1b1b-ad56-4902-a955-ab9b5869ac2a
+    status:
+      code: 200
+      message: OK
+version: 1

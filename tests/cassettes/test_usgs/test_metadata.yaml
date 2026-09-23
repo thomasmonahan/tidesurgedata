@@ -1,0 +1,113 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - compress, gzip
+      host:
+      - api.waterdata.usgs.gov
+      lang:
+      - en-US
+      user-agent:
+      - python-dataretrieval/1.3.0
+    method: GET
+    uri: https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items?id=USGS-05427718&limit=50000
+  response:
+    body:
+      string: "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\":
+        \"Feature\",\n      \"properties\": {\n        \"id\": \"USGS-05427718\",\n
+        \       \"agency_code\": \"USGS\",\n        \"agency_name\": \"U.S. Geological
+        Survey\",\n        \"monitoring_location_number\": \"05427718\",\n        \"monitoring_location_name\":
+        \"YAHARA RIVER AT WINDSOR, WI\",\n        \"district_code\": \"55\",\n        \"country_code\":
+        \"US\",\n        \"country_name\": \"United States of America\",\n        \"state_code\":
+        \"55\",\n        \"state_name\": \"Wisconsin\",\n        \"county_code\":
+        \"025\",\n        \"county_name\": \"Dane County\",\n        \"minor_civil_division_code\":
+        \"87725\",\n        \"site_type_code\": \"ST\",\n        \"site_type\": \"Stream\",\n
+        \       \"hydrologic_unit_code\": \"070900020504\",\n        \"basin_code\":
+        null,\n        \"altitude\": 871.0,\n        \"altitude_accuracy\": 1.0,\n
+        \       \"altitude_method_code\": \"N\",\n        \"altitude_method_name\":
+        \"Interpolated from Digital Elevation Model\",\n        \"vertical_datum\":
+        \"NAVD88\",\n        \"vertical_datum_name\": \"North American Vertical Datum
+        of 1988\",\n        \"horizontal_positional_accuracy_code\": \"S\",\n        \"horizontal_positional_accuracy\":
+        \"Accurate to + or - 1 sec.\",\n        \"horizontal_position_method_code\":
+        \"M\",\n        \"horizontal_position_method_name\": \"Interpolated from map\",\n
+        \       \"original_horizontal_datum\": \"NAD83\",\n        \"original_horizontal_datum_name\":
+        \"North American Datum of 1983\",\n        \"drainage_area\": 73.6,\n        \"contributing_drainage_area\":
+        37.0,\n        \"time_zone_abbreviation\": \"CST\",\n        \"uses_daylight_savings\":
+        \"Y\",\n        \"construction_date\": null,\n        \"aquifer_code\": null,\n
+        \       \"national_aquifer_code\": null,\n        \"aquifer_type_code\": null,\n
+        \       \"well_constructed_depth\": null,\n        \"hole_constructed_depth\":
+        null,\n        \"depth_source_code\": null,\n        \"revision_note\": null,\n
+        \       \"revision_created\": null,\n        \"revision_modified\": null\n
+        \     },\n      \"id\": \"USGS-05427718\",\n      \"geometry\": {\n        \"type\":
+        \"Point\",\n        \"coordinates\": [\n          -89.35249999999999,\n          43.20888888888889\n
+        \       ]\n      }\n    }\n  ],\n  \"numberReturned\": 1,\n  \"links\": [\n
+        \   {\n      \"type\": \"application/geo+json\",\n      \"rel\": \"self\",\n
+        \     \"title\": \"This document as GeoJSON\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"rel\": \"alternate\",\n      \"type\": \"application/ld+json\",\n
+        \     \"title\": \"This document as RDF (JSON-LD)\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/html\",\n      \"rel\": \"alternate\",\n
+        \     \"title\": \"This document as HTML\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"text/csv; charset=utf-8\",\n      \"rel\":
+        \"alternate\",\n      \"title\": \"This document as CSV\",\n      \"href\":
+        \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-05427718&limit=50000\"\n
+        \   },\n    {\n      \"type\": \"application/json\",\n      \"title\": \"Monitoring
+        locations\",\n      \"rel\": \"collection\",\n      \"href\": \"https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations\"\n
+        \   }\n  ],\n  \"timeStamp\": \"2026-09-18T10:25:25.351173Z\"\n}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - '*'
+      age:
+      - '1802'
+      api-version:
+      - 1.1.0
+      cache-control:
+      - public, max-age=3600
+      connection:
+      - keep-alive
+      content-crs:
+      - <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+      content-language:
+      - en-US
+      content-length:
+      - '3386'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Sep 2026 10:55:27 GMT
+      referrer-policy:
+      - origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - 1.1 5502255f9557c1e2c098b94110b6151c.cloudfront.net (CloudFront), http/1.1
+        api-umbrella (ApacheTrafficServer [cHs f ])
+      x-amz-cf-id:
+      - vsgz875lIY2ygpuRXif0ZTom22ljziVfDp0qUFGHkP7PvfKaHNFS0w==
+      x-amz-cf-pop:
+      - HIO52-P1
+      x-api-umbrella-request-id:
+      - d0mgk2rkglgt3ujavfv0
+      x-build-version:
+      - 1.1.0-f5dd83a2
+      x-cache:
+      - HIT
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-vcap-request-id:
+      - 84f3a24e-02a9-4af6-7028-d4eeec34ccc5
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
