@@ -11,8 +11,6 @@ from tidesurgedata import Driver, Recipe, validate_frame
 from tidesurgedata.sources.fake import FakeRiver, FakeTideGauge
 from tidesurgedata.timeutil import to_utc
 
-BL12 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-12")
-BL13 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-13")
 BL22 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-22")
 
 START, END = "2024-01-10T00:00Z", "2024-01-12T00:00Z"
@@ -47,7 +45,6 @@ class TruncatedRiver(FakeRiver):
 # --- training_frame (BL-12) ---------------------------------------------------------------------
 
 
-@BL12
 def test_training_frame_shape_and_columns(fake_recipe):
     df = fake_recipe.training_frame(START, END)
     validate_frame(df, fake_recipe.target_column_name, fake_recipe.feature_columns)
@@ -62,7 +59,6 @@ def test_training_frame_shape_and_columns(fake_recipe):
     ]
 
 
-@BL12
 def test_training_frame_values(fake_recipe, fake_tide_gauge, fake_river):
     df = fake_recipe.training_frame(START, END)
     # target: instant values on the grid, never interpolated
@@ -81,7 +77,6 @@ def test_training_frame_values(fake_recipe, fake_tide_gauge, fake_river):
     assert df.loc[t, "discharge_lag-24h"] == pytest.approx(around.mean())
 
 
-@BL12
 def test_training_frame_keeps_nan_rows(fake_recipe):
     recipe = dataclasses.replace(fake_recipe, target=GappyTideGauge())
     df = recipe.training_frame(START, END)
@@ -90,7 +85,6 @@ def test_training_frame_keeps_nan_rows(fake_recipe):
     assert len(gap) == 3 and gap.isna().all()  # target never interpolated, rows kept
 
 
-@BL12
 def test_training_frame_custom_target_column(fake_recipe):
     recipe = dataclasses.replace(fake_recipe, target_column="observations")
     df = recipe.training_frame(START, END)
@@ -98,7 +92,6 @@ def test_training_frame_custom_target_column(fake_recipe):
     validate_frame(df, "observations", recipe.feature_columns)
 
 
-@BL12
 def test_training_frame_resolves_gridded_drivers(fake_recipe, fake_met):
     unlocated = fake_met.with_location(None, None)
     recipe = dataclasses.replace(
@@ -110,7 +103,6 @@ def test_training_frame_resolves_gridded_drivers(fake_recipe, fake_met):
     pd.testing.assert_frame_equal(df, expected)
 
 
-@BL12
 def test_training_frame_rejects_bad_ranges(fake_recipe):
     with pytest.raises(ValueError):
         fake_recipe.training_frame("2024-01-10", END)
@@ -118,7 +110,6 @@ def test_training_frame_rejects_bad_ranges(fake_recipe):
         fake_recipe.training_frame(END, START)
 
 
-@BL12
 def test_provenance_after_training_frame(fake_recipe):
     fake_recipe.training_frame(START, END)
     records = fake_recipe.provenance()
@@ -132,7 +123,6 @@ def test_provenance_after_training_frame(fake_recipe):
 # --- forecast_frame (BL-13) ---------------------------------------------------------------------
 
 
-@BL13
 def test_forecast_frame_index_and_nan_target(fake_recipe):
     df = fake_recipe.forecast_frame(ISSUED, horizon_hours=11)
     validate_frame(df, fake_recipe.target_column_name, fake_recipe.feature_columns)
@@ -142,7 +132,6 @@ def test_forecast_frame_index_and_nan_target(fake_recipe):
     assert df[fake_recipe.feature_columns].notna().all().all()
 
 
-@BL13
 def test_forecast_frame_uses_forecast_after_issue(fake_recipe, fake_met):
     df = fake_recipe.forecast_frame(ISSUED, horizon_hours=11)
     fc = fake_met.fetch_forecast(ISSUED, pd.Timedelta("11h"))
@@ -159,7 +148,6 @@ def test_forecast_frame_uses_forecast_after_issue(fake_recipe, fake_met):
     )
 
 
-@BL13
 def test_forecast_frame_no_data_after_issued_minus_latency(fake_recipe):
     cutoff = ISSUED - FakeRiver.latency
     truncated = TruncatedRiver(cutoff=cutoff.isoformat())
@@ -175,14 +163,12 @@ def test_forecast_frame_no_data_after_issued_minus_latency(fake_recipe):
     pd.testing.assert_frame_equal(leaky, honest)
 
 
-@BL13
 def test_forecast_frame_horizon_beyond_max_lead_time_raises(fake_recipe):
     assert fake_recipe.max_lead_time == pd.Timedelta("11h")
     with pytest.raises(ValueError, match="lead"):
         fake_recipe.forecast_frame(ISSUED, horizon_hours=12)
 
 
-@BL13
 def test_forecast_frame_non_positive_lead_time_raises(fake_tide_gauge, fake_met):
     recipe = Recipe(target=fake_tide_gauge, drivers=(Driver("pressure", fake_met, (0,)),))
     assert recipe.max_lead_time <= pd.Timedelta(0)
@@ -190,7 +176,6 @@ def test_forecast_frame_non_positive_lead_time_raises(fake_tide_gauge, fake_met)
         recipe.forecast_frame(ISSUED, horizon_hours=1)
 
 
-@BL13
 def test_forecast_frame_rejects_naive_issue_time(fake_recipe):
     with pytest.raises(ValueError):
         fake_recipe.forecast_frame("2024-01-20T00:00", horizon_hours=6)
