@@ -20,7 +20,7 @@ from tidesurgedata.sources.usgs import USGS
 NOAA_SEARCH_RADIUS_KM = 50.0
 USGS_SEARCH_RADIUS_KM = 100.0
 DYNAMICAL_HISTORICAL_DATASET = "noaa-gfs-analysis"
-DYNAMICAL_FORECAST_DATASET = "noaa-gefs-forecast"
+DYNAMICAL_FORECAST_DATASET = "noaa-gfs-forecast"
 DYNAMICAL_VARIABLE = "pressure_surface"
 
 
