@@ -110,14 +110,14 @@ from tidesurgedata.sources.usgs import USGS
 DEFAULT_LAT = 40.7006
 DEFAULT_LON = -74.0142
 NOAA_SEARCH_RADIUS_KM = 50.0
-USGS_SEARCH_RADIUS_KM = 100.0
+USGS_SEARCH_RADIUS_KM = 300.0
 
 # dynamical.org dataset identifiers per the STAC catalog. These names follow
 # the convention shown in the package README's "planned API" example
 # (``noaa-gfs-analysis`` / ``noaa-gefs-forecast``); confirm they match real
 # STAC collection ids once BL-15/16 are exercised live.
 DYNAMICAL_HISTORICAL_DATASET = "noaa-gfs-analysis"
-DYNAMICAL_FORECAST_DATASET = "noaa-gefs-forecast"
+DYNAMICAL_FORECAST_DATASET = "noaa-gfs-forecast"
 DYNAMICAL_VARIABLE = "pressure_surface"
 
 TRAINING_START = "2023-01-01T00:00Z"

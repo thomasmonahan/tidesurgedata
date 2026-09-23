@@ -325,9 +325,24 @@ class Dynamical(GriddedSource):
 
         data = ds[self.variable].sel(
             init_time=init_naive,
-            latitude=self.lat,
-            longitude=self.lon,
         )
+
+        if self.method == "nearest":
+            data = data.sel(
+                latitude=self.lat,
+                longitude=self.lon,
+                method="nearest",
+            )
+        elif self.method == "linear":
+            data = data.interp(
+                latitude=self.lat,
+                longitude=self.lon,
+                method="linear",
+            )
+        else:
+            raise ValueError(
+                f"Unsupported spatial sampling method: {self.method!r}"
+            )
 
         # Convert lead times into actual forecast valid times.
         valid_time = init_time + pd.to_timedelta(data.lead_time.values)
