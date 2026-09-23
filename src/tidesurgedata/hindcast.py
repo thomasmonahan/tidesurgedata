@@ -7,7 +7,8 @@ from typing import TYPE_CHECKING
 
 import pandas as pd
 
-from tidesurgedata.timeutil import TimeLike
+from tidesurgedata.align import to_grid
+from tidesurgedata.timeutil import TimeLike, to_utc
 
 if TYPE_CHECKING:
     from tidesurgedata.recipe import Recipe
@@ -55,4 +56,30 @@ def hindcast_frames(
     (preliminary to verified), a hindcast can only approximate what was known at the issue time;
     the frame's provenance records report the quality actually used.
     """
-    raise NotImplementedError("BL-14: hindcast_frames (as-of, no leakage)")
+    max_lead = recipe.max_lead_time
+    horizon = pd.Timedelta(hours=horizon_hours)
+
+    if max_lead is not None and horizon > max_lead:
+        raise ValueError(f"horizon {horizon} exceeds recipe max lead time {max_lead}.")
+
+    for issue_time in issue_times:
+        issued = to_utc(issue_time)
+
+        frame = recipe.forecast_frame(issued, horizon_hours)
+
+        target = recipe.target.fetch(
+            frame.index[0],
+            frame.index[-1] + pd.Timedelta(recipe.freq),
+        )
+
+        observed = to_grid(
+            target,
+            recipe.target.metadata(),
+            recipe.freq,
+            recipe.target_how,
+            max_gap=None,
+        ).reindex(frame.index)
+
+        observed.name = recipe.target_column_name
+
+        yield issued, frame, observed
