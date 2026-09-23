@@ -332,10 +332,10 @@ class Recipe:
             recipe.freq,
             how=recipe.target_how,
             max_gap=None,
-        ) # align target to grid
-        columns[recipe.target_column_name] = target_grid.reindex(index) # add target to column dict
+        )  # align target to grid
+        columns[recipe.target_column_name] = target_grid.reindex(index)  # add target to column dict
 
-        # Drivers 
+        # Drivers
         for driver in recipe.drivers:
             lag_start = start_utc + pd.Timedelta(hours=min(0.0, min(driver.lags_hours)))
             lag_end = end_utc + pd.Timedelta(hours=max(0.0, max(driver.lags_hours)))
@@ -348,7 +348,7 @@ class Recipe:
                 driver.source.metadata(),
                 recipe.freq,
                 how=driver.how,
-                max_gap=driver.max_gap
+                max_gap=driver.max_gap,
             )
 
             # Lags
@@ -359,7 +359,7 @@ class Recipe:
             )
 
             for col in lagged:
-                columns[col] = lagged[col].reindex(index) # add lag to column dict
+                columns[col] = lagged[col].reindex(index)  # add lag to column dict
 
         # Assemble target and lags
         df = pd.DataFrame(columns, index=index, dtype="float64")
@@ -452,7 +452,9 @@ class Recipe:
         try:
             horizon = pd.Timedelta(hours=float(horizon_hours))
         except (TypeError, ValueError) as exc:
-            raise ValueError(f"horizon_hours must be a finite duration, got {horizon_hours!r}.") from exc
+            raise ValueError(
+                f"horizon_hours must be a finite duration, got {horizon_hours!r}."
+            ) from exc
         if not math.isfinite(float(horizon_hours)) or horizon <= pd.Timedelta(0):
             raise ValueError("horizon_hours must be positive.")
         max_lead = self.max_lead_time
@@ -470,9 +472,7 @@ class Recipe:
         frame_start = issued_utc + step
         frame_end = issued_utc + horizon
         index = pd.date_range(frame_start, frame_end, freq=step, inclusive="both", name="time")
-        columns = {
-            recipe.target_column_name: pd.Series(np.nan, index=index, dtype="float64")
-        }
+        columns = {recipe.target_column_name: pd.Series(np.nan, index=index, dtype="float64")}
         records: list[FetchRecord] = []
 
         for driver in recipe.drivers:

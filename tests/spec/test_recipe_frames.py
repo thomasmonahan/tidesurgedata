@@ -11,8 +11,6 @@ from tidesurgedata import Driver, Recipe, validate_frame
 from tidesurgedata.sources.fake import FakeRiver, FakeTideGauge
 from tidesurgedata.timeutil import to_utc
 
-BL12 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-12")
-BL13 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-13")
 BL22 = pytest.mark.xfail(raises=NotImplementedError, strict=True, reason="BL-22")
 
 START, END = "2024-01-10T00:00Z", "2024-01-12T00:00Z"
@@ -103,6 +101,7 @@ def test_training_frame_resolves_gridded_drivers(fake_recipe, fake_met):
     df = recipe.training_frame(START, END)
     expected = fake_recipe.training_frame(START, END)
     pd.testing.assert_frame_equal(df, expected)
+
 
 def test_training_frame_rejects_bad_ranges(fake_recipe):
     with pytest.raises(ValueError):
