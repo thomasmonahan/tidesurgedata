@@ -11,6 +11,7 @@ All notable changes to this project are documented here. The format follows
   spec tests, design records and backlog.
 - USGS source adapter using `dataretrieval.waterdata`, including discharge and stage retrieval,
   SI unit conversion, station discovery, metadata, and cassette-backed contract tests.
+- Added `hindcast_frames` for as-of historical forecast replay without data leakage.
 
 ### Added
 - dynamical.org forecasts: `Dynamical.init_times` and `Dynamical.fetch_forecast`, with ensemble
