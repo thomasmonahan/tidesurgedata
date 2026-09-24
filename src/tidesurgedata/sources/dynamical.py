@@ -29,14 +29,47 @@ from __future__ import annotations
 from collections.abc import Sequence
 from dataclasses import dataclass
 
+import numpy as np
 import pandas as pd
 
+from tidesurgedata.contract import validate_forecast
 from tidesurgedata.meta import Quality, SeriesMeta
 from tidesurgedata.sources.base import FetchRecord, Forecast, GriddedSource
 from tidesurgedata.sources.registry import register_source
-from tidesurgedata.timeutil import TimeLike
+from tidesurgedata.timeutil import TimeLike, to_utc
 
-__all__ = ["Dynamical"]
+__all__ = ["CATALOG_URL", "Dynamical"]
+
+#: STAC catalog describing every dynamical.org dataset.
+CATALOG_URL = "https://stac.dynamical.org/catalog.json"
+
+#: Dimension names used by ensemble datasets for their member axis.
+MEMBER_DIMENSIONS = ("ensemble_member", "realization", "member", "number")
+
+#: Label for the unperturbed member.
+CONTROL = "control"
+
+
+def _require_met() -> tuple:
+    """Import the optional ``met`` dependencies, naming the extra if they are missing."""
+    try:
+        import icechunk
+        import pystac
+        import xarray as xr
+    except ImportError as exc:  # pragma: no cover - exercised only without the extra
+        raise ImportError(
+            "The dynamical.org adapter needs the 'met' extra: pip install 'tidesurgedata[met]'"
+        ) from exc
+    return icechunk, pystac, xr
+
+
+def _member_label(value: object) -> str:
+    """Ensemble member coordinate value -> label: member 0 is the control member."""
+    try:
+        number = int(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return str(value)
+    return CONTROL if number == 0 else str(number)
 
 
 @register_source("dynamical")
@@ -66,33 +99,46 @@ class Dynamical(GriddedSource):
     max_request = None
     latency = pd.Timedelta(0)
 
-    def metadata(self) -> SeriesMeta:
-        """Return metadata for the selected dynamical.org variable and location."""
+    # --- dataset access -------------------------------------------------------------------
 
-        # Import pystac here so the optional ``met`` dependency stays lazy.
-        import pystac
-        # try:
-        # except: ImportError("import pystac required")
+    @classmethod
+    def _catalog(cls):
+        """Open the dynamical.org STAC catalog."""
+        _, pystac, _ = _require_met()
+        return pystac.Catalog.from_file(CATALOG_URL)
 
+    def _collection(self):
+        """STAC collection for this dataset.
+
+        Tests replace this method to run offline.
+        """
+        collection = self._catalog().get_child(self.dataset)
+        if collection is None:
+            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
+        return collection
+
+    def _open_dataset(self, collection=None):
+        """Open this dataset's Icechunk Zarr store as an xarray Dataset.
+
+        Tests replace this method to run offline.
+        """
+        icechunk, _, xr = _require_met()
+        collection = collection if collection is not None else self._collection()
+        asset = collection.assets["icechunk-https"]
+        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
+        return xr.open_zarr(repo.readonly_session("main").store, chunks=None)
+
+    def _located(self) -> tuple[float, float]:
         if self.lat is None or self.lon is None:
             raise ValueError(
-                "lat and lon must be set before requesting metadata"
-            )  # check lat-long req
+                f"{type(self).__name__} has no location; call with_location(lat, lon) first."
+            )
+        return float(self.lat), float(self.lon)
 
-        # Open the dynamical.org STAC catalogue.
-        catalog = pystac.Catalog.from_file(
-            "https://stac.dynamical.org/catalog.json"
-        )  ### opens Dynamical's STAC catalogue -
-        # below we will select the dataset passed to the class (Dynamical)
-
-        # Find the collection requested when Dynamical(...) was constructed.
-        collection = catalog.get_child(self.dataset)
-
-        if collection is None:
-            raise ValueError(
-                f"Unknown dynamical.org dataset: {self.dataset}"
-            )  # Check for valid dataset
-
+    def metadata(self) -> SeriesMeta:
+        """Return metadata for the selected dynamical.org variable and location."""
+        lat, lon = self._located()
+        collection = self._collection()
         variables = collection.extra_fields.get("cube:variables", {})
         if self.variable not in variables:
             raise ValueError(f"Variable {self.variable!r} is not available in {self.dataset!r}")
@@ -101,10 +147,10 @@ class Dynamical(GriddedSource):
 
         return SeriesMeta(
             source="dynamical",
-            station_id=f"{self.dataset}:{self.lat},{self.lon}",
+            station_id=f"{self.dataset}:{lat},{lon}",
             variable=self.variable,
-            lat=self.lat,
-            lon=self.lon,
+            lat=lat,
+            lon=lon,
             units=variable["unit"],
             datum=None,
             sampling="instantaneous",
@@ -117,92 +163,35 @@ class Dynamical(GriddedSource):
             extra={"dataset": self.dataset},
         )
 
-    # def _fetch(self, start: pd.Timestamp, end: pd.Timestamp) -> tuple[pd.Series, Quality, dict]:
-    #    raise NotImplementedError("BL-15")
-
     def _fetch(self, start: pd.Timestamp, end: pd.Timestamp) -> tuple[pd.Series, Quality, dict]:
         """Fetch analysis data from dynamical.org for the user specified location and time range."""
+        lat, lon = self._located()
+        ds = self._open_dataset()
 
-        # Imports for this function
-        import icechunk
-        import pystac
-        import xarray as xr
+        # xarray uses timezone-naive datetime64 coordinates; tidesurgedata uses aware UTC.
+        # The half-open [start, end) range is honoured by dropping the closing endpoint below.
+        start_naive = start.tz_convert("UTC").tz_localize(None)
+        end_naive = end.tz_convert("UTC").tz_localize(None)
 
-        if self.lat is None or self.lon is None:
-            raise ValueError("lat and lon must be set before fetching data")  # check lat-long req
-
-        # Find the requested dataset in the dynamical.org STAC catalogue.
-        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
-        collection = catalog.get_child(
-            self.dataset
-        )  # same synbtax here to access dynamics's STAC as in metadata()
-
-        if collection is None:
-            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
-
-        # STAC tells us where the Icechunk repository is stored.
-        asset = collection.assets["icechunk-https"]
-
-        # Open the remote Icechunk repository read-only.
-        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
-        session = repo.readonly_session("main")
-
-        # Open the repository as an xarray Dataset.
-        ds = xr.open_zarr(session.store, chunks=None)
-
-        # Have to be careful at htis point: xarray uses timezone-naive datetime64 coordinates
-        # , while tidesurgedata supplies timezone-aware UTC timestamps.
-        # so here I am converting to UTC to conform with the rest of tidesurge.
-        #  This neeeds a global check
-        start = start.tz_convert("UTC").tz_localize(None)
-        end = end.tz_convert("UTC").tz_localize(None)
-
-        # Select time independently from space. xarray cannot apply
-        # method="nearest" when one of the indexers is a slice.
-        data = ds[self.variable].sel(
-            time=slice(start, end),
+        # Select only the requested variable, time range, and nearest grid point.
+        data = (
+            ds[self.variable]
+            .sel(time=slice(start_naive, end_naive))
+            .sel(latitude=lat, longitude=lon, method="nearest")
         )
 
-        # Sample the requested geographic point according to the source's
-        # configured spatial method.
-        if self.method == "nearest":
-            data = data.sel(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="nearest",
-            )
-        elif self.method == "linear":
-            data = data.interp(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="linear",
-            )
-        else:
-            raise ValueError(
-                f"Unsupported spatial sampling method: {self.method!r}. "
-                "Expected 'nearest' or 'linear'."
-            )
-
+        # Convert the one-dimensional xarray result to the pandas Series expected
         series = data.to_series().astype("float64")
         series.index = pd.to_datetime(series.index, utc=True)
-
-        # xarray label slices include both endpoints, whereas TideSurgeData uses
-        # half-open [start, end) intervals. Enforce that contract here.
-        start_utc = start.tz_localize("UTC")
-        end_utc = end.tz_localize("UTC")
-
-        series = series[
-            (series.index >= start_utc)
-            & (series.index < end_utc)
-        ]
-
+        series = series[series.index < end]  # [start, end) is half-open
         series.name = self.variable
 
         request = {
             "dataset": self.dataset,
             "variable": self.variable,
-            "lat": self.lat,
-            "lon": self.lon,
+            "lat": str(lat),
+            "lon": str(lon),
+            "method": self.method,
         }
 
         return series, "unknown", request
@@ -211,55 +200,33 @@ class Dynamical(GriddedSource):
     def find_stations(
         cls, lat: float, lon: float, radius_km: float, variable: str | None = None
     ) -> list[SeriesMeta]:
-        """Return the Dynamical grid points within the specified radius_km
-        of the location specified by the lat long."""
+        """Return the nearest grid point of each dataset within ``radius_km`` of a location.
 
-        import icechunk
-        import pystac
-        import xarray as xr
+        One entry per dataset and variable. Datasets whose nearest grid point falls outside the
+        radius are skipped.
+        """
+        from tidesurgedata.sources.base import haversine_km
 
-        from tidesurgedata.sources.base import (
-            haversine_km,
-        )
-        # use the great circle distance calculator that we have from sources functions.
-
-        catalog = pystac.Catalog.from_file(
-            "https://stac.dynamical.org/catalog.json"
-        )  # access STAC catalog again
-
-        stations = []  # initialise empty stations list
-
-        for collection in catalog.get_children():
+        stations: list[SeriesMeta] = []
+        for collection in cls._catalog().get_children():
             variables = collection.extra_fields.get("cube:variables", {})
+            names = [variable] if variable is not None else list(variables)
+            if variable is not None and variable not in variables:
+                continue
+            probe = cls(collection.id, names[0]) if names else None
+            if probe is None:
+                continue
+            ds = probe._open_dataset(collection)
 
-            asset = collection.assets["icechunk-https"]
-
-            repo = icechunk.Repository.open(
-                icechunk.http_storage(asset.href)
-            )  # load the icechunk dataset
-            session = repo.readonly_session("main")
-
-            ds = xr.open_zarr(session.store, chunks=None)  # open up the grid
-            grid_lat = float(
-                ds.latitude.sel(latitude=lat, method="nearest")
-            )  # Find the nearest grid cell to coordinates, lat
-            grid_lon = float(
-                ds.longitude.sel(longitude=lon, method="nearest")
-            )  # Find the nearest grid cell to coordinates, lon
-
-            # Only return the grid point if it is inside the search radius.
-            # Using the nicely pre-defined great-circle calc
+            # Nearest grid cell to the requested point.
+            grid_lat = float(ds.latitude.sel(latitude=lat, method="nearest"))
+            grid_lon = float(ds.longitude.sel(longitude=lon, method="nearest"))
             if haversine_km(lat, lon, grid_lat, grid_lon) > radius_km:
                 continue
 
-            # Return one SeriesMeta for each requested variable.
-            names = [variable] if variable else variables
             for name in names:
-                source = cls(
-                    collection.id, name, lat=grid_lat, lon=grid_lon
-                )  # just packaging for the correct SeriesMeta output
-            stations.append(source.metadata())
-
+                source = cls(collection.id, name, lat=grid_lat, lon=grid_lon)
+                stations.append(source.metadata())
         return stations
 
     def fetch_fields(
@@ -273,246 +240,222 @@ class Dynamical(GriddedSource):
         lon_min: float,
         lon_max: float,
     ):
-        """Fetch multiple variables over a regional space-time cube.
+        """Fetch several variables over a regional space-time cube, for maps and animations.
 
-        This is an additive spatial API for applications such as maps and
-        animations.  It deliberately does not use or modify the one-dimensional
-        :meth:`fetch` / :meth:`_fetch` source contract.
+        Additive to the point-source API: it does not use or change :meth:`fetch`, and the
+        source's own ``variable``, ``lat`` and ``lon`` are ignored. Only analysis datasets (with a
+        ``time`` coordinate) are supported.
 
-        The remote Dynamical dataset is opened once, all requested variables are
-        selected together, and only the requested time/latitude/longitude subset
-        is loaded into memory.  The returned object is an ``xarray.Dataset``.
+        Parameters
+        ----------
+        variables : sequence of str
+            Dataset variable names, e.g. ``["pressure_surface", "wind_u_10m", "wind_v_10m"]``.
+        start, end : time-like
+            Timezone-aware bounds of the half-open range ``[start, end)``.
+        lat_min, lat_max : float
+            Latitude bounds in degrees, within ``[-90, 90]``.
+        lon_min, lon_max : float
+            Longitude bounds in degrees, within ``[-180, 180]``. A box crossing the dataset's
+            0-degree seam must be split into two requests.
+
+        Returns
+        -------
+        xarray.Dataset
+            The requested variables on the ``time``, ``latitude`` and ``longitude`` subset,
+            loaded into memory.
+
+        Raises
+        ------
+        ValueError
+            For invalid arguments (checked before any network access), unknown variables, or a
+            request with no data in time or space.
         """
-        import icechunk
-        import pystac
-        import xarray as xr
-
         names = tuple(dict.fromkeys(variables))
         if not names:
             raise ValueError("variables must contain at least one variable name")
+        for name, value, low, high in (
+            ("lat_min", lat_min, -90.0, 90.0),
+            ("lat_max", lat_max, -90.0, 90.0),
+            ("lon_min", lon_min, -180.0, 180.0),
+            ("lon_max", lon_max, -180.0, 180.0),
+        ):
+            if not low <= value <= high:
+                raise ValueError(f"{name}={value} is outside [{low}, {high}]")
         if lat_min > lat_max:
             raise ValueError("lat_min must be <= lat_max")
         if lon_min > lon_max:
             raise ValueError("lon_min must be <= lon_max")
-
-        start_utc = pd.Timestamp(start)
-        end_utc = pd.Timestamp(end)
-        if start_utc.tzinfo is None or end_utc.tzinfo is None:
-            raise ValueError("start and end must be timezone-aware")
-        start_utc = start_utc.tz_convert("UTC")
-        end_utc = end_utc.tz_convert("UTC")
+        start_utc, end_utc = to_utc(start), to_utc(end)
         if end_utc <= start_utc:
             raise ValueError("end must be after start")
 
-        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
-        collection = catalog.get_child(self.dataset)
-        if collection is None:
-            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
-
+        collection = self._collection()
         available = collection.extra_fields.get("cube:variables", {})
         missing = [name for name in names if name not in available]
         if missing:
-            raise ValueError(
-                f"Variables {missing!r} are not available in {self.dataset!r}"
-            )
+            raise ValueError(f"Variables {missing!r} are not available in {self.dataset!r}")
 
-        asset = collection.assets["icechunk-https"]
-        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
-        session = repo.readonly_session("main")
-        ds = xr.open_zarr(session.store, chunks=None)
-
+        ds = self._open_dataset(collection)
         for coord in ("time", "latitude", "longitude"):
             if coord not in ds.coords:
-                raise ValueError(
-                    f"Dataset {self.dataset!r} has no {coord!r} coordinate"
-                )
+                raise ValueError(f"Dataset {self.dataset!r} has no {coord!r} coordinate")
 
-        # xarray's datetime64 coordinates are timezone-naive.  Keep the public
-        # API UTC-aware, then remove the timezone only for indexing the dataset.
-        start_naive = start_utc.tz_localize(None)
+        start_naive = start_utc.tz_localize(None)  # xarray coordinates are timezone-naive
         end_naive = end_utc.tz_localize(None)
 
-        fields = ds[list(names)].sel(time=slice(start_naive, end_naive))
-        # ``sel`` slices are inclusive at both ends; TideSurgeData ranges are
-        # half-open, so explicitly remove a sample exactly at ``end``.
-        fields = fields.where(fields.time < end_naive, drop=True)
-
-        lat0 = float(ds.latitude.values[0])
-        lat1 = float(ds.latitude.values[-1])
+        lat0, lat1 = float(ds.latitude.values[0]), float(ds.latitude.values[-1])
         lat_slice = slice(lat_min, lat_max) if lat0 <= lat1 else slice(lat_max, lat_min)
 
-        lon0 = float(ds.longitude.values[0])
-        lon1 = float(ds.longitude.values[-1])
+        lon0, lon1 = float(ds.longitude.values[0]), float(ds.longitude.values[-1])
         uses_360 = min(lon0, lon1) >= 0.0 and max(lon0, lon1) > 180.0
         if uses_360:
-            req_lon_min = lon_min % 360.0
-            req_lon_max = lon_max % 360.0
+            req_lon_min, req_lon_max = lon_min % 360.0, lon_max % 360.0
             if req_lon_min > req_lon_max:
                 raise ValueError(
                     "longitude bounds cross the dataset's 0-degree seam; "
                     "split this request into two regions"
                 )
         else:
-            req_lon_min = lon_min
-            req_lon_max = lon_max
-
+            req_lon_min, req_lon_max = lon_min, lon_max
         lon_slice = (
-            slice(req_lon_min, req_lon_max)
-            if lon0 <= lon1
-            else slice(req_lon_max, req_lon_min)
+            slice(req_lon_min, req_lon_max) if lon0 <= lon1 else slice(req_lon_max, req_lon_min)
         )
 
-        fields = fields.sel(latitude=lat_slice, longitude=lon_slice)
+        # Restrict every dimension lazily before anything is read. Selecting the region first
+        # matters: the store is sharded in ~0.5 GB objects, and any operation that evaluates the
+        # data (such as ``where``) before the spatial cut reads the whole globe.
+        fields = ds[list(names)].sel(
+            time=slice(start_naive, end_naive), latitude=lat_slice, longitude=lon_slice
+        )
+        # ``sel`` slices include both ends; drop the sample at ``end`` by position, which keeps
+        # the selection lazy, so the range is half-open.
+        before_end = np.flatnonzero(pd.DatetimeIndex(fields.time.values) < end_naive)
+        fields = fields.isel(time=before_end)
         if fields.sizes.get("time", 0) == 0:
             raise ValueError("No data available in the requested time range")
         if fields.sizes.get("latitude", 0) == 0 or fields.sizes.get("longitude", 0) == 0:
             raise ValueError("No grid cells fall inside the requested spatial bounds")
 
-        # Materialise only after all remote dimensions have been restricted.
+        # Materialise only after every remote dimension has been restricted.
         return fields.load()
 
     def init_times(self, start: TimeLike, end: TimeLike) -> pd.DatetimeIndex:
-        """Initialisation times of the forecast dataset in ``[start, end)``."""
-        import icechunk
-        import pystac
-        import xarray as xr
+        """Initialisation times of the forecast dataset in the half-open range ``[start, end)``.
 
-        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
-        collection = catalog.get_child(self.dataset)
+        Returns
+        -------
+        pandas.DatetimeIndex
+            UTC, sorted, unique, named ``init_time``. Empty if the dataset has no runs in range.
+        """
+        times = self._all_init_times(self._open_dataset())
+        window = times[(times >= to_utc(start)) & (times < to_utc(end))]
+        return window.rename("init_time")
 
-        if collection is None:
-            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
-
-        asset = collection.assets["icechunk-https"]
-        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
-        session = repo.readonly_session("main")
-        ds = xr.open_zarr(session.store, chunks=None)
-
+    @staticmethod
+    def _all_init_times(ds) -> pd.DatetimeIndex:
+        """Every initialisation time in the dataset, as a sorted unique UTC index."""
         times = pd.DatetimeIndex(pd.to_datetime(ds.init_time.values, utc=True))
-
-        start = pd.Timestamp(start)
-        end = pd.Timestamp(end)
-
-        return times[(times >= start) & (times < end)]
+        return times.sort_values().unique()
 
     def fetch_forecast(
         self, issued: TimeLike, horizon: pd.Timedelta, members: Sequence[str] | None = None
     ) -> Forecast:
-        """Fetch the latest forecast available at `issued`
+        """Forecast from the latest initialisation available by ``issued``.
 
-        Use the latest initialisation time available by `issued` (respecting latency).
-        Never use data initialised after that.
+        Use the latest initialisation time available by ``issued`` (respecting
+        :attr:`latency`). Never use data initialised after that.
 
-        Returns a :class:`~tidesurgedata.sources.base.Forecast` with valid times from the
-        initialisation time to ``issued + horizon`` and one column per requested member
-        (``"control"`` for deterministic datasets); validated with
-        :func:`tidesurgedata.contract.validate_forecast`."""
+        Parameters
+        ----------
+        issued : time-like
+            Timezone-aware issue time; naive input is rejected.
+        horizon : pandas.Timedelta
+            Valid times run from the initialisation time to ``issued + horizon``.
+        members : sequence of str, optional
+            Member labels to return (``"control"`` and ``"1"``, ``"2"``, … for ensembles);
+            default all members of the dataset.
 
-        import icechunk
-        import pystac
-        import xarray as xr
+        Returns
+        -------
+        Forecast
+            ``values`` indexed by valid time with one ``float64`` column per member, the
+            ``init_time`` used, and a :class:`~tidesurgedata.meta.FetchRecord`. Validated with
+            :func:`tidesurgedata.contract.validate_forecast`.
 
-        issued = pd.Timestamp(issued)
-        issued = issued.tz_localize("UTC") if issued.tzinfo is None else issued.tz_convert("UTC")
+        Raises
+        ------
+        ValueError
+            If ``issued`` is naive, ``horizon`` is negative, no initialisation is available by
+            ``issued - latency``, or an unknown member is requested.
+        """
+        lat, lon = self._located()
+        issued_utc = to_utc(issued)
+        horizon = pd.Timedelta(horizon)
+        if horizon < pd.Timedelta(0):
+            raise ValueError(f"horizon must be non-negative, got {horizon!r}.")
 
-        # Find the latest forecast that would have been available at `issued`.
-        cutoff = issued - self.latency
-        init_times = self.init_times(
-            pd.Timestamp.min.tz_localize("UTC"), cutoff + pd.Timedelta("1ns")
-        )
+        ds = self._open_dataset()
 
-        if len(init_times) == 0:
-            raise ValueError(f"No forecast available by {issued}")
-
-        init_time = init_times[-1]
-
-        # Open the Dynamical dataset.
-        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
-        collection = catalog.get_child(self.dataset)
-
-        if collection is None:
-            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
-
-        asset = collection.assets["icechunk-https"]
-        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
-        session = repo.readonly_session("main")
-        ds = xr.open_zarr(session.store, chunks=None)
-
-        # xarray coordinates are timezone-naive.
-        init_naive = init_time.tz_localize(None)
-
-        data = ds[self.variable].sel(
-            init_time=init_naive,
-        )
-
-        if self.method == "nearest":
-            data = data.sel(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="nearest",
-            )
-        elif self.method == "linear":
-            data = data.interp(
-                latitude=self.lat,
-                longitude=self.lon,
-                method="linear",
-            )
-        else:
+        # The latest run whose data was available at the issue time.
+        cutoff = issued_utc - self.latency
+        available = self._all_init_times(ds)
+        available = available[available <= cutoff]
+        if len(available) == 0:
             raise ValueError(
-                f"Unsupported spatial sampling method: {self.method!r}. "
-                "Expected 'nearest' or 'linear'."
+                f"{self.dataset} has no initialisation available by {cutoff.isoformat()}."
             )
+        init_time = available[-1]
 
-        # Convert lead times into actual forecast valid times.
+        data = (
+            ds[self.variable]
+            .sel(init_time=init_time.tz_localize(None))
+            .sel(latitude=lat, longitude=lon, method="nearest")
+        )
+
+        # valid_time = init_time + lead_time, truncated at the requested horizon.
         valid_time = init_time + pd.to_timedelta(data.lead_time.values)
-
-        # Keep forecasts only through issued + horizon.
-        keep = valid_time <= issued + horizon
+        keep = valid_time <= issued_utc + horizon
         data = data.isel(lead_time=keep)
-        valid_time = valid_time[keep]
+        valid_time = pd.DatetimeIndex(valid_time[keep], name="valid_time")
 
-        # Convert to the DataFrame required by Forecast.
-        # Find any dimension other than lead_time.
-        member_dims = [dim for dim in data.dims if dim != "lead_time"]
-
+        member_dims = [dim for dim in data.dims if dim in MEMBER_DIMENSIONS]
         if member_dims:
             member_dim = member_dims[0]
-
-            # Rows = lead times, columns = ensemble members.
             data = data.transpose("lead_time", member_dim)
-
-            frame = pd.DataFrame(
-                data.values,
-                index=valid_time,
-                columns=[str(m) for m in data[member_dim].values],
-            )
-
-            if members is not None:
-                frame = frame[list(map(str, members))]
-
+            labels = [_member_label(value) for value in data[member_dim].values]
+            frame = pd.DataFrame(data.values, index=valid_time, columns=labels)
         else:
-            frame = pd.DataFrame(
-                {"control": data.values},
-                index=valid_time,
-            )
+            frame = pd.DataFrame({CONTROL: data.values}, index=valid_time)
 
-        frame = frame.astype("float64")  # convert the float32 output from the Dynamical data to f64
-        frame.index.name = "valid_time"
+        if members is not None:
+            requested = [str(member) for member in members]
+            unknown = [member for member in requested if member not in frame.columns]
+            if unknown or not requested:
+                raise ValueError(
+                    f"Unknown members {unknown}; {self.dataset} provides {list(frame.columns)}."
+                )
+            frame = frame[requested]
 
+        frame = frame.astype("float64")  # dynamical.org stores float32
+
+        meta = self.metadata()
         record = FetchRecord(
-            meta=self.metadata(),
+            meta=meta,
             start=init_time,
-            end=issued + horizon,
+            end=issued_utc + horizon,
             retrieved_at=pd.Timestamp.now(tz="UTC"),
             quality="unknown",
             n_values=int(frame.size),
-            n_missing=int(frame.isna().sum().sum()),
+            n_missing=int(frame.isna().to_numpy().sum()),
             request={
                 "dataset": self.dataset,
                 "variable": self.variable,
-                "lat": str(self.lat),
-                "lon": str(self.lon),
+                "lat": str(lat),
+                "lon": str(lon),
+                "init_time": init_time.isoformat(),
+                "members": ",".join(frame.columns),
             },
         )
-
-        return Forecast(record=record, init_time=init_time, values=frame)
+        forecast = Forecast(values=frame, init_time=init_time, record=record)
+        validate_forecast(forecast, meta)
+        return forecast
