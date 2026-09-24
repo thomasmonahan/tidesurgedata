@@ -48,9 +48,9 @@ except ImportError as exc:  # pragma: no cover - depends on optional demo depend
 # Example region around New York Harbor. Adjust these constants to inspect a
 # different region. Bounds intentionally remain modest to keep remote reads
 # and plotting responsive.
-LAT = 17.521209 #40.71 #19.021209, -104.346836
-LON = -101.346836 #-74.01
-HALF_WIDTH_DEGREES = 5.0
+LAT = 27.85 #17.521209 #40.71 
+LON = -84.84 #-101.346836 #-74.01
+HALF_WIDTH_DEGREES = 10.0
 
 DATASET = "noaa-gfs-analysis"
 PRESSURE_VARIABLE = "pressure_surface"
@@ -62,7 +62,7 @@ WIND_V_VARIABLE = "wind_v_10m"
 ANIMATION_LOOKBACK = pd.Timedelta("7d")
 PRESSURE_CENTER_PA = 100_000.0
 ANIMATION_FPS = 4
-ANIMATION_OUTPUT = Path("dynamical_pressure_wind_7d_H_polo_HR.mp4")
+ANIMATION_OUTPUT = Path("dynamical_pressure_wind_7d_H_katrina_HR.mp4") #no data back i n2005
 
 
 def _bounds() -> dict[str, float]:
