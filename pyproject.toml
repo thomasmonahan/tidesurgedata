@@ -35,6 +35,8 @@ dependencies = [
 usgs = ["dataretrieval>=1.1.0"]
 met = ["xarray", "zarr>=3", "icechunk", "pystac"]
 xarray = ["xarray", "netCDF4"]
+# Maps and animations of dynamical.org fields (examples/dynamical_*demo*.py).
+viz = ["tidesurgedata[met]", "matplotlib", "cartopy", "pillow"]
 all = ["tidesurgedata[usgs,met,xarray]"]
 test = ["pytest", "pytest-socket", "pytest-recording", "vcrpy", "pyyaml"]
 dev = ["tidesurgedata[all,test]", "ruff", "pre-commit"]

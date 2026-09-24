@@ -29,6 +29,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from dataclasses import dataclass
 
+import numpy as np
 import pandas as pd
 
 from tidesurgedata.contract import validate_forecast
@@ -227,6 +228,116 @@ class Dynamical(GriddedSource):
                 source = cls(collection.id, name, lat=grid_lat, lon=grid_lon)
                 stations.append(source.metadata())
         return stations
+
+    def fetch_fields(
+        self,
+        variables: Sequence[str],
+        start: TimeLike,
+        end: TimeLike,
+        *,
+        lat_min: float,
+        lat_max: float,
+        lon_min: float,
+        lon_max: float,
+    ):
+        """Fetch several variables over a regional space-time cube, for maps and animations.
+
+        Additive to the point-source API: it does not use or change :meth:`fetch`, and the
+        source's own ``variable``, ``lat`` and ``lon`` are ignored. Only analysis datasets (with a
+        ``time`` coordinate) are supported.
+
+        Parameters
+        ----------
+        variables : sequence of str
+            Dataset variable names, e.g. ``["pressure_surface", "wind_u_10m", "wind_v_10m"]``.
+        start, end : time-like
+            Timezone-aware bounds of the half-open range ``[start, end)``.
+        lat_min, lat_max : float
+            Latitude bounds in degrees, within ``[-90, 90]``.
+        lon_min, lon_max : float
+            Longitude bounds in degrees, within ``[-180, 180]``. A box crossing the dataset's
+            0-degree seam must be split into two requests.
+
+        Returns
+        -------
+        xarray.Dataset
+            The requested variables on the ``time``, ``latitude`` and ``longitude`` subset,
+            loaded into memory.
+
+        Raises
+        ------
+        ValueError
+            For invalid arguments (checked before any network access), unknown variables, or a
+            request with no data in time or space.
+        """
+        names = tuple(dict.fromkeys(variables))
+        if not names:
+            raise ValueError("variables must contain at least one variable name")
+        for name, value, low, high in (
+            ("lat_min", lat_min, -90.0, 90.0),
+            ("lat_max", lat_max, -90.0, 90.0),
+            ("lon_min", lon_min, -180.0, 180.0),
+            ("lon_max", lon_max, -180.0, 180.0),
+        ):
+            if not low <= value <= high:
+                raise ValueError(f"{name}={value} is outside [{low}, {high}]")
+        if lat_min > lat_max:
+            raise ValueError("lat_min must be <= lat_max")
+        if lon_min > lon_max:
+            raise ValueError("lon_min must be <= lon_max")
+        start_utc, end_utc = to_utc(start), to_utc(end)
+        if end_utc <= start_utc:
+            raise ValueError("end must be after start")
+
+        collection = self._collection()
+        available = collection.extra_fields.get("cube:variables", {})
+        missing = [name for name in names if name not in available]
+        if missing:
+            raise ValueError(f"Variables {missing!r} are not available in {self.dataset!r}")
+
+        ds = self._open_dataset(collection)
+        for coord in ("time", "latitude", "longitude"):
+            if coord not in ds.coords:
+                raise ValueError(f"Dataset {self.dataset!r} has no {coord!r} coordinate")
+
+        start_naive = start_utc.tz_localize(None)  # xarray coordinates are timezone-naive
+        end_naive = end_utc.tz_localize(None)
+
+        lat0, lat1 = float(ds.latitude.values[0]), float(ds.latitude.values[-1])
+        lat_slice = slice(lat_min, lat_max) if lat0 <= lat1 else slice(lat_max, lat_min)
+
+        lon0, lon1 = float(ds.longitude.values[0]), float(ds.longitude.values[-1])
+        uses_360 = min(lon0, lon1) >= 0.0 and max(lon0, lon1) > 180.0
+        if uses_360:
+            req_lon_min, req_lon_max = lon_min % 360.0, lon_max % 360.0
+            if req_lon_min > req_lon_max:
+                raise ValueError(
+                    "longitude bounds cross the dataset's 0-degree seam; "
+                    "split this request into two regions"
+                )
+        else:
+            req_lon_min, req_lon_max = lon_min, lon_max
+        lon_slice = (
+            slice(req_lon_min, req_lon_max) if lon0 <= lon1 else slice(req_lon_max, req_lon_min)
+        )
+
+        # Restrict every dimension lazily before anything is read. Selecting the region first
+        # matters: the store is sharded in ~0.5 GB objects, and any operation that evaluates the
+        # data (such as ``where``) before the spatial cut reads the whole globe.
+        fields = ds[list(names)].sel(
+            time=slice(start_naive, end_naive), latitude=lat_slice, longitude=lon_slice
+        )
+        # ``sel`` slices include both ends; drop the sample at ``end`` by position, which keeps
+        # the selection lazy, so the range is half-open.
+        before_end = np.flatnonzero(pd.DatetimeIndex(fields.time.values) < end_naive)
+        fields = fields.isel(time=before_end)
+        if fields.sizes.get("time", 0) == 0:
+            raise ValueError("No data available in the requested time range")
+        if fields.sizes.get("latitude", 0) == 0 or fields.sizes.get("longitude", 0) == 0:
+            raise ValueError("No grid cells fall inside the requested spatial bounds")
+
+        # Materialise only after every remote dimension has been restricted.
+        return fields.load()
 
     def init_times(self, start: TimeLike, end: TimeLike) -> pd.DatetimeIndex:
         """Initialisation times of the forecast dataset in the half-open range ``[start, end)``.
