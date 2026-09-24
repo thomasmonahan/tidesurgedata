@@ -26,6 +26,7 @@ Implementation checklist
 
 from __future__ import annotations
 
+import warnings
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -37,7 +38,7 @@ from tidesurgedata.sources.base import FetchRecord, Forecast, GriddedSource
 from tidesurgedata.sources.registry import register_source
 from tidesurgedata.timeutil import TimeLike, to_utc
 
-__all__ = ["CATALOG_URL", "Dynamical"]
+__all__ = ["CATALOG_URL", "ArchiveCoverageWarning", "Dynamical"]
 
 #: STAC catalog describing every dynamical.org dataset.
 CATALOG_URL = "https://stac.dynamical.org/catalog.json"
@@ -47,6 +48,15 @@ MEMBER_DIMENSIONS = ("ensemble_member", "realization", "member", "number")
 
 #: Label for the unperturbed member.
 CONTROL = "control"
+
+
+class ArchiveCoverageWarning(UserWarning):
+    """A request extends before the start of a dataset's archive, so part of it has no data.
+
+    Archive start dates differ per dataset (``noaa-gfs-analysis`` begins in May 2021, for
+    example, while ``noaa-gefs-analysis`` goes back to 2000). Without this warning the gap would
+    only show up later as NaN rows in a frame.
+    """
 
 
 def _require_met() -> tuple:
@@ -171,6 +181,16 @@ class Dynamical(GriddedSource):
         # The half-open [start, end) range is honoured by dropping the closing endpoint below.
         start_naive = start.tz_convert("UTC").tz_localize(None)
         end_naive = end.tz_convert("UTC").tz_localize(None)
+
+        archive_start = pd.Timestamp(ds.time.values[0], tz="UTC")
+        if start < archive_start:
+            warnings.warn(
+                f"{self.dataset} archive starts at {archive_start.isoformat()}, but "
+                f"{self.variable} was requested from {start.isoformat()}; values before the "
+                "archive start are missing. Use a dataset with a longer archive or a later start.",
+                ArchiveCoverageWarning,
+                stacklevel=2,
+            )
 
         # Select only the requested variable, time range, and nearest grid point.
         data = (

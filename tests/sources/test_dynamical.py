@@ -6,13 +6,15 @@ are replaced with a small synthetic STAC collection and xarray dataset shaped li
 marked ``live`` are the only ones that reach dynamical.org and run in the nightly job.
 """
 
+import warnings
+
 import numpy as np
 import pandas as pd
 import pytest
 
 from tidesurgedata.contract import validate_forecast
 from tidesurgedata.sources.base import ForecastSource, GriddedSource
-from tidesurgedata.sources.dynamical import Dynamical
+from tidesurgedata.sources.dynamical import ArchiveCoverageWarning, Dynamical
 
 from ..contract_suite import ForecastSourceContractTests, SourceContractTests
 
@@ -159,6 +161,19 @@ def test_metadata():
 def test_metadata_requires_location():
     with pytest.raises(ValueError, match="location"):
         Dynamical("noaa-gfs-analysis", "pressure_surface").metadata()
+
+
+def test_fetch_before_archive_start_warns():
+    start = pd.Timestamp(ANALYSIS_START, tz="UTC") - pd.Timedelta("10D")
+    with pytest.warns(ArchiveCoverageWarning, match="archive starts at 2023-12-25"):
+        series = analysis().fetch(start, start + pd.Timedelta("12D"))
+    assert series.index[0] == pd.Timestamp(ANALYSIS_START, tz="UTC")
+
+
+def test_fetch_within_archive_does_not_warn():
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", ArchiveCoverageWarning)
+        analysis().fetch("2024-01-01T00:00Z", "2024-01-02T00:00Z")
 
 
 def test_fetch_is_half_open():
