@@ -30,6 +30,7 @@ from pathlib import Path
 
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
+from matplotlib.colors import TwoSlopeNorm
 import numpy as np
 import pandas as pd
 
@@ -47,9 +48,9 @@ except ImportError as exc:  # pragma: no cover - depends on optional demo depend
 # Example region around New York Harbor. Adjust these constants to inspect a
 # different region. Bounds intentionally remain modest to keep remote reads
 # and plotting responsive.
-LAT = 40.71
-LON = -74.01
-HALF_WIDTH_DEGREES = 3.0
+LAT = 17.521209 #40.71 #19.021209, -104.346836
+LON = -101.346836 #-74.01
+HALF_WIDTH_DEGREES = 5.0
 
 DATASET = "noaa-gfs-analysis"
 PRESSURE_VARIABLE = "pressure_surface"
@@ -58,9 +59,10 @@ WIND_V_VARIABLE = "wind_v_10m"
 
 # Fetch and animate the most recent day of analysis data. Pressure and both wind
 # components are retrieved together in one regional space-time request.
-ANIMATION_LOOKBACK = pd.Timedelta("24h")
-ANIMATION_FPS = 3
-ANIMATION_OUTPUT = Path("dynamical_pressure_wind.mp4")
+ANIMATION_LOOKBACK = pd.Timedelta("7d")
+PRESSURE_CENTER_PA = 100_000.0
+ANIMATION_FPS = 4
+ANIMATION_OUTPUT = Path("dynamical_pressure_wind_7d_H_polo_HR.mp4")
 
 
 def _bounds() -> dict[str, float]:
@@ -74,7 +76,7 @@ def _bounds() -> dict[str, float]:
 
 def _map_axes(*, title: str, bounds: dict[str, float]):
     """Create a geographic axes with land and coastline beneath the field."""
-    fig = plt.figure(figsize=(10, 7))
+    fig = plt.figure(figsize=(15, 11))
     ax = plt.axes(projection=ccrs.PlateCarree())
     ax.set_extent(
         [bounds["lon_min"], bounds["lon_max"], bounds["lat_min"], bounds["lat_max"]],
@@ -102,30 +104,97 @@ def _field_arrays(field):
     )
 
 
-def _heatmap(field, *, title: str, colorbar_label: str, bounds: dict[str, float]) -> None:
-    """Display one latitude/longitude DataArray over a coastline map."""
+def _cell_edges(values: np.ndarray) -> np.ndarray:
+    """Return cell-edge coordinates from regularly or irregularly spaced centres."""
+    values = np.asarray(values, dtype=float)
+    if values.ndim != 1 or values.size < 2:
+        raise ValueError("At least two 1D grid coordinates are required to infer cell edges.")
+    midpoints = (values[:-1] + values[1:]) / 2.0
+    first = values[0] - (midpoints[0] - values[0])
+    last = values[-1] + (values[-1] - midpoints[-1])
+    return np.concatenate(([first], midpoints, [last]))
+
+
+def _field_geometry(field):
+    """Return a field plus centre and edge coordinates for correct raster placement."""
     field, lats, lons = _field_arrays(field)
-    fig, ax = _map_axes(title=title, bounds=bounds)
-    image = ax.pcolormesh(
-        lons,
-        lats,
-        field.to_numpy(),
-        shading="auto",
-        transform=ccrs.PlateCarree(),
-        zorder=2,
-        alpha=0.82,
+    return field, lats, lons, _cell_edges(lats), _cell_edges(lons)
+
+
+def _pressure_norm(values: np.ndarray) -> TwoSlopeNorm:
+    """Return one fixed symmetric pressure scale centred on 100,000 Pa.
+
+    The limits are derived from the complete supplied pressure dataset and are
+    symmetric about ``PRESSURE_CENTER_PA``.  For animation this function is
+    called once using all frames, so the colour scale never changes with time.
+    """
+    vmin = float(np.nanmin(values))
+    vmax = float(np.nanmax(values))
+    span = max(PRESSURE_CENTER_PA - vmin, vmax - PRESSURE_CENTER_PA)
+    if span <= 0 or not np.isfinite(span):
+        span = 1.0
+    return TwoSlopeNorm(
+        vmin=PRESSURE_CENTER_PA - span,
+        vcenter=PRESSURE_CENTER_PA,
+        vmax=PRESSURE_CENTER_PA + span,
+    )
+
+
+def _add_full_height_colorbar(fig, ax, mappable, label: str):
+    """Add a colorbar matching the map axes height with only a narrow gap."""
+    fig.canvas.draw()
+    pos = ax.get_position()
+    gap = 0.006
+    width = 0.022
+    cax = fig.add_axes([pos.x1 + gap, pos.y0, width, pos.height])
+    cbar = fig.colorbar(mappable, cax=cax)
+    cbar.set_label(label)
+    return cbar
+
+
+def _mark_requested_location(ax) -> None:
+    """Draw a high-contrast requested-location marker above all weather layers."""
+    transform = ccrs.PlateCarree()
+    ax.scatter(
+        [LON], [LAT], marker="X", s=190, facecolor="white", edgecolor="black",
+        linewidth=2.2, transform=transform, zorder=20, label="Requested location",
     )
     ax.scatter(
-        [LON],
-        [LAT],
-        marker="x",
-        label="Requested location",
-        transform=ccrs.PlateCarree(),
-        zorder=4,
+        [LON], [LAT], marker="+", s=150, color="black", linewidth=2.8,
+        transform=transform, zorder=21,
     )
+
+
+def _heatmap(
+    field, *, title: str, colorbar_label: str, bounds: dict[str, float], pressure: bool = False
+) -> None:
+    """Display one latitude/longitude DataArray over a coastline map."""
+    field, lats, lons, lat_edges, lon_edges = _field_geometry(field)
+    fig, ax = _map_axes(title=title, bounds=bounds)
+    kwargs = {}
+    if pressure:
+        kwargs.update(cmap="bwr", norm=_pressure_norm(field.to_numpy()))
+    image = ax.pcolormesh(
+        lon_edges,
+        lat_edges,
+        field.to_numpy(),
+        shading="flat",
+        transform=ccrs.PlateCarree(),
+        zorder=2,
+        alpha=0.86,
+        **kwargs,
+    )
+    # Match the visible map to the actual raster cell edges, avoiding clipped
+    # half-cells and apparent gaps at the perimeter.
+    ax.set_extent(
+        [float(np.min(lon_edges)), float(np.max(lon_edges)),
+         float(np.min(lat_edges)), float(np.max(lat_edges))],
+        crs=ccrs.PlateCarree(),
+    )
+    _mark_requested_location(ax)
     ax.legend(loc="best")
-    fig.colorbar(image, ax=ax, label=colorbar_label, shrink=0.8)
-    fig.tight_layout()
+    _add_full_height_colorbar(fig, ax, image, colorbar_label)
+
 
 
 def _wind_map(wind_u, wind_v, *, title: str, colorbar_label: str, bounds: dict[str, float]):
@@ -134,41 +203,44 @@ def _wind_map(wind_u, wind_v, *, title: str, colorbar_label: str, bounds: dict[s
     speed.name = "wind_speed_10m"
     speed.attrs = dict(wind_u.attrs)
 
-    speed, lats, lons = _field_arrays(speed)
+    speed, lats, lons, lat_edges, lon_edges = _field_geometry(speed)
     u = wind_u.transpose("latitude", "longitude")
     v = wind_v.transpose("latitude", "longitude")
     lon_grid, lat_grid = np.meshgrid(lons, lats)
 
     fig, ax = _map_axes(title=title, bounds=bounds)
     image = ax.pcolormesh(
-        lons,
-        lats,
+        lon_edges,
+        lat_edges,
         speed.to_numpy(),
-        shading="auto",
+        shading="flat",
         transform=ccrs.PlateCarree(),
         zorder=2,
         alpha=0.82,
     )
     stride = max(1, max(len(lats), len(lons)) // 25)
     ax.quiver(
-        lon_grid[::stride, ::stride],
-        lat_grid[::stride, ::stride],
-        u.to_numpy()[::stride, ::stride],
-        v.to_numpy()[::stride, ::stride],
+        lon_grid,
+        lat_grid,
+        u.to_numpy(),
+        v.to_numpy(),
         transform=ccrs.PlateCarree(),
         zorder=4,
+        angles="xy",
+        scale_units="xy",
+        width=0.0016,
+        headwidth=3.2,
+        headlength=4.2,
+        headaxislength=3.8,
     )
-    ax.scatter(
-        [LON],
-        [LAT],
-        marker="x",
-        label="Requested location",
-        transform=ccrs.PlateCarree(),
-        zorder=5,
+    ax.set_extent(
+        [float(np.min(lon_edges)), float(np.max(lon_edges)),
+         float(np.min(lat_edges)), float(np.max(lat_edges))],
+        crs=ccrs.PlateCarree(),
     )
+    _mark_requested_location(ax)
     ax.legend(loc="best")
-    fig.colorbar(image, ax=ax, label=colorbar_label, shrink=0.8)
-    fig.tight_layout()
+    _add_full_height_colorbar(fig, ax, image, colorbar_label)
     return fig
 
 
@@ -235,10 +307,10 @@ def _save_animation(frames, *, bounds: dict[str, float], output: Path) -> Path:
     speed_values = np.concatenate(
         [np.hypot(frame[2], frame[3]).to_numpy().ravel() for frame in frames]
     )
-    pressure_min, pressure_max = np.nanmin(pressure_values), np.nanmax(pressure_values)
+    pressure_norm = _pressure_norm(pressure_values)
     speed_min, speed_max = np.nanmin(speed_values), np.nanmax(speed_values)
 
-    fig = plt.figure(figsize=(11, 8))
+    fig = plt.figure(figsize=(15, 11))
     ax = plt.axes(projection=ccrs.PlateCarree())
     ax.set_extent(
         [bounds["lon_min"], bounds["lon_max"], bounds["lat_min"], bounds["lat_max"]],
@@ -250,34 +322,44 @@ def _save_animation(frames, *, bounds: dict[str, float], output: Path) -> Path:
     ax.add_feature(cfeature.BORDERS, linewidth=0.4, zorder=4)
 
     first_time, first_pressure, first_u, first_v = frames[0]
-    first_pressure, lats, lons = _field_arrays(first_pressure)
+    first_pressure, lats, lons, lat_edges, lon_edges = _field_geometry(first_pressure)
     lon_grid, lat_grid = np.meshgrid(lons, lats)
-    stride = max(1, max(len(lats), len(lons)) // 25)
 
     image = ax.pcolormesh(
-        lons,
-        lats,
+        lon_edges,
+        lat_edges,
         first_pressure.to_numpy(),
-        shading="auto",
+        shading="flat",
         transform=ccrs.PlateCarree(),
         zorder=2,
-        alpha=0.78,
-        vmin=pressure_min,
-        vmax=pressure_max,
+        alpha=0.86,
+        cmap="bwr",
+        norm=pressure_norm,
     )
     speed = np.hypot(first_u, first_v).transpose("latitude", "longitude")
     # Wind speed is represented by arrow length; pressure remains the heatmap.
     quiver = ax.quiver(
-        lon_grid[::stride, ::stride],
-        lat_grid[::stride, ::stride],
-        first_u.transpose("latitude", "longitude").to_numpy()[::stride, ::stride],
-        first_v.transpose("latitude", "longitude").to_numpy()[::stride, ::stride],
+        lon_grid,
+        lat_grid,
+        first_u.transpose("latitude", "longitude").to_numpy(),
+        first_v.transpose("latitude", "longitude").to_numpy(),
         transform=ccrs.PlateCarree(),
         zorder=5,
+        angles="xy",
+        scale_units="xy",
+        width=0.0014,
+        headwidth=3.0,
+        headlength=4.0,
+        headaxislength=3.6,
     )
-    ax.scatter([LON], [LAT], marker="x", transform=ccrs.PlateCarree(), zorder=6)
+    ax.set_extent(
+        [float(np.min(lon_edges)), float(np.max(lon_edges)),
+         float(np.min(lat_edges)), float(np.max(lat_edges))],
+        crs=ccrs.PlateCarree(),
+    )
+    _mark_requested_location(ax)
     pressure_units = first_pressure.attrs.get("units", PRESSURE_VARIABLE)
-    fig.colorbar(image, ax=ax, label=str(pressure_units), shrink=0.8)
+    _add_full_height_colorbar(fig, ax, image, str(pressure_units))
     title = ax.set_title(f"Surface pressure and 10 m wind\n{first_time}")
 
     # Keep these values visible in the console; they also prove the wind field
@@ -291,8 +373,8 @@ def _save_animation(frames, *, bounds: dict[str, float], output: Path) -> Path:
         v = wind_v.transpose("latitude", "longitude")
         image.set_array(pressure.to_numpy().ravel())
         quiver.set_UVC(
-            u.to_numpy()[::stride, ::stride],
-            v.to_numpy()[::stride, ::stride],
+            u.to_numpy(),
+            v.to_numpy(),
         )
         title.set_text(f"Surface pressure and 10 m wind\n{timestamp}")
         return image, quiver, title
@@ -307,10 +389,10 @@ def _save_animation(frames, *, bounds: dict[str, float], output: Path) -> Path:
 
     output = output.resolve()
     if animation.writers.is_available("ffmpeg"):
-        movie.save(output, writer="ffmpeg", fps=ANIMATION_FPS, dpi=140)
+        movie.save(output, writer="ffmpeg", fps=ANIMATION_FPS, dpi=180)
     else:
         output = output.with_suffix(".gif")
-        movie.save(output, writer="pillow", fps=ANIMATION_FPS, dpi=110)
+        movie.save(output, writer="pillow", fps=ANIMATION_FPS, dpi=180)
 
     plt.close(fig)
     return output
@@ -368,6 +450,7 @@ def main() -> None:
         title=f"Dynamical surface pressure\n{selected_time}",
         colorbar_label=str(pressure_units),
         bounds=bounds,
+        pressure=True,
     )
     _heatmap(
         wind_speed,

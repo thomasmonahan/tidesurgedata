@@ -33,7 +33,9 @@ dependencies = [
     "icechunk",
     "zarr",
     "xarray",
-    "matplotlib"
+    "matplotlib",
+    "cartopy",
+    "pillow"
 ]
 
 [project.optional-dependencies]

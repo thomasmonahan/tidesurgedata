@@ -181,17 +181,62 @@ def main() -> None:
         except Exception as exc:
             st.error(f"Forecast retrieval failed: {exc}")
 
-    forecast = st.session_state.get("forecast_frame")
-    if forecast is not None:
-        st.caption(f"Issued: {st.session_state.forecast_issued}")
-        st.plotly_chart(
-            line_figure(forecast, list(recipe.feature_columns), "Forecast-frame drivers"),
-            use_container_width=True,
-        )
-        with st.expander("Forecast frame"):
-            st.dataframe(forecast, use_container_width=True)
-        with st.expander("Forecast provenance, licence and attribution", expanded=True):
-            st.dataframe(st.session_state.forecast_provenance, use_container_width=True, hide_index=True)
+        forecast = st.session_state.get("forecast_frame")
+        if forecast is not None:
+            st.caption(f"Issued: {st.session_state.forecast_issued}")
+
+            # Keep physically different driver variables on separate y-axes/plots.
+            # Discharge and pressure have very different units and numerical scales,
+            # so plotting them together makes the discharge series difficult to see.
+            discharge_cols = [
+                column
+                for column in forecast.columns
+                if column.startswith("discharge_")
+            ]
+
+            pressure_cols = [
+                column
+                for column in forecast.columns
+                if column.startswith("pressure_")
+            ]
+
+            if discharge_cols:
+                st.plotly_chart(
+                    line_figure(
+                        forecast,
+                        discharge_cols,
+                        "Forecast-frame river discharge",
+                        yaxis_title="Discharge",
+                    ),
+                    use_container_width=True,
+                )
+
+            if pressure_cols:
+                st.plotly_chart(
+                    line_figure(
+                        forecast,
+                        pressure_cols,
+                        "Forecast-frame surface pressure",
+                        yaxis_title="Pressure (Pa)",
+                    ),
+                    use_container_width=True,
+                )
+
+            with st.expander("Forecast frame"):
+                st.dataframe(
+                    forecast,
+                    use_container_width=True,
+                )
+
+            with st.expander(
+                "Forecast provenance, licence and attribution",
+                expanded=True,
+            ):
+                st.dataframe(
+                    st.session_state.forecast_provenance,
+                    use_container_width=True,
+                    hide_index=True,
+                )
 
 
 if __name__ == "__main__":

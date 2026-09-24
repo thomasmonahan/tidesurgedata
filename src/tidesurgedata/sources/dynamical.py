@@ -157,15 +157,14 @@ class Dynamical(GriddedSource):
         start = start.tz_convert("UTC").tz_localize(None)
         end = end.tz_convert("UTC").tz_localize(None)
 
-        # Select only the requested variable, time range, and nearest grid point.
-        #data = ds[self.variable].sel(time=slice(start, end), latitude=self.lat, longitude=self.lon, method=self.method,)
-
-        # First select the requested time range.
+        # Select time independently from space. xarray cannot apply
+        # method="nearest" when one of the indexers is a slice.
         data = ds[self.variable].sel(
             time=slice(start, end),
         )
 
-        # Then sample the spatial grid independently.
+        # Sample the requested geographic point according to the source's
+        # configured spatial method.
         if self.method == "nearest":
             data = data.sel(
                 latitude=self.lat,
@@ -184,9 +183,19 @@ class Dynamical(GriddedSource):
                 "Expected 'nearest' or 'linear'."
             )
 
-        # Convert the one-dimensional xarray result to the pandas Series expected
         series = data.to_series().astype("float64")
         series.index = pd.to_datetime(series.index, utc=True)
+
+        # xarray label slices include both endpoints, whereas TideSurgeData uses
+        # half-open [start, end) intervals. Enforce that contract here.
+        start_utc = start.tz_localize("UTC")
+        end_utc = end.tz_localize("UTC")
+
+        series = series[
+            (series.index >= start_utc)
+            & (series.index < end_utc)
+        ]
+
         series.name = self.variable
 
         request = {
@@ -252,6 +261,115 @@ class Dynamical(GriddedSource):
             stations.append(source.metadata())
 
         return stations
+
+    def fetch_fields(
+        self,
+        variables: Sequence[str],
+        start: TimeLike,
+        end: TimeLike,
+        *,
+        lat_min: float,
+        lat_max: float,
+        lon_min: float,
+        lon_max: float,
+    ):
+        """Fetch multiple variables over a regional space-time cube.
+
+        This is an additive spatial API for applications such as maps and
+        animations.  It deliberately does not use or modify the one-dimensional
+        :meth:`fetch` / :meth:`_fetch` source contract.
+
+        The remote Dynamical dataset is opened once, all requested variables are
+        selected together, and only the requested time/latitude/longitude subset
+        is loaded into memory.  The returned object is an ``xarray.Dataset``.
+        """
+        import icechunk
+        import pystac
+        import xarray as xr
+
+        names = tuple(dict.fromkeys(variables))
+        if not names:
+            raise ValueError("variables must contain at least one variable name")
+        if lat_min > lat_max:
+            raise ValueError("lat_min must be <= lat_max")
+        if lon_min > lon_max:
+            raise ValueError("lon_min must be <= lon_max")
+
+        start_utc = pd.Timestamp(start)
+        end_utc = pd.Timestamp(end)
+        if start_utc.tzinfo is None or end_utc.tzinfo is None:
+            raise ValueError("start and end must be timezone-aware")
+        start_utc = start_utc.tz_convert("UTC")
+        end_utc = end_utc.tz_convert("UTC")
+        if end_utc <= start_utc:
+            raise ValueError("end must be after start")
+
+        catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
+        collection = catalog.get_child(self.dataset)
+        if collection is None:
+            raise ValueError(f"Unknown dynamical.org dataset: {self.dataset}")
+
+        available = collection.extra_fields.get("cube:variables", {})
+        missing = [name for name in names if name not in available]
+        if missing:
+            raise ValueError(
+                f"Variables {missing!r} are not available in {self.dataset!r}"
+            )
+
+        asset = collection.assets["icechunk-https"]
+        repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
+        session = repo.readonly_session("main")
+        ds = xr.open_zarr(session.store, chunks=None)
+
+        for coord in ("time", "latitude", "longitude"):
+            if coord not in ds.coords:
+                raise ValueError(
+                    f"Dataset {self.dataset!r} has no {coord!r} coordinate"
+                )
+
+        # xarray's datetime64 coordinates are timezone-naive.  Keep the public
+        # API UTC-aware, then remove the timezone only for indexing the dataset.
+        start_naive = start_utc.tz_localize(None)
+        end_naive = end_utc.tz_localize(None)
+
+        fields = ds[list(names)].sel(time=slice(start_naive, end_naive))
+        # ``sel`` slices are inclusive at both ends; TideSurgeData ranges are
+        # half-open, so explicitly remove a sample exactly at ``end``.
+        fields = fields.where(fields.time < end_naive, drop=True)
+
+        lat0 = float(ds.latitude.values[0])
+        lat1 = float(ds.latitude.values[-1])
+        lat_slice = slice(lat_min, lat_max) if lat0 <= lat1 else slice(lat_max, lat_min)
+
+        lon0 = float(ds.longitude.values[0])
+        lon1 = float(ds.longitude.values[-1])
+        uses_360 = min(lon0, lon1) >= 0.0 and max(lon0, lon1) > 180.0
+        if uses_360:
+            req_lon_min = lon_min % 360.0
+            req_lon_max = lon_max % 360.0
+            if req_lon_min > req_lon_max:
+                raise ValueError(
+                    "longitude bounds cross the dataset's 0-degree seam; "
+                    "split this request into two regions"
+                )
+        else:
+            req_lon_min = lon_min
+            req_lon_max = lon_max
+
+        lon_slice = (
+            slice(req_lon_min, req_lon_max)
+            if lon0 <= lon1
+            else slice(req_lon_max, req_lon_min)
+        )
+
+        fields = fields.sel(latitude=lat_slice, longitude=lon_slice)
+        if fields.sizes.get("time", 0) == 0:
+            raise ValueError("No data available in the requested time range")
+        if fields.sizes.get("latitude", 0) == 0 or fields.sizes.get("longitude", 0) == 0:
+            raise ValueError("No grid cells fall inside the requested spatial bounds")
+
+        # Materialise only after all remote dimensions have been restricted.
+        return fields.load()
 
     def init_times(self, start: TimeLike, end: TimeLike) -> pd.DatetimeIndex:
         """Initialisation times of the forecast dataset in ``[start, end)``."""
@@ -341,7 +459,8 @@ class Dynamical(GriddedSource):
             )
         else:
             raise ValueError(
-                f"Unsupported spatial sampling method: {self.method!r}"
+                f"Unsupported spatial sampling method: {self.method!r}. "
+                "Expected 'nearest' or 'linear'."
             )
 
         # Convert lead times into actual forecast valid times.
@@ -397,151 +516,3 @@ class Dynamical(GriddedSource):
         )
 
         return Forecast(record=record, init_time=init_time, values=frame)
-
-# ---------------------------------------------------------------------------
-# Spatial field helpers
-# ---------------------------------------------------------------------------
-# These functions are attached to Dynamical below rather than changing the
-# existing BaseSource point-fetch contract. They intentionally return xarray
-# DataArray objects, not pandas Series / Forecast objects.
-
-def _normalise_field_bounds(
-    lat_min: float, lat_max: float, lon_min: float, lon_max: float
-) -> tuple[float, float, float, float]:
-    """Validate and normalise a geographic bounding box."""
-    values = (lat_min, lat_max, lon_min, lon_max)
-    if not all(pd.notna(v) for v in values):
-        raise ValueError("Field bounds must be finite latitude/longitude values.")
-    lat_min, lat_max, lon_min, lon_max = map(float, values)
-    if not (-90.0 <= lat_min < lat_max <= 90.0):
-        raise ValueError("Require -90 <= lat_min < lat_max <= 90.")
-    if not (-180.0 <= lon_min < lon_max <= 180.0):
-        raise ValueError("Require -180 <= lon_min < lon_max <= 180.")
-    return lat_min, lat_max, lon_min, lon_max
-
-
-def _coordinate_slice(coord, low: float, high: float):
-    """Return a slice that follows an xarray coordinate's stored direction."""
-    first = float(coord.values[0])
-    last = float(coord.values[-1])
-    return slice(low, high) if first <= last else slice(high, low)
-
-
-def _open_spatial_dataset(source: Dynamical):
-    """Open a Dynamical collection as xarray without changing point-fetch code."""
-    import icechunk
-    import pystac
-    import xarray as xr
-
-    catalog = pystac.Catalog.from_file("https://stac.dynamical.org/catalog.json")
-    collection = catalog.get_child(source.dataset)
-    if collection is None:
-        raise ValueError(f"Unknown dynamical.org dataset: {source.dataset}")
-
-    asset = collection.assets["icechunk-https"]
-    repo = icechunk.Repository.open(icechunk.http_storage(asset.href))
-    session = repo.readonly_session("main")
-    return xr.open_zarr(session.store, chunks=None), collection
-
-
-def _fetch_field(
-    self: Dynamical,
-    time: TimeLike,
-    *,
-    lat_min: float,
-    lat_max: float,
-    lon_min: float,
-    lon_max: float,
-    variable: str | None = None,
-):
-    """Fetch one two-dimensional analysis field over a geographic box.
-
-    This is additive to :meth:`fetch`: it does not participate in the
-    BaseSource/Recipe one-dimensional Series contract. The nearest available
-    analysis time is selected and recorded in ``selected_time`` in attrs.
-    """
-    lat_min, lat_max, lon_min, lon_max = _normalise_field_bounds(
-        lat_min, lat_max, lon_min, lon_max
-    )
-    variable = self.variable if variable is None else variable
-    ds, collection = _open_spatial_dataset(self)
-
-    if variable not in ds:
-        raise ValueError(f"Variable {variable!r} is not available in {self.dataset!r}")
-    if "time" not in ds.coords:
-        raise ValueError(f"Dataset {self.dataset!r} does not expose an analysis 'time' coordinate.")
-    if "latitude" not in ds.coords or "longitude" not in ds.coords:
-        raise ValueError(f"Dataset {self.dataset!r} does not expose latitude/longitude coordinates.")
-
-    requested = pd.Timestamp(time)
-    requested = requested.tz_localize("UTC") if requested.tzinfo is None else requested.tz_convert("UTC")
-    requested_naive = requested.tz_localize(None)
-
-    field = ds[variable].sel(time=requested_naive, method="nearest")
-    field = field.sel(
-        latitude=_coordinate_slice(ds.latitude, lat_min, lat_max),
-        longitude=_coordinate_slice(ds.longitude, lon_min, lon_max),
-    ).squeeze(drop=True)
-
-    extra_dims = [d for d in field.dims if d not in ("latitude", "longitude")]
-    if extra_dims:
-        raise ValueError(
-            f"Variable {variable!r} is not a 2D analysis field after time selection; "
-            f"remaining dimensions: {extra_dims}."
-        )
-    if field.sizes.get("latitude", 0) == 0 or field.sizes.get("longitude", 0) == 0:
-        raise ValueError("Requested bounds contain no Dynamical grid cells.")
-
-    selected = pd.Timestamp(field["time"].values, tz="UTC") if "time" in field.coords else requested
-    field = field.astype("float64").load()
-    field.attrs = dict(field.attrs)
-    field.attrs.update(
-        {
-            "dataset": self.dataset,
-            "variable": variable,
-            "requested_time": requested.isoformat(),
-            "selected_time": selected.isoformat(),
-            "licence": collection.extra_fields.get("license", "CC-BY-4.0"),
-            "attribution": collection.extra_fields.get("attribution", ""),
-        }
-    )
-    return field
-
-
-def _fetch_wind_field(
-    self: Dynamical,
-    time: TimeLike,
-    *,
-    lat_min: float,
-    lat_max: float,
-    lon_min: float,
-    lon_max: float,
-    u_variable: str = "wind_u_10m",
-    v_variable: str = "wind_v_10m",
-):
-    """Fetch matching 2D U/V wind-component analysis fields."""
-    u = self.fetch_field(
-        time,
-        lat_min=lat_min,
-        lat_max=lat_max,
-        lon_min=lon_min,
-        lon_max=lon_max,
-        variable=u_variable,
-    )
-    v = self.fetch_field(
-        time,
-        lat_min=lat_min,
-        lat_max=lat_max,
-        lon_min=lon_min,
-        lon_max=lon_max,
-        variable=v_variable,
-    )
-    if not u.latitude.equals(v.latitude) or not u.longitude.equals(v.longitude):
-        raise ValueError("Dynamical U/V wind fields do not share the same spatial grid.")
-    return u, v
-
-
-# Additive public methods. Existing Dynamical methods above are intentionally
-# untouched so BaseSource.fetch(), Recipe and forecast behavior are unchanged.
-Dynamical.fetch_field = _fetch_field
-Dynamical.fetch_wind_field = _fetch_wind_field

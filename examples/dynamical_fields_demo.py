@@ -124,7 +124,7 @@ def main() -> None:
         u.to_numpy()[::stride, ::stride],
         v.to_numpy()[::stride, ::stride],
     )
-    ax.scatter([LON], [LAT], marker="x", label="Requested location")
+    ax.scatter([LON], [LAT], marker="x", label="Requested location", color = 'w')
     ax.set_xlabel("Longitude")
     ax.set_ylabel("Latitude")
     ax.set_title(f"10 m wind speed and direction\n{selected_time}")
